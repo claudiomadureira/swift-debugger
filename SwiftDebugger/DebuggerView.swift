@@ -10,7 +10,8 @@ import UIKit
 
 class DebuggerView: UIView, NibLoadable {
     
-    @IBOutlet private weak var sideMenu: UIView!
+    @IBOutlet private weak var viewBackground: UIView!
+    @IBOutlet private weak var viewSideMenu: UIView!
     @IBOutlet private weak var lblEnvironments: UILabel!
     @IBOutlet private weak var collectionLocalizations: AlwaysSelectedCollectionView!
     @IBOutlet private weak var lblLocalizations: UILabel!
@@ -41,13 +42,10 @@ class DebuggerView: UIView, NibLoadable {
         self.addDismissSideMenuTapGesture()
         self.addDismissSideMenuPanGesture()
         self.setSideMenu(hidden: true)
-        self.alpha = 0
     }
     
     func appearInAnimated() {
-        self.animate(toHide: false, completion: {
-            self.animateSideMenu(toHide: false, completion: nil)
-        })
+        self.animateSideMenu(toHide: false, completion: nil)
     }
     
     private func setUpHiddablePointer() {
@@ -58,14 +56,14 @@ class DebuggerView: UIView, NibLoadable {
     
     private func addDismissSideMenuPanGesture() {
         let gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
-        self.sideMenu.addGestureRecognizer(gesture)
+        self.viewSideMenu.addGestureRecognizer(gesture)
         let _gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
         self.viewHiddableSideMenu.addGestureRecognizer(_gesture)
     }
     
     private func addDismissSideMenuTapGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapDismissSideMenuAction))
-        self.addGestureRecognizer(gesture)
+        self.viewSideMenu.addGestureRecognizer(gesture)
     }
     
     private func setUpButtonExpand() {
@@ -83,7 +81,7 @@ class DebuggerView: UIView, NibLoadable {
     }
     
     private func setUpSideMenuBackground() {
-        self.sideMenu.backgroundColor = .clear
+        self.viewSideMenu.backgroundColor = .clear
         
         // Adding corner and border below
         let view = UIView()
@@ -93,12 +91,12 @@ class DebuggerView: UIView, NibLoadable {
         view.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 25
-        self.sideMenu.insertSubview(view, at: 0)
-        self.sideMenu.addConstraints([
-            view.topAnchor.constraint(equalTo: self.sideMenu.topAnchor),
-            view.bottomAnchor.constraint(equalTo: self.sideMenu.bottomAnchor),
-            view.leadingAnchor.constraint(equalTo: self.sideMenu.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: self.sideMenu.trailingAnchor, constant: 30)])
+        self.viewSideMenu.insertSubview(view, at: 0)
+        self.viewSideMenu.addConstraints([
+            view.topAnchor.constraint(equalTo: self.viewSideMenu.topAnchor),
+            view.bottomAnchor.constraint(equalTo: self.viewSideMenu.bottomAnchor),
+            view.leadingAnchor.constraint(equalTo: self.viewSideMenu.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: self.viewSideMenu.trailingAnchor, constant: 30)])
     }
     
     private func setSideMenu(hidden: Bool) {
@@ -108,8 +106,9 @@ class DebuggerView: UIView, NibLoadable {
     private func setSideMeuHidden(progress: CGFloat) {
         guard progress >= 0 && progress <= 1 else { return }
         let x: CGFloat = (UIScreen.main.bounds.size.width/2 + 30)*progress
-        self.sideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
-        self.viewHiddablePointer.transform = self.sideMenu.transform
+        self.viewSideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
+        self.viewHiddablePointer.transform = self.viewSideMenu.transform
+        self.viewBackground.alpha = 1 - progress
     }
     
     private func animateSideMenu(toHide: Bool, completion: (() -> Void)?) {
@@ -120,20 +119,10 @@ class DebuggerView: UIView, NibLoadable {
         })
     }
     
-    private func animate(toHide: Bool, completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
-            self?.alpha = toHide ? 0 : 1
-            }, completion: { _ in
-            completion?()
-        })
-    }
-    
     @objc
     private func tapDismissSideMenuAction() {
-        self.animateSideMenu(toHide: true) {
-            self.animate(toHide: true, completion: { [weak self] in
-                self?.removeFromSuperview()
-            })
+        self.animateSideMenu(toHide: true) { [weak self] in
+            self?.removeFromSuperview()
         }
     }
     
@@ -149,31 +138,29 @@ class DebuggerView: UIView, NibLoadable {
         case .ended:
             let speed = gesture.velocity(in: gesture.view).x
             if speed == 100 {
-                let translatedX = self.sideMenu.transform.tx
+                let translatedX = self.viewSideMenu.transform.tx
                 let toHide = translatedX > UIScreen.main.bounds.width/4
                 self.animateSideMenu(toHide: toHide) { [weak self] in
                     if toHide {
-                        self?.animate(toHide: toHide, completion: { [weak self] in
-                            self?.removeFromSuperview()
-                        })
+                        self?.removeFromSuperview()
                     }
                 }
             } else {
                 let toHide = speed > 100
                 self.animateSideMenu(toHide: toHide) { [weak self] in
                     if toHide {
-                        self?.animate(toHide: toHide, completion: { [weak self] in
-                            self?.removeFromSuperview()
-                        })
+                        self?.removeFromSuperview()
                     }
                 }
             }
             
         default:
             UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
-                let x = point.x < 0 ? 0 : point.x
-                self.sideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
-                self.viewHiddablePointer.transform = self.sideMenu.transform
+                let x: CGFloat = point.x < 0 ? 0 : point.x
+                let progress: CGFloat = x/(UIScreen.main.bounds.width/2)
+                self.viewSideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
+                self.viewHiddablePointer.transform = self.viewSideMenu.transform
+                self.viewBackground.alpha = 1 - progress
             }, completion: nil)
             
         }
