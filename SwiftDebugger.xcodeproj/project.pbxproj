@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2523FC2024451D7A00D1F0BC /* Extension-UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */; };
 		253903E5243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253903E4243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift */; };
 		253903E9243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253903E7243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift */; };
 		253903EA243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 253903E8243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib */; };
@@ -23,6 +24,8 @@
 		258334D4243BF664000776B2 /* DebuggerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258334D3243BF664000776B2 /* DebuggerView.xib */; };
 		25A997B2243D2CD7009D325F /* DebuggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A997B1243D2CD7009D325F /* DebuggerView.swift */; };
 		25A997B6243D2D42009D325F /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A997B5243D2D42009D325F /* NibLoadable.swift */; };
+		25ADB8FA2447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADB8F82447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift */; };
+		25ADB8FB2447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25ADB8F92447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.xib */; };
 		25B5D4A5243E8A0800DEDC7D /* Extension-UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B5D4A4243E8A0800DEDC7D /* Extension-UIImage.swift */; };
 		25B5D4A8243E92E500DEDC7D /* Extension-Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B5D4A7243E92E500DEDC7D /* Extension-Bundle.swift */; };
 		25B5D4AA243EA18000DEDC7D /* InitialTouchPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B5D4A9243EA18000DEDC7D /* InitialTouchPanGestureRecognizer.swift */; };
@@ -47,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-UIWindow.swift"; sourceTree = "<group>"; };
 		253903E4243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysSelectedCollectionView.swift; sourceTree = "<group>"; };
 		253903E7243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysSelectedCollectionViewCell.swift; sourceTree = "<group>"; };
 		253903E8243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlwaysSelectedCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 		258334D3243BF664000776B2 /* DebuggerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebuggerView.xib; sourceTree = "<group>"; };
 		25A997B1243D2CD7009D325F /* DebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerView.swift; sourceTree = "<group>"; };
 		25A997B5243D2D42009D325F /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		25ADB8F82447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerHTTPRequestTableViewCell.swift; sourceTree = "<group>"; };
+		25ADB8F92447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebuggerHTTPRequestTableViewCell.xib; sourceTree = "<group>"; };
 		25B5D4A4243E8A0800DEDC7D /* Extension-UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-UIImage.swift"; sourceTree = "<group>"; };
 		25B5D4A7243E92E500DEDC7D /* Extension-Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-Bundle.swift"; sourceTree = "<group>"; };
 		25B5D4A9243EA18000DEDC7D /* InitialTouchPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialTouchPanGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -161,9 +167,11 @@
 				258334A5243BF60B000776B2 /* SceneDelegate.swift */,
 				258334A7243BF60B000776B2 /* ViewController.swift */,
 				258334A9243BF60B000776B2 /* Main.storyboard */,
+				2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */,
 				258334D3243BF664000776B2 /* DebuggerView.xib */,
 				25A997B1243D2CD7009D325F /* DebuggerView.swift */,
 				25CC5108243EB49500F46DC0 /* Debugger.swift */,
+				25ADB8F72447CF2700F66B7D /* Cell */,
 				253903E3243D2F3500B3F59B /* AlwaysSelectedCollectionView */,
 				25A997B3243D2D06009D325F /* Framework */,
 				258334AC243BF60D000776B2 /* Assets.xcassets */,
@@ -210,6 +218,15 @@
 				25A997B5243D2D42009D325F /* NibLoadable.swift */,
 			);
 			path = Nibloadble;
+			sourceTree = "<group>";
+		};
+		25ADB8F72447CF2700F66B7D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25ADB8F82447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift */,
+				25ADB8F92447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		25B5D4A3243E89F100DEDC7D /* Image */ = {
@@ -342,6 +359,7 @@
 			files = (
 				258334B0243BF60D000776B2 /* LaunchScreen.storyboard in Resources */,
 				258334D4243BF664000776B2 /* DebuggerView.xib in Resources */,
+				25ADB8FB2447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.xib in Resources */,
 				253903EA243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib in Resources */,
 				258334AD243BF60D000776B2 /* Assets.xcassets in Resources */,
 				258334AB243BF60B000776B2 /* Main.storyboard in Resources */,
@@ -372,8 +390,10 @@
 				258334A8243BF60B000776B2 /* ViewController.swift in Sources */,
 				25B5D4A5243E8A0800DEDC7D /* Extension-UIImage.swift in Sources */,
 				25A997B2243D2CD7009D325F /* DebuggerView.swift in Sources */,
+				2523FC2024451D7A00D1F0BC /* Extension-UIWindow.swift in Sources */,
 				25B5D4A8243E92E500DEDC7D /* Extension-Bundle.swift in Sources */,
 				25B5D4AA243EA18000DEDC7D /* InitialTouchPanGestureRecognizer.swift in Sources */,
+				25ADB8FA2447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift in Sources */,
 				253903E5243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift in Sources */,
 				258334A4243BF60B000776B2 /* AppDelegate.swift in Sources */,
 				253903ED243D393300B3F59B /* Extension-UIView.swift in Sources */,
@@ -486,7 +506,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -540,7 +560,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -557,6 +577,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4KBYJ4JT96;
 				INFOPLIST_FILE = SwiftDebugger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -575,6 +596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4KBYJ4JT96;
 				INFOPLIST_FILE = SwiftDebugger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

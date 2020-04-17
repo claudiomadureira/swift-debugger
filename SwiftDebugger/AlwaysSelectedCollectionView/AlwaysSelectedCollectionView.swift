@@ -34,12 +34,11 @@ class AlwaysSelectedCollectionView: UICollectionView {
             oldCellSeleceted?.setInfo(isSelected: false, completion: { [weak self] in
                 let cellSelected = self?.cellForItem(at: [0, newValue]) as? AlwaysSelectedCollectionViewCell
                 cellSelected?.setInfo(isSelected: true) { [weak self] in
-                    self?.reloadData()
+                    guard let self = self else { return }
+                    self.reloadData()
+                    self.delegateAwlaysSelected?.collection(collectionView: self, didSelectItemAt: self.selectedIndex)
                 }
             })
-        }
-        didSet {
-            self.delegateAwlaysSelected?.collection(collectionView: self, didSelectItemAt: self.selectedIndex)
         }
     }
     

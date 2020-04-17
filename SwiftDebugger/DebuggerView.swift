@@ -24,16 +24,21 @@ class DebuggerView: UIView, NibLoadable {
     @IBOutlet private weak var viewHiddablePointer: UIView!
     @IBOutlet private weak var viewHiddableSideMenu: UIView!
     
+    static var shared: DebuggerView?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUpHiddablePointer()
         self.setUpSideMenuBackground()
         self.lblEnvironments.text = "Environment"
         self.collectionEnvironments.delegateAwlaysSelected = self
-        self.collectionEnvironments.items = Debugger.shared.environments
+        let debugger = Debugger.shared
+        self.collectionEnvironments.selectedIndex = debugger.indexSelectedEnvironment
+        self.collectionEnvironments.items = debugger.environments
         self.lblLocalizations.text = "Localization"
         self.collectionLocalizations.delegateAwlaysSelected = self
-        self.collectionLocalizations.items = Debugger.shared.localizations
+        self.collectionLocalizations.selectedIndex = debugger.indexSelectedLocalization
+        self.collectionLocalizations.items = debugger.localizations
         self.lblIdentifier.text = "Identifier"
         self.switchIdentifier.setOn(!Debugger.shared.labelTextIdentifierIsHidden, animated: false)
         self.lblLog.text = "Log"
@@ -44,8 +49,22 @@ class DebuggerView: UIView, NibLoadable {
         self.setSideMenu(hidden: true)
     }
     
-    func appearInAnimated() {
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        guard newSuperview == nil else { return }
+        DebuggerView.shared = nil
+    }
+    
+    public func appearInAnimated() {
         self.animateSideMenu(toHide: false, completion: nil)
+    }
+    
+    public func animateSideMenu(toHide: Bool, completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+            self?.setSideMenu(hidden: toHide)
+            }, completion: { _ in
+                completion?()
+        })
     }
     
     private func setUpHiddablePointer() {
@@ -63,7 +82,9 @@ class DebuggerView: UIView, NibLoadable {
     
     private func addDismissSideMenuTapGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapDismissSideMenuAction))
-        self.viewSideMenu.addGestureRecognizer(gesture)
+        self.viewBackground.addGestureRecognizer(gesture)
+        let _gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapDismissSideMenuAction))
+        self.viewHiddableSideMenu.addGestureRecognizer(_gesture)
     }
     
     private func setUpButtonExpand() {
@@ -75,8 +96,7 @@ class DebuggerView: UIView, NibLoadable {
         self.btnExpand.setImage(image, for: .normal)
         self.btnExpand.setImage(image, for: .highlighted)
         self.btnExpand.onChangeState { (btn, state) in
-            let scale: CGFloat = state.alpha == 0.4 ? 0.8 : state.alpha
-            btn.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+            btn.alpha = state.alpha
         }
     }
     
@@ -109,14 +129,6 @@ class DebuggerView: UIView, NibLoadable {
         self.viewSideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
         self.viewHiddablePointer.transform = self.viewSideMenu.transform
         self.viewBackground.alpha = 1 - progress
-    }
-    
-    private func animateSideMenu(toHide: Bool, completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
-            self?.setSideMenu(hidden: toHide)
-            }, completion: { _ in
-                completion?()
-        })
     }
     
     @objc
@@ -172,11 +184,19 @@ class DebuggerView: UIView, NibLoadable {
 extension DebuggerView: AlwaysSelectedCollectionViewDelegate {
     
     func collection(collectionView: AlwaysSelectedCollectionView, didSelectItemAt index: Int) {
+        let generator: UISelectionFeedbackGenerator = UISelectionFeedbackGenerator()
+        generator.prepare()
+        defer {
+            generator.selectionChanged()
+        }
+        let debugger = Debugger.shared
         switch collectionView {
         case self.collectionEnvironments:
-            Debugger.shared.emit(event: .didChangeEnvironment(collectionView.items[index]))
+            Debugger.shared.indexSelectedEnvironment = index
+            Debugger.shared.emit(event: .didChangeEnvironment(debugger.environments[index]))
         case self.collectionLocalizations:
-            Debugger.shared.emit(event: .didChangeLocalization(collectionView.items[index]))
+            Debugger.shared.indexSelectedLocalization = index
+            Debugger.shared.emit(event: .didChangeLocalization(debugger.localizations[index]))
         default:
             break
         }
