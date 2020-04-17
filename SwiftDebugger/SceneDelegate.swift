@@ -42,8 +42,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         print("Did change environment to " + environment)
                     case .didChangeLocalization(let localization):
                         delegate.currentLocalization = localization
-                        var item: String?
-                        let _ = item!.isEmpty
                         print("Did change localization to " + localization)
                     case .didSetLabelsTextIdentifierHidden(let hidden):
                         print("Labels identifier " + (hidden ? "hidden" : "showing"))

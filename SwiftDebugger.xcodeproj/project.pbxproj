@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2523FC2024451D7A00D1F0BC /* Extension-UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */; };
+		25253A73244A487C009CDFAD /* DebuggerHTTPRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A72244A487C009CDFAD /* DebuggerHTTPRequestViewModel.swift */; };
+		25253A75244A48BB009CDFAD /* DebuggerHTTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A74244A48BB009CDFAD /* DebuggerHTTPRequestModel.swift */; };
+		25253A7A244A5157009CDFAD /* DebuggerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A79244A5157009CDFAD /* DebuggerModel.swift */; };
+		25253A7E244A5287009CDFAD /* ExampleHTTPResquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A7D244A5287009CDFAD /* ExampleHTTPResquest.swift */; };
+		25253A82244A52ED009CDFAD /* DebuggerItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A81244A52ED009CDFAD /* DebuggerItemViewModel.swift */; };
 		253903E5243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253903E4243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift */; };
 		253903E9243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253903E7243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift */; };
 		253903EA243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 253903E8243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib */; };
@@ -51,6 +56,11 @@
 
 /* Begin PBXFileReference section */
 		2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-UIWindow.swift"; sourceTree = "<group>"; };
+		25253A72244A487C009CDFAD /* DebuggerHTTPRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerHTTPRequestViewModel.swift; sourceTree = "<group>"; };
+		25253A74244A48BB009CDFAD /* DebuggerHTTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerHTTPRequestModel.swift; sourceTree = "<group>"; };
+		25253A79244A5157009CDFAD /* DebuggerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerModel.swift; sourceTree = "<group>"; };
+		25253A7D244A5287009CDFAD /* ExampleHTTPResquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleHTTPResquest.swift; sourceTree = "<group>"; };
+		25253A81244A52ED009CDFAD /* DebuggerItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerItemViewModel.swift; sourceTree = "<group>"; };
 		253903E4243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysSelectedCollectionView.swift; sourceTree = "<group>"; };
 		253903E7243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysSelectedCollectionViewCell.swift; sourceTree = "<group>"; };
 		253903E8243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlwaysSelectedCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -106,6 +116,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25253A76244A48C0009CDFAD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				25253A72244A487C009CDFAD /* DebuggerHTTPRequestViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		25253A77244A48CA009CDFAD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25ADB8F82447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift */,
+				25ADB8F92447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25253A78244A4F6B009CDFAD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */,
+				258334D3243BF664000776B2 /* DebuggerView.xib */,
+				25A997B1243D2CD7009D325F /* DebuggerView.swift */,
+				25253A7F244A52C0009CDFAD /* Cell */,
+				253903E3243D2F3500B3F59B /* AlwaysSelectedCollectionView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25253A7B244A5205009CDFAD /* Debugger */ = {
+			isa = PBXGroup;
+			children = (
+				25CC5108243EB49500F46DC0 /* Debugger.swift */,
+				25253A7C244A520F009CDFAD /* Model */,
+				25253A78244A4F6B009CDFAD /* View */,
+				25A997B3243D2D06009D325F /* Framework */,
+			);
+			path = Debugger;
+			sourceTree = "<group>";
+		};
+		25253A7C244A520F009CDFAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				25253A79244A5157009CDFAD /* DebuggerModel.swift */,
+				25253A74244A48BB009CDFAD /* DebuggerHTTPRequestModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25253A7F244A52C0009CDFAD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25253A81244A52ED009CDFAD /* DebuggerItemViewModel.swift */,
+				25253A80244A52CE009CDFAD /* Common */,
+				25ADB8F72447CF2700F66B7D /* HTTPRequest */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		25253A80244A52CE009CDFAD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		253903E3243D2F3500B3F59B /* AlwaysSelectedCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,17 +239,12 @@
 		258334A2243BF60B000776B2 /* SwiftDebugger */ = {
 			isa = PBXGroup;
 			children = (
+				25253A7B244A5205009CDFAD /* Debugger */,
 				258334A3243BF60B000776B2 /* AppDelegate.swift */,
 				258334A5243BF60B000776B2 /* SceneDelegate.swift */,
 				258334A7243BF60B000776B2 /* ViewController.swift */,
+				25253A7D244A5287009CDFAD /* ExampleHTTPResquest.swift */,
 				258334A9243BF60B000776B2 /* Main.storyboard */,
-				2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */,
-				258334D3243BF664000776B2 /* DebuggerView.xib */,
-				25A997B1243D2CD7009D325F /* DebuggerView.swift */,
-				25CC5108243EB49500F46DC0 /* Debugger.swift */,
-				25ADB8F72447CF2700F66B7D /* Cell */,
-				253903E3243D2F3500B3F59B /* AlwaysSelectedCollectionView */,
-				25A997B3243D2D06009D325F /* Framework */,
 				258334AC243BF60D000776B2 /* Assets.xcassets */,
 				258334AE243BF60D000776B2 /* LaunchScreen.storyboard */,
 				258334B1243BF60D000776B2 /* Info.plist */,
@@ -220,13 +291,13 @@
 			path = Nibloadble;
 			sourceTree = "<group>";
 		};
-		25ADB8F72447CF2700F66B7D /* Cell */ = {
+		25ADB8F72447CF2700F66B7D /* HTTPRequest */ = {
 			isa = PBXGroup;
 			children = (
-				25ADB8F82447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift */,
-				25ADB8F92447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.xib */,
+				25253A77244A48CA009CDFAD /* View */,
+				25253A76244A48C0009CDFAD /* ViewModel */,
 			);
-			path = Cell;
+			path = HTTPRequest;
 			sourceTree = "<group>";
 		};
 		25B5D4A3243E89F100DEDC7D /* Image */ = {
@@ -390,11 +461,16 @@
 				258334A8243BF60B000776B2 /* ViewController.swift in Sources */,
 				25B5D4A5243E8A0800DEDC7D /* Extension-UIImage.swift in Sources */,
 				25A997B2243D2CD7009D325F /* DebuggerView.swift in Sources */,
+				25253A73244A487C009CDFAD /* DebuggerHTTPRequestViewModel.swift in Sources */,
+				25253A7A244A5157009CDFAD /* DebuggerModel.swift in Sources */,
 				2523FC2024451D7A00D1F0BC /* Extension-UIWindow.swift in Sources */,
+				25253A82244A52ED009CDFAD /* DebuggerItemViewModel.swift in Sources */,
+				25253A7E244A5287009CDFAD /* ExampleHTTPResquest.swift in Sources */,
 				25B5D4A8243E92E500DEDC7D /* Extension-Bundle.swift in Sources */,
 				25B5D4AA243EA18000DEDC7D /* InitialTouchPanGestureRecognizer.swift in Sources */,
 				25ADB8FA2447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift in Sources */,
 				253903E5243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift in Sources */,
+				25253A75244A48BB009CDFAD /* DebuggerHTTPRequestModel.swift in Sources */,
 				258334A4243BF60B000776B2 /* AppDelegate.swift in Sources */,
 				253903ED243D393300B3F59B /* Extension-UIView.swift in Sources */,
 				25A997B6243D2D42009D325F /* NibLoadable.swift in Sources */,
@@ -615,7 +691,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftDebuggerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -636,7 +712,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftDebuggerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
