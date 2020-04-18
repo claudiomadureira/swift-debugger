@@ -17,12 +17,12 @@ class DebuggerView: UIView, NibLoadable {
     @IBOutlet private weak var collectionEnvironments: AlwaysSelectedCollectionView!
     @IBOutlet private weak var lblIdentifier: UILabel!
     @IBOutlet private weak var switchIdentifier: UISwitch!
-    @IBOutlet private weak var lblLog: UILabel!
-    @IBOutlet private weak var btnExpand: Button!
+    @IBOutlet private weak var btnClear: Button!
     @IBOutlet private weak var lblVersion: UILabel!
     @IBOutlet private weak var viewHiddablePointer: UIView!
     @IBOutlet private weak var viewHiddableSideMenu: UIView!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var btnToggles: Button!
     
     let cellHTTPRequest = DebuggerHTTPRequestTableViewCell.self
     
@@ -49,7 +49,7 @@ class DebuggerView: UIView, NibLoadable {
         self.collectionLocalizations.items = debugger.localizations
         self.lblIdentifier.text = "Identifier"
         self.switchIdentifier.setOn(!Debugger.shared.labelTextIdentifierIsHidden, animated: false)
-        self.lblLog.text = "Log"
+        self.setUpButtonToggles()
         self.setUpButtonExpand()
         self.lblVersion.text = "Main bundle at " + Bundle.main.readableVersion
         self.addDismissSideMenuTapGesture()
@@ -58,7 +58,7 @@ class DebuggerView: UIView, NibLoadable {
         self.items = debugger.mappedItems.reversed()
         self.setUpTableView()
         
-        self.btnExpand.onTouchUpInside { (btn) in
+        self.btnClear.onTouchUpInside { (btn) in
             let item0 = ExampleHTTPResquest(
                 url: "https://test.api.com/some-image",
                 method: "POST",
@@ -113,6 +113,19 @@ class DebuggerView: UIView, NibLoadable {
         self.tableView.separatorColor = .clear
         self.tableView.separatorStyle = .none
         self.tableView.reloadData()
+        self.tableView.backgroundColor = #colorLiteral(red: 0.147652775, green: 0.1476788819, blue: 0.1476462185, alpha: 1)
+        self.tableView.layer.borderWidth = 1
+        self.tableView.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
+    }
+    
+    private func setUpButtonToggles() {
+        self.btnToggles.setTitle("Toggles", for: .normal)
+        let titleColor: UIColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        self.btnToggles.setTitleColor(titleColor, for: .normal)
+        self.btnToggles.setTitleColor(titleColor, for: .highlighted)
+        self.btnToggles.onChangeState { (btn, state) in
+            btn.alpha = state.alpha
+        }
     }
     
     private func addDismissSideMenuPanGesture() {
@@ -130,14 +143,14 @@ class DebuggerView: UIView, NibLoadable {
     }
     
     private func setUpButtonExpand() {
-        self.btnExpand.setTitle(nil, for: .normal)
-        self.btnExpand.setTitle(nil, for: .highlighted)
-        let image = UIImage(named: "expand")?
-            .resize(to: CGSize(width: 25, height: 25))
+        self.btnClear.setTitle(nil, for: .normal)
+        self.btnClear.setTitle(nil, for: .highlighted)
+        let image = UIImage(named: "trash")?
+            .resize(toWidth: 15)
             .tintPicto(.white)
-        self.btnExpand.setImage(image, for: .normal)
-        self.btnExpand.setImage(image, for: .highlighted)
-        self.btnExpand.onChangeState { (btn, state) in
+        self.btnClear.setImage(image, for: .normal)
+        self.btnClear.setImage(image, for: .highlighted)
+        self.btnClear.onChangeState { (btn, state) in
             btn.alpha = state.alpha
         }
     }
