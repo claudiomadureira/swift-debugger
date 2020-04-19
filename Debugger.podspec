@@ -32,7 +32,10 @@ With good tools, it's easier and faster to code and debug. Here are some of thos
   s.swift_version = '5.0'
   
    s.resource_bundles = {
-     'Debugger' => ['Debugger/Assets/*.png']
+     'Debugger' => [
+        'Debugger/Assets/*.{xcassets,png}',
+        'Debugger/Classes/*.xib'
+     ]
    }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

@@ -22,7 +22,8 @@
   "swift_versions": "5.0",
   "resource_bundles": {
     "Debugger": [
-      "Debugger/Assets/*.png"
+      "Debugger/Assets/*.{xcassets,png}",
+      "Debugger/Classes/*.xib"
     ]
   },
   "swift_version": "5.0"
