@@ -17,3 +17,4 @@ public protocol DebuggerHTTPRequestModel: DebuggerModel {
     var startDate: Date? { get }
     var duration: Int? { get } // in seconds
 }
+

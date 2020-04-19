@@ -13,6 +13,12 @@
 		25253A7A244A5157009CDFAD /* DebuggerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A79244A5157009CDFAD /* DebuggerModel.swift */; };
 		25253A7E244A5287009CDFAD /* ExampleHTTPResquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A7D244A5287009CDFAD /* ExampleHTTPResquest.swift */; };
 		25253A82244A52ED009CDFAD /* DebuggerItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A81244A52ED009CDFAD /* DebuggerItemViewModel.swift */; };
+		25253A85244B881B009CDFAD /* TogglesNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A84244B881B009CDFAD /* TogglesNavigationViewController.swift */; };
+		25253A92244BC398009CDFAD /* DebuggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A91244BC398009CDFAD /* DebuggerViewController.swift */; };
+		25253A95244BC48A009CDFAD /* DebuggerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253A94244BC48A009CDFAD /* DebuggerCoordinator.swift */; };
+		25253AA7244BC705009CDFAD /* ListenerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253AA5244BC705009CDFAD /* ListenerManager.swift */; };
+		25253AA8244BC705009CDFAD /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253AA6244BC705009CDFAD /* Listener.swift */; };
+		25253AAB244BC992009CDFAD /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253AAA244BC992009CDFAD /* Signal.swift */; };
 		253903E5243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253903E4243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift */; };
 		253903E9243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253903E7243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift */; };
 		253903EA243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 253903E8243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib */; };
@@ -61,6 +67,12 @@
 		25253A79244A5157009CDFAD /* DebuggerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerModel.swift; sourceTree = "<group>"; };
 		25253A7D244A5287009CDFAD /* ExampleHTTPResquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleHTTPResquest.swift; sourceTree = "<group>"; };
 		25253A81244A52ED009CDFAD /* DebuggerItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerItemViewModel.swift; sourceTree = "<group>"; };
+		25253A84244B881B009CDFAD /* TogglesNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglesNavigationViewController.swift; sourceTree = "<group>"; };
+		25253A91244BC398009CDFAD /* DebuggerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerViewController.swift; sourceTree = "<group>"; };
+		25253A94244BC48A009CDFAD /* DebuggerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerCoordinator.swift; sourceTree = "<group>"; };
+		25253AA5244BC705009CDFAD /* ListenerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenerManager.swift; sourceTree = "<group>"; };
+		25253AA6244BC705009CDFAD /* Listener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
+		25253AAA244BC992009CDFAD /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		253903E4243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysSelectedCollectionView.swift; sourceTree = "<group>"; };
 		253903E7243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysSelectedCollectionViewCell.swift; sourceTree = "<group>"; };
 		253903E8243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlwaysSelectedCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -136,7 +148,6 @@
 		25253A78244A4F6B009CDFAD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */,
 				258334D3243BF664000776B2 /* DebuggerView.xib */,
 				25A997B1243D2CD7009D325F /* DebuggerView.swift */,
 				25253A7F244A52C0009CDFAD /* Cell */,
@@ -149,8 +160,9 @@
 			isa = PBXGroup;
 			children = (
 				25CC5108243EB49500F46DC0 /* Debugger.swift */,
+				2523FC1F24451D7A00D1F0BC /* Extension-UIWindow.swift */,
 				25253A7C244A520F009CDFAD /* Model */,
-				25253A78244A4F6B009CDFAD /* View */,
+				25253A93244BC46D009CDFAD /* Coordinator */,
 				25A997B3243D2D06009D325F /* Framework */,
 			);
 			path = Debugger;
@@ -180,6 +192,50 @@
 			children = (
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		25253A83244B8762009CDFAD /* TogglesNavigationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				25253A84244B881B009CDFAD /* TogglesNavigationViewController.swift */,
+			);
+			path = TogglesNavigationViewController;
+			sourceTree = "<group>";
+		};
+		25253A90244BC31A009CDFAD /* DebuggerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				25253A91244BC398009CDFAD /* DebuggerViewController.swift */,
+				25253A78244A4F6B009CDFAD /* View */,
+			);
+			path = DebuggerViewController;
+			sourceTree = "<group>";
+		};
+		25253A93244BC46D009CDFAD /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				25253A94244BC48A009CDFAD /* DebuggerCoordinator.swift */,
+				25253A83244B8762009CDFAD /* TogglesNavigationViewController */,
+				25253A90244BC31A009CDFAD /* DebuggerViewController */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		25253AA4244BC705009CDFAD /* Listener */ = {
+			isa = PBXGroup;
+			children = (
+				25253AA5244BC705009CDFAD /* ListenerManager.swift */,
+				25253AA6244BC705009CDFAD /* Listener.swift */,
+			);
+			path = Listener;
+			sourceTree = "<group>";
+		};
+		25253AA9244BC983009CDFAD /* Signal */ = {
+			isa = PBXGroup;
+			children = (
+				25253AAA244BC992009CDFAD /* Signal.swift */,
+			);
+			path = Signal;
 			sourceTree = "<group>";
 		};
 		253903E3243D2F3500B3F59B /* AlwaysSelectedCollectionView */ = {
@@ -273,6 +329,8 @@
 		25A997B3243D2D06009D325F /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				25253AA9244BC983009CDFAD /* Signal */,
+				25253AA4244BC705009CDFAD /* Listener */,
 				25B5D4AB243EA19200DEDC7D /* Gesture */,
 				25B5D4A6243E92D000DEDC7D /* Bundle */,
 				25B5D4A3243E89F100DEDC7D /* Image */,
@@ -459,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				258334A8243BF60B000776B2 /* ViewController.swift in Sources */,
+				25253AA7244BC705009CDFAD /* ListenerManager.swift in Sources */,
 				25B5D4A5243E8A0800DEDC7D /* Extension-UIImage.swift in Sources */,
 				25A997B2243D2CD7009D325F /* DebuggerView.swift in Sources */,
 				25253A73244A487C009CDFAD /* DebuggerHTTPRequestViewModel.swift in Sources */,
@@ -471,11 +530,16 @@
 				25ADB8FA2447CF5D00F66B7D /* DebuggerHTTPRequestTableViewCell.swift in Sources */,
 				253903E5243D2F6600B3F59B /* AlwaysSelectedCollectionView.swift in Sources */,
 				25253A75244A48BB009CDFAD /* DebuggerHTTPRequestModel.swift in Sources */,
+				25253AA8244BC705009CDFAD /* Listener.swift in Sources */,
 				258334A4243BF60B000776B2 /* AppDelegate.swift in Sources */,
 				253903ED243D393300B3F59B /* Extension-UIView.swift in Sources */,
 				25A997B6243D2D42009D325F /* NibLoadable.swift in Sources */,
+				25253A92244BC398009CDFAD /* DebuggerViewController.swift in Sources */,
+				25253AAB244BC992009CDFAD /* Signal.swift in Sources */,
 				253903E9243D30FA00B3F59B /* AlwaysSelectedCollectionViewCell.swift in Sources */,
+				25253A85244B881B009CDFAD /* TogglesNavigationViewController.swift in Sources */,
 				253903F0243D3D3800B3F59B /* Button.swift in Sources */,
+				25253A95244BC48A009CDFAD /* DebuggerCoordinator.swift in Sources */,
 				258334A6243BF60B000776B2 /* SceneDelegate.swift in Sources */,
 				25CC5109243EB49500F46DC0 /* Debugger.swift in Sources */,
 			);

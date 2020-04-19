@@ -9,6 +9,7 @@ import UIKit
 
 public class Debugger: NSObject {
     
+    
     public static let shared = Debugger()
     
     public var environments: [String] = []
@@ -23,6 +24,7 @@ public class Debugger: NSObject {
     }
     
     var eventHandler: ((Event) -> Void)?
+    var listenerManager = ListenerManager<DebuggerItemViewModel>()
     
     public enum Event {
         case didChangeEnvironment(String)
@@ -47,7 +49,7 @@ public class Debugger: NSObject {
     public func debug(_ model: DebuggerModel) {
         self.items.append(model)
         let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model)
-        DebuggerView.shared?.append(item: viewModel, animated: true, completion: nil)
+        self.listenerManager.emit(viewModel)
     }
     
     public func dismissSideMenu(animated flag: Bool, completion: (() -> Void)?) {
@@ -64,6 +66,10 @@ public class Debugger: NSObject {
     
     func emit(event: Event) {
         self.eventHandler?(event)
+    }
+    
+    func bindDebug(listener: Listener<DebuggerItemViewModel>) {
+        self.listenerManager.bind(listener)
     }
     
     func factoryViewModel(model: DebuggerModel) -> DebuggerItemViewModel {

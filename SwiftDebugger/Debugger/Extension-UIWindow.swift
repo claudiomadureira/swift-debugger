@@ -20,12 +20,9 @@ extension UIWindow {
     
     @objc
     private func onLongTouch(_ sender: UILongPressGestureRecognizer) {
-        guard sender.state == .began else { return }
-        let view = DebuggerView.xib()
-        view.frame = .init(origin: .zero, size: UIScreen.main.bounds.size)
-        self.addSubview(view)
-        view.appearInAnimated()
-        DebuggerView.shared = view
+        guard DebuggerCoordinator.shared == nil, sender.state == .began else { return }
+        DebuggerCoordinator.shared = DebuggerCoordinator(window: self)
+        DebuggerCoordinator.shared?.start()
     }
     
 }

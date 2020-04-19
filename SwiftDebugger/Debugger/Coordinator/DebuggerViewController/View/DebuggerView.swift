@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol DebuggerViewDelegate: class {
+    func debugger(_ view: DebuggerView, didDismiss animated: Bool)
+    func debugger(_ view: DebuggerView, didPressClearLog button: UIButton)
+    func debugger(_ view: DebuggerView, didPressToggles button: UIButton)
+}
+
 class DebuggerView: UIView, NibLoadable {
     
     @IBOutlet private weak var viewBackground: UIView!
@@ -26,8 +32,10 @@ class DebuggerView: UIView, NibLoadable {
     
     let cellHTTPRequest = DebuggerHTTPRequestTableViewCell.self
     
+    weak var delegate: DebuggerViewDelegate?
+    
     var cellHTTPRequestIdentifier: String {
-        return String(describing: cellHTTPRequest)
+        return String(describing: self.cellHTTPRequest)
     }
     
     private var items: [DebuggerItemViewModel] = []
@@ -54,35 +62,16 @@ class DebuggerView: UIView, NibLoadable {
         self.lblVersion.text = "Main bundle at " + Bundle.main.readableVersion
         self.addDismissSideMenuTapGesture()
         self.addDismissSideMenuPanGesture()
-        self.setSideMenu(hidden: true)
         self.items = debugger.mappedItems.reversed()
         self.setUpTableView()
         
-        self.btnClear.onTouchUpInside { (btn) in
-            let item0 = ExampleHTTPResquest(
-                url: "https://test.api.com/some-image",
-                method: "POST",
-                statusCode: 200,
-                headers: [:],
-                body: Data(),
-                responseBody: Data(),
-                startDate: nil,
-                duration: 3)
-            Debugger.shared.debug(item0)
+        self.btnClear.onTouchUpInside { [weak self] (btn) in
+            guard let self = self else { return }
+            self.delegate?.debugger(self, didPressClearLog: btn)
         }
     }
     
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        guard newSuperview == nil else { return }
-        DebuggerView.shared = nil
-    }
-    
-    public func appearInAnimated() {
-        self.animateSideMenu(toHide: false, completion: nil)
-    }
-    
-    public func animateSideMenu(toHide: Bool, completion: (() -> Void)?) {
+    func animateSideMenu(toHide: Bool, completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
             self?.setSideMenu(hidden: toHide)
             }, completion: { _ in
@@ -96,6 +85,26 @@ class DebuggerView: UIView, NibLoadable {
         let indexPath: IndexPath = [0, 0]
         self.tableView.insertRows(at: [indexPath], with: .top)
         self.tableView.endUpdates()
+    }
+    
+    func setSideMenu(hidden: Bool) {
+        let progress: CGFloat = hidden ? 1 : 0
+        self.setSideMeuHidden(progress: progress)
+        self.setShadowBackgroundHidden(progress: progress)
+    }
+    
+    private func addDismissSideMenuPanGesture() {
+        let gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
+        self.viewSideMenu.addGestureRecognizer(gesture)
+        let _gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
+        self.viewHiddableSideMenu.addGestureRecognizer(_gesture)
+    }
+    
+    private func addDismissSideMenuTapGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapDismissSideMenuAction))
+        self.viewBackground.addGestureRecognizer(gesture)
+        let _gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapDismissSideMenuAction))
+        self.viewHiddableSideMenu.addGestureRecognizer(_gesture)
     }
     
     private func setUpHiddablePointer() {
@@ -126,20 +135,10 @@ class DebuggerView: UIView, NibLoadable {
         self.btnToggles.onChangeState { (btn, state) in
             btn.alpha = state.alpha
         }
-    }
-    
-    private func addDismissSideMenuPanGesture() {
-        let gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
-        self.viewSideMenu.addGestureRecognizer(gesture)
-        let _gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
-        self.viewHiddableSideMenu.addGestureRecognizer(_gesture)
-    }
-    
-    private func addDismissSideMenuTapGesture() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapDismissSideMenuAction))
-        self.viewBackground.addGestureRecognizer(gesture)
-        let _gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapDismissSideMenuAction))
-        self.viewHiddableSideMenu.addGestureRecognizer(_gesture)
+        self.btnToggles.onTouchUpInside  { [weak self] (btn) in
+            guard let self = self else { return }
+            self.delegate?.debugger(self, didPressToggles: btn)
+        }
     }
     
     private func setUpButtonExpand() {
@@ -174,22 +173,23 @@ class DebuggerView: UIView, NibLoadable {
             view.trailingAnchor.constraint(equalTo: self.viewSideMenu.trailingAnchor, constant: 30)])
     }
     
-    private func setSideMenu(hidden: Bool) {
-        self.setSideMeuHidden(progress: hidden ? 1 : 0)
-    }
-    
     private func setSideMeuHidden(progress: CGFloat) {
         guard progress >= 0 && progress <= 1 else { return }
         let x: CGFloat = (UIScreen.main.bounds.size.width/2 + 30)*progress
         self.viewSideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
         self.viewHiddablePointer.transform = self.viewSideMenu.transform
+        self.viewHiddableSideMenu.transform = self.viewSideMenu.transform
+    }
+    
+    private func setShadowBackgroundHidden(progress: CGFloat) {
         self.viewBackground.alpha = 1 - progress
     }
     
     @objc
     private func tapDismissSideMenuAction() {
         self.animateSideMenu(toHide: true) { [weak self] in
-            self?.removeFromSuperview()
+            guard let self = self else { return }
+            self.delegate?.debugger(self, didDismiss: true)
         }
     }
     
@@ -209,14 +209,16 @@ class DebuggerView: UIView, NibLoadable {
                 let toHide = translatedX > UIScreen.main.bounds.width/4
                 self.animateSideMenu(toHide: toHide) { [weak self] in
                     if toHide {
-                        self?.removeFromSuperview()
+                        guard let self = self else { return }
+                        self.delegate?.debugger(self, didDismiss: true)
                     }
                 }
             } else {
                 let toHide = speed > 100
                 self.animateSideMenu(toHide: toHide) { [weak self] in
                     if toHide {
-                        self?.removeFromSuperview()
+                        guard let self = self else { return }
+                        self.delegate?.debugger(self, didDismiss: true)
                     }
                 }
             }
@@ -227,6 +229,7 @@ class DebuggerView: UIView, NibLoadable {
                 let progress: CGFloat = x/(UIScreen.main.bounds.width/2)
                 self.viewSideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
                 self.viewHiddablePointer.transform = self.viewSideMenu.transform
+                self.viewHiddableSideMenu.transform = self.viewSideMenu.transform
                 self.viewBackground.alpha = 1 - progress
             }, completion: nil)
             
