@@ -58,22 +58,18 @@ class DebuggerView: UIView, NibLoadable {
         self.lblIdentifier.text = "Identifier"
         self.switchIdentifier.setOn(!Debugger.shared.labelTextIdentifierIsHidden, animated: false)
         self.setUpButtonToggles()
-        self.setUpButtonExpand()
+        self.setUpButtonClear()
         self.lblVersion.text = "Main bundle at " + Bundle.main.readableVersion
         self.addDismissSideMenuTapGesture()
         self.addDismissSideMenuPanGesture()
         self.items = debugger.mappedItems.reversed()
         self.setUpTableView()
         
-        self.btnClear.onTouchUpInside { [weak self] (btn) in
-            guard let self = self else { return }
-            self.delegate?.debugger(self, didPressClearLog: btn)
-        }
     }
     
     func animateSideMenu(toHide: Bool, completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
-            self?.setSideMenu(hidden: toHide)
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+            self?.setSideMenuAndShadow(hidden: toHide)
             }, completion: { _ in
                 completion?()
         })
@@ -87,10 +83,19 @@ class DebuggerView: UIView, NibLoadable {
         self.tableView.endUpdates()
     }
     
-    func setSideMenu(hidden: Bool) {
+    func setSideMenuAndShadow(hidden: Bool) {
         let progress: CGFloat = hidden ? 1 : 0
         self.setSideMeuHidden(progress: progress)
         self.setShadowBackgroundHidden(progress: progress)
+    }
+    
+    func setSideMeuHidden(progress: CGFloat) {
+        guard progress >= 0 && progress <= 1 else { return }
+        let x: CGFloat = (UIScreen.main.bounds.size.width/2 + 30)*progress
+        self.viewSideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
+        self.viewHiddablePointer.transform = self.viewSideMenu.transform
+        self.viewHiddableSideMenu.transform = self.viewSideMenu.transform
+        
     }
     
     private func addDismissSideMenuPanGesture() {
@@ -141,7 +146,7 @@ class DebuggerView: UIView, NibLoadable {
         }
     }
     
-    private func setUpButtonExpand() {
+    private func setUpButtonClear() {
         self.btnClear.setTitle(nil, for: .normal)
         self.btnClear.setTitle(nil, for: .highlighted)
         let image = UIImage(named: "trash")?
@@ -151,6 +156,10 @@ class DebuggerView: UIView, NibLoadable {
         self.btnClear.setImage(image, for: .highlighted)
         self.btnClear.onChangeState { (btn, state) in
             btn.alpha = state.alpha
+        }
+        self.btnClear.onTouchUpInside { [weak self] (btn) in
+            guard let self = self else { return }
+            self.delegate?.debugger(self, didPressClearLog: btn)
         }
     }
     
@@ -173,15 +182,8 @@ class DebuggerView: UIView, NibLoadable {
             view.trailingAnchor.constraint(equalTo: self.viewSideMenu.trailingAnchor, constant: 30)])
     }
     
-    private func setSideMeuHidden(progress: CGFloat) {
-        guard progress >= 0 && progress <= 1 else { return }
-        let x: CGFloat = (UIScreen.main.bounds.size.width/2 + 30)*progress
-        self.viewSideMenu.transform = CGAffineTransform.identity.translatedBy(x: x, y: 0)
-        self.viewHiddablePointer.transform = self.viewSideMenu.transform
-        self.viewHiddableSideMenu.transform = self.viewSideMenu.transform
-    }
-    
     private func setShadowBackgroundHidden(progress: CGFloat) {
+        guard progress >= 0 && progress <= 1 else { return }
         self.viewBackground.alpha = 1 - progress
     }
     

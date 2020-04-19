@@ -13,6 +13,7 @@ class DebuggerViewController: UIViewController {
     
     enum Event {
         case didDismiss
+        case didPressToSeeToggles
     }
     
     var events = Signal<(DebuggerViewController, Event)>()
@@ -21,12 +22,13 @@ class DebuggerViewController: UIViewController {
     override func loadView() {
         self.view = self.customView
         self.customView.delegate = self
+        self.customView.alpha = 0
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.customView.setSideMenu(hidden: true)
-        
+        self.customView.setSideMenuAndShadow(hidden: true)
+        self.customView.alpha = 1
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,6 +36,18 @@ class DebuggerViewController: UIViewController {
         guard !self.didAppear else { return }
         self.didAppear = true
         self.customView.animateSideMenu(toHide: false, completion: nil)
+    }
+    
+    func setSideMenuHidden(progress: CGFloat) {
+        self.customView.setSideMeuHidden(progress: progress)
+    }
+    
+    func animateSideMenu(hidden: Bool, animated: Bool, completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+            self?.setSideMenuHidden(progress: hidden ? 1 : 0)
+        }, completion: { _ in
+            completion?()
+        })
     }
     
 }
@@ -49,7 +63,7 @@ extension DebuggerViewController: DebuggerViewDelegate {
     }
     
     func debugger(_ view: DebuggerView, didPressToggles button: UIButton) {
-        
+        self.events.emit((self, .didPressToSeeToggles))
     }
     
 }
