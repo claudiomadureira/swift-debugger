@@ -32,17 +32,17 @@ class TogglesNavigationViewController: UINavigationController {
     
     
     func setTogglesNavigationControllerHidden(progress: CGFloat) {
-        let smallScale: CGFloat = 0.2
-        let largeScale: CGFloat = 1.0
-        var scale = largeScale - progress * (1 - smallScale)
-        if scale > largeScale {
-            scale = largeScale
-        } else if scale < smallScale {
-            scale = smallScale
-        }
+//        let smallScale: CGFloat = 0.2
+//        let largeScale: CGFloat = 1.0
+//        var scale = largeScale - progress * (1 - smallScale)
+//        if scale > largeScale {
+//            scale = largeScale
+//        } else if scale < smallScale {
+//            scale = smallScale
+//        }
         self.view.transform = CGAffineTransform.identity
             .translatedBy(x: -UIScreen.main.bounds.width*progress, y: 0)
-            .scaledBy(x: scale, y: scale)
+//            .scaledBy(x: scale, y: scale)
     }
     
     func animate(toHide: Bool, duration: TimeInterval? = nil, emitProgress: Bool = false, completion: (() -> Void)?) {
