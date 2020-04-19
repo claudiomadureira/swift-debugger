@@ -27,8 +27,8 @@ class TogglesCoordinator: Coordinator {
     
     func start() {
         let viewController = UIViewController()
-        viewController.title = "title"
-        viewController.view.backgroundColor = .red
+        viewController.title = "Toggles"
+        viewController.view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         let navController = TogglesNavigationViewController(rootViewController: viewController)
         navController.events.on { [weak self] (vc, event) in
             switch event {
@@ -46,7 +46,7 @@ class TogglesCoordinator: Coordinator {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
             self?.togglesNavigationController?.setTogglesNavigationControllerHidden(progress: 1)
             self?.togglesNavigationController?.view.alpha = 1
-            self?.togglesNavigationController?.animate(toHide: false, completion: nil)
+            self?.togglesNavigationController?.animate(toHide: false, duration: 0.3, completion: nil)
         })
     }
     

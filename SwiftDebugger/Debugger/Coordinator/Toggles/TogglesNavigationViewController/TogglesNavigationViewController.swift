@@ -45,8 +45,8 @@ class TogglesNavigationViewController: UINavigationController {
             .scaledBy(x: scale, y: scale)
     }
     
-    func animate(toHide: Bool, emitProgress: Bool = false, completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+    func animate(toHide: Bool, duration: TimeInterval? = nil, emitProgress: Bool = false, completion: (() -> Void)?) {
+        UIView.animate(withDuration: duration ?? 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
             let progress: CGFloat = toHide ? 1 : 0
             self?.setTogglesNavigationControllerHidden(progress: progress)
             if emitProgress {
