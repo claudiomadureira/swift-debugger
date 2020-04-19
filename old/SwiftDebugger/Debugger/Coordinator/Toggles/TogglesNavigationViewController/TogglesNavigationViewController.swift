@@ -73,7 +73,7 @@ class TogglesNavigationViewController: UINavigationController {
             let speed = gesture.velocity(in: gesture.view).x
             if speed == -100 {
                 let translatedX = self.view.transform.tx
-                let toHide = translatedX > UIScreen.main.bounds.width/4
+                let toHide = translatedX < UIScreen.main.bounds.width/4
                 self.animate(toHide: toHide, emitProgress: true, completion: nil)
             } else {
                 let toHide = speed < -100
@@ -81,12 +81,14 @@ class TogglesNavigationViewController: UINavigationController {
             }
             
         default:
-            var progress: CGFloat = point.x/(UIScreen.main.bounds.width/2)
+            var progress: CGFloat = point.x/(UIScreen.main.bounds.width/3)
             if progress > 0 {
                 progress = 0
             }
             progress = -progress
-            self.setTogglesNavigationControllerHidden(progress: progress)
+            UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+                self?.setTogglesNavigationControllerHidden(progress: progress)
+            }, completion: nil)
             self.events.emit((self, .didPanToDismiss(progress)))
         }
     }

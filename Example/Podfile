@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Debugger_Example' do
+  pod 'Debugger', :path => '../'
+
+  target 'Debugger_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
