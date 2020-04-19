@@ -3,7 +3,7 @@
 //  SwiftDebugger
 //
 //  Created by Claudio Madureira Silva Filho on 4/6/20.
-//  Copyright © 2020 Claudio Madureira Silva Filho. All rights reserved.
+//  Copyright © 2020. All rights reserved.
 //
 
 import UIKit
@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        guard #available(iOS 13, *) else {
+        guard #available(iOS 13.0, *) else {
             self.launchApp()
             return true
         }
@@ -33,14 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.window?.makeKeyAndVisible()
         self.window?.attachDebugger()
-        Debug.shared.setUp(
+        Debug.setUp(
             environments: kEnvironments,
             selectedEnvironmentAt: kEnvironments.firstIndex(where: { $0 == self.currentEnvironment }) ?? 0,
             localizations: kLocalizations,
             selectedLocalizationAt: kLocalizations.firstIndex(where: { $0 == self.currentLocalization }) ?? 0,
             showTextIdentifierOnLabels: false,
             eventHandler: { event in
-                Debug.shared.dismissSideMenu(animated: true, completion: {
+                Debug.dismissSideMenu(animated: true, completion: {
                     switch event {
                     case .didChangeEnvironment(let environment):
                         self.currentEnvironment = environment

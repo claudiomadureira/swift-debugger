@@ -7,23 +7,21 @@
 
 import UIKit
 
-public class Debug: NSObject {
+public enum Debug {
     
-    public static let shared = Debug()
+    public static var environments: [String] = []
+    public static var indexSelectedEnvironment: Int = 0
+    public static var localizations: [String] = []
+    public static var indexSelectedLocalization: Int = 0
+    public static var labelTextIdentifierIsHidden: Bool = true
+    public static var items: [DebuggerModel] = []
     
-    public var environments: [String] = []
-    public var indexSelectedEnvironment: Int = 0
-    public var localizations: [String] = []
-    public var indexSelectedLocalization: Int = 0
-    public var labelTextIdentifierIsHidden: Bool = true
-    public var items: [DebuggerModel] = []
-    
-    var mappedItems: [DebuggerItemViewModel] {
+    static var mappedItems: [DebuggerItemViewModel] {
         return self.items.map { self.factoryViewModel(model: $0) }
     }
     
-    var eventHandler: ((Event) -> Void)?
-    var listenerManager = ListenerManager<DebuggerItemViewModel>()
+    static var eventHandler: ((Event) -> Void)?
+    static var listenerManager = ListenerManager<DebuggerItemViewModel>()
     
     public enum Event {
         case didChangeEnvironment(String)
@@ -31,7 +29,7 @@ public class Debug: NSObject {
         case didSetLabelsTextIdentifierHidden(Bool)
     }
     
-    public func setUp(environments: [String],
+    public static func setUp(environments: [String],
                       selectedEnvironmentAt indexEnvironment: Int,
                       localizations: [String],
                       selectedLocalizationAt indexLocalization: Int,
@@ -45,13 +43,13 @@ public class Debug: NSObject {
         self.eventHandler = eventHandler
     }
     
-    public func debug(_ model: DebuggerModel) {
+    public static  func debug(_ model: DebuggerModel) {
         self.items.append(model)
         let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model)
         self.listenerManager.emit(viewModel)
     }
     
-    public func dismissSideMenu(animated flag: Bool, completion: (() -> Void)?) {
+    public static func dismissSideMenu(animated flag: Bool, completion: (() -> Void)?) {
         let view: DebuggerView? = DebuggerView.shared
         if flag {
             view?.animateSideMenu(toHide: true, completion: { [weak view] in
@@ -63,15 +61,15 @@ public class Debug: NSObject {
         }
     }
     
-    func emit(event: Event) {
+    static func emit(event: Event) {
         self.eventHandler?(event)
     }
     
-    func bindDebug(listener: Listener<DebuggerItemViewModel>) {
+    static func bindDebug(listener: Listener<DebuggerItemViewModel>) {
         self.listenerManager.bind(listener)
     }
     
-    func factoryViewModel(model: DebuggerModel) -> DebuggerItemViewModel {
+    static func factoryViewModel(model: DebuggerModel) -> DebuggerItemViewModel {
         if let httpRequestModel = model as? DebuggerHTTPRequestModel {
             return DebuggerHTTPRequestCellViewModel(model: httpRequestModel)
         }

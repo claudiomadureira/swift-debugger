@@ -1,7 +1,7 @@
 {
   "name": "Debugger",
   "version": "0.1.0",
-  "summary": "A short description of Debugger.",
+  "summary": "With good tools, it's easier and faster to code and debug. Here are some of those which I'm developing. They help or will help me out on my projects.",
   "description": "With good tools, it's easier and faster to code and debug. Here are some of those which I'm developing. They help or will help me out on my projects.",
   "homepage": "https://github.com/claudiomadureira/swift-debugger",
   "license": {
@@ -19,11 +19,11 @@
     "ios": "9.0"
   },
   "source_files": "Debugger/Classes/**/*",
-  "swift_versions": "5.2",
+  "swift_versions": "5.0",
   "resource_bundles": {
     "Debugger": [
       "Debugger/Assets/*.png"
     ]
   },
-  "swift_version": "5.2"
+  "swift_version": "5.0"
 }

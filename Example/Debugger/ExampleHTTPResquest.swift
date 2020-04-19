@@ -1,9 +1,9 @@
 //
 //  ExampleHTTPResquest.swift
-//  SwiftDebugger
+//  Debugger-Example
 //
 //  Created by Claudio Madureira Silva Filho on 4/17/20.
-//  Copyright © 2020 Claudio Madureira Silva Filho. All rights reserved.
+//  Copyright © 2020. All rights reserved.
 //
 
 import UIKit

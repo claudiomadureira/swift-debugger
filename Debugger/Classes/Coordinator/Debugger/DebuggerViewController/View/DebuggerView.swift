@@ -48,21 +48,20 @@ class DebuggerView: UIView, NibLoadable {
         self.setUpSideMenuBackground()
         self.lblEnvironments.text = "Environment"
         self.collectionEnvironments.delegateAwlaysSelected = self
-        let debugger = Debug.shared
-        self.collectionEnvironments.selectedIndex = debugger.indexSelectedEnvironment
-        self.collectionEnvironments.items = debugger.environments
+        self.collectionEnvironments.selectedIndex = Debug.indexSelectedEnvironment
+        self.collectionEnvironments.items = Debug.environments
         self.lblLocalizations.text = "Localization"
         self.collectionLocalizations.delegateAwlaysSelected = self
-        self.collectionLocalizations.selectedIndex = debugger.indexSelectedLocalization
-        self.collectionLocalizations.items = debugger.localizations
+        self.collectionLocalizations.selectedIndex = Debug.indexSelectedLocalization
+        self.collectionLocalizations.items = Debug.localizations
         self.lblIdentifier.text = "Identifier"
-        self.switchIdentifier.setOn(!Debug.shared.labelTextIdentifierIsHidden, animated: false)
+        self.switchIdentifier.setOn(!Debug.labelTextIdentifierIsHidden, animated: false)
         self.setUpButtonToggles()
         self.setUpButtonClear()
         self.lblVersion.text = "Main bundle at " + Bundle.main.readableVersion
         self.addDismissSideMenuTapGesture()
         self.addDismissSideMenuPanGesture()
-        self.items = debugger.mappedItems.reversed()
+        self.items = Debug.mappedItems.reversed()
         self.setUpTableView()
         
     }
@@ -149,7 +148,7 @@ class DebuggerView: UIView, NibLoadable {
     private func setUpButtonClear() {
         self.btnClear.setTitle(nil, for: .normal)
         self.btnClear.setTitle(nil, for: .highlighted)
-        let image = UIImage(named: "trash")?
+        let image = UIImage(named: "trash", in: Bundle(for: DebuggerView.self), compatibleWith: nil)?
             .resize(toWidth: 15)
             .tintPicto(.white)
         self.btnClear.setImage(image, for: .normal)
@@ -249,14 +248,13 @@ extension DebuggerView: AlwaysSelectedCollectionViewDelegate {
             generator.prepare()
             generator.impactOccurred()
         }
-        let debugger = Debug.shared
         switch collectionView {
         case self.collectionEnvironments:
-            Debug.shared.indexSelectedEnvironment = index
-            Debug.shared.emit(event: .didChangeEnvironment(debugger.environments[index]))
+            Debug.indexSelectedEnvironment = index
+            Debug.emit(event: .didChangeEnvironment(Debug.environments[index]))
         case self.collectionLocalizations:
-            Debug.shared.indexSelectedLocalization = index
-            Debug.shared.emit(event: .didChangeLocalization(debugger.localizations[index]))
+            Debug.indexSelectedLocalization = index
+            Debug.emit(event: .didChangeLocalization(Debug.localizations[index]))
         default:
             break
         }

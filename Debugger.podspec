@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'Debugger'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of Debugger.'
+  s.summary          = 'With good tools, it\'s easier and faster to code and debug. Here are some of those which I\'m developing. They help or will help me out on my projects.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

@@ -1,9 +1,9 @@
 //
 //  SceneDelegate.swift
-//  SwiftDebugger
+//  Debugger-Example
 //
 //  Created by Claudio Madureira Silva Filho on 4/6/20.
-//  Copyright © 2020 Claudio Madureira Silva Filho. All rights reserved.
+//  Copyright © 2020. All rights reserved.
 //
 
 import UIKit
@@ -28,14 +28,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
         self.window?.attachDebugger()
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        Debug.shared.setUp(
+        Debug.setUp(
             environments: kEnvironments,
             selectedEnvironmentAt: kEnvironments.firstIndex(where: { $0 == delegate.currentEnvironment }) ?? 0,
             localizations: kLocalizations,
             selectedLocalizationAt: kLocalizations.firstIndex(where: { $0 == delegate.currentLocalization }) ?? 0,
             showTextIdentifierOnLabels: false,
             eventHandler: { event in
-                Debug.shared.dismissSideMenu(animated: true, completion: {
+                Debug.dismissSideMenu(animated: true, completion: {
                     switch event {
                     case .didChangeEnvironment(let environment):
                         delegate.currentEnvironment = environment

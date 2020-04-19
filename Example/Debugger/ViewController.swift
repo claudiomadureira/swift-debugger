@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  SwiftDebugger
+//  Debugger-Example
 //
 //  Created by Claudio Madureira Silva Filho on 4/6/20.
-//  Copyright © 2020 Claudio Madureira Silva Filho. All rights reserved.
+//  Copyright © 2020. All rights reserved.
 //
 
 import UIKit
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
             responseBody: Data(),
             startDate: nil,
             duration: 3)
-        Debug.shared.debug(item0)
+        Debug.debug(item0)
         
         let item1 = ExampleHTTPResquest(
             url: "https://test.api.com/some-image2",
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
             responseBody: UIImage(named: "testImage")?.pngData() ?? Data(),
             startDate: nil,
             duration: 150)
-        Debug.shared.debug(item1)
+        Debug.debug(item1)
     }
     
     
