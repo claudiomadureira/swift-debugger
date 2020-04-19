@@ -1,24 +1,41 @@
 //
 //  ViewController.swift
-//  Debugger
+//  SwiftDebugger
 //
-//  Created by claudiomadureira on 04/19/2020.
-//  Copyright (c) 2020 claudiomadureira. All rights reserved.
+//  Created by Claudio Madureira Silva Filho on 4/6/20.
+//  Copyright © 2020 Claudio Madureira Silva Filho. All rights reserved.
 //
 
 import UIKit
+import Debugger
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let item0 = ExampleHTTPResquest(
+            url: "https://test.api.com/some-image",
+            method: "get",
+            statusCode: 404,
+            headers: [:],
+            body: Data(),
+            responseBody: Data(),
+            startDate: nil,
+            duration: 3)
+        Debug.shared.debug(item0)
+        
+        let item1 = ExampleHTTPResquest(
+            url: "https://test.api.com/some-image2",
+            method: "get",
+            statusCode: 200,
+            headers: [:],
+            body: Data(),
+            responseBody: UIImage(named: "testImage")?.pngData() ?? Data(),
+            startDate: nil,
+            duration: 150)
+        Debug.shared.debug(item1)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+    
+    
 }
-

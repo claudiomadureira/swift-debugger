@@ -1,5 +1,5 @@
 //
-//  Debugger.swift
+//  Debug.swift
 //
 //  Created by Claudio Madureira Silva Filho on 4/8/20.
 //  Copyright © 2020. All rights reserved.
@@ -7,10 +7,9 @@
 
 import UIKit
 
-public class Debugger: NSObject {
+public class Debug: NSObject {
     
-    
-    public static let shared = Debugger()
+    public static let shared = Debug()
     
     public var environments: [String] = []
     public var indexSelectedEnvironment: Int = 0

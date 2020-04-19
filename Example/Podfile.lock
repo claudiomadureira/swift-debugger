@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Debugger: 82d42d670bbcc7902f18cfea0d413e1c6333a330
+  Debugger: 70aa2836debfbfffdc47648837646d0fd66b1a9a
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
 
 PODFILE CHECKSUM: 46930a8bdcc8ff9017e6192b292fefd967845fc8

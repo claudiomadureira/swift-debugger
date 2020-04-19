@@ -48,7 +48,7 @@ class DebuggerView: UIView, NibLoadable {
         self.setUpSideMenuBackground()
         self.lblEnvironments.text = "Environment"
         self.collectionEnvironments.delegateAwlaysSelected = self
-        let debugger = Debugger.shared
+        let debugger = Debug.shared
         self.collectionEnvironments.selectedIndex = debugger.indexSelectedEnvironment
         self.collectionEnvironments.items = debugger.environments
         self.lblLocalizations.text = "Localization"
@@ -56,7 +56,7 @@ class DebuggerView: UIView, NibLoadable {
         self.collectionLocalizations.selectedIndex = debugger.indexSelectedLocalization
         self.collectionLocalizations.items = debugger.localizations
         self.lblIdentifier.text = "Identifier"
-        self.switchIdentifier.setOn(!Debugger.shared.labelTextIdentifierIsHidden, animated: false)
+        self.switchIdentifier.setOn(!Debug.shared.labelTextIdentifierIsHidden, animated: false)
         self.setUpButtonToggles()
         self.setUpButtonClear()
         self.lblVersion.text = "Main bundle at " + Bundle.main.readableVersion
@@ -244,19 +244,19 @@ class DebuggerView: UIView, NibLoadable {
 extension DebuggerView: AlwaysSelectedCollectionViewDelegate {
     
     func collection(collectionView: AlwaysSelectedCollectionView, didSelectItemAt index: Int) {
-        let generator: UISelectionFeedbackGenerator = UISelectionFeedbackGenerator()
-        generator.prepare()
-        defer {
-            generator.selectionChanged()
+        if #available(iOS 10.0, *) {
+            let generator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+            generator.prepare()
+            generator.impactOccurred()
         }
-        let debugger = Debugger.shared
+        let debugger = Debug.shared
         switch collectionView {
         case self.collectionEnvironments:
-            Debugger.shared.indexSelectedEnvironment = index
-            Debugger.shared.emit(event: .didChangeEnvironment(debugger.environments[index]))
+            Debug.shared.indexSelectedEnvironment = index
+            Debug.shared.emit(event: .didChangeEnvironment(debugger.environments[index]))
         case self.collectionLocalizations:
-            Debugger.shared.indexSelectedLocalization = index
-            Debugger.shared.emit(event: .didChangeLocalization(debugger.localizations[index]))
+            Debug.shared.indexSelectedLocalization = index
+            Debug.shared.emit(event: .didChangeLocalization(debugger.localizations[index]))
         default:
             break
         }

@@ -2,8 +2,8 @@
   "name": "Debugger",
   "version": "0.1.0",
   "summary": "A short description of Debugger.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/claudiomadureira/Debugger",
+  "description": "With good tools, it's easier and faster to code and debug. Here are some of those which I'm developing. They help or will help me out on my projects.",
+  "homepage": "https://github.com/claudiomadureira/swift-debugger",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,18 @@
     "claudiomadureira": "claudiomsilvaf@gmail.com"
   },
   "source": {
-    "git": "https://github.com/claudiomadureira/Debugger.git",
+    "git": "https://github.com/claudiomadureira/swift-debugger.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "Debugger/Classes/**/*"
+  "source_files": "Debugger/Classes/**/*",
+  "swift_versions": "5.2",
+  "resource_bundles": {
+    "Debugger": [
+      "Debugger/Assets/*.png"
+    ]
+  },
+  "swift_version": "5.2"
 }

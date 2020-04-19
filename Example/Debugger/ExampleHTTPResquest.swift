@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Debugger
 
 struct ExampleHTTPResquest: DebuggerHTTPRequestModel {
     
