@@ -112,31 +112,31 @@
 		24168BF341C65F3B2EDFBB74C51BCDA3 /* DebuggerHTTPRequestTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = DebuggerHTTPRequestTableViewCell.xib; sourceTree = "<group>"; };
 		25A6FC7460E48128EBE27287A63B5B89 /* Button.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		25ACFEC8C0C6C0209ACB355025ECCCCE /* Pods-Debugger_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Debugger_Example-frameworks.sh"; sourceTree = "<group>"; };
-		2682C490609FC6DC1092D6590F13FF32 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		2682C490609FC6DC1092D6590F13FF32 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		277B6BE10C665F515606A22FD60C6DCC /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		284833D18C244D2B42966B6EE425AA59 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
 		3B1C18999B77356178C944D8FFC6EA26 /* DebuggerItemViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DebuggerItemViewModel.swift; sourceTree = "<group>"; };
 		3ED4191BEDD7EBD9E69CFCAA6766FC87 /* DebuggerCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DebuggerCoordinator.swift; sourceTree = "<group>"; };
 		3F0D66CF296ABBC57EC4D0452397E235 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
-		415146B408A984321F023C1C0033FAE6 /* Pods_Debugger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Debugger_Example.framework; path = "Pods-Debugger_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		415146B408A984321F023C1C0033FAE6 /* Pods_Debugger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Debugger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4545B5BCB71C9A1ADED08D6A0FCCA96E /* Pods-Debugger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Debugger_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
 		4C6513B09838318BD763CFD5390D1DE0 /* FBSnapshotTestCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.release.xcconfig; sourceTree = "<group>"; };
-		4FC3DE61E1A666FA6C7C754C27773397 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		4FC3DE61E1A666FA6C7C754C27773397 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		52FC371FC03024A0D917990C7FC08489 /* DebuggerView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = DebuggerView.xib; sourceTree = "<group>"; };
 		54B8A1D66D160F5139D835699A555F61 /* DebuggerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DebuggerViewController.swift; sourceTree = "<group>"; };
-		5B877124206C48C66A38C204CACD143D /* Debugger.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Debugger.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B877124206C48C66A38C204CACD143D /* Debugger.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Debugger.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E601BD54DA9BF4071437E60125281FA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5F77E464FD9A3F267A3C336DCC5ED647 /* Pods-Debugger_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Debugger_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		6364358FA2890DF041C499A2DB5CD05D /* Pods_Debugger_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Debugger_Tests.framework; path = "Pods-Debugger_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6364358FA2890DF041C499A2DB5CD05D /* Pods_Debugger_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Debugger_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		656116C8FA5458F45D4707110C9530EC /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
 		6671C03ED401353C107D70FB25364D17 /* ListenerManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListenerManager.swift; sourceTree = "<group>"; };
 		6ABB3EB3CCC5BCA82F40FE8DC87BB778 /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
 		6E1C56998BF04C8BBF9304945E445D39 /* Pods-Debugger_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Debugger_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		716A9972B9D9103B54DB950893FAF104 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		7B2FBCCD2258FA4489FBA5EC5927BA1E /* Pods-Debugger_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Debugger_Tests-dummy.m"; sourceTree = "<group>"; };
-		7B81EBE1E543E796A6B40B46E7741A8C /* Debugger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Debugger.framework; path = Debugger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B81EBE1E543E796A6B40B46E7741A8C /* Debugger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Debugger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD4ED544B638D07C7D755AF1C27116A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7E1B7EA746BF6557FD565BAE12AF9198 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
 		80EB6032F0AAF596F5F014D95F17BCB8 /* Image.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Image.xcassets; path = Debugger/Assets/Image.xcassets; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		95FBCA6BD39079ADF748269B2A8F3953 /* DebuggerHTTPRequestViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DebuggerHTTPRequestViewModel.swift; sourceTree = "<group>"; };
 		96187BF3038121CC146335E9FF0B0AFF /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
 		99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A189884D8CEC80BE19313781C63A3D54 /* Pods-Debugger_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Debugger_Example.modulemap"; sourceTree = "<group>"; };
 		A76103EC640160C233F84462D4DF8E5F /* Extension-UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Extension-UIView.swift"; sourceTree = "<group>"; };
 		A844A4AD7A9164F391C8AC1B6733587F /* Extension-UIImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Extension-UIImage.swift"; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 		D9E21E9687B297A605E0F407A9532701 /* Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debug.swift; path = Debugger/Classes/Debug.swift; sourceTree = "<group>"; };
 		DEC0AD96E3673060E1DF714E46959B28 /* Debugger.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Debugger.modulemap; sourceTree = "<group>"; };
 		E41F200298118242E6A77392C20219E2 /* Debugger-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Debugger-Info.plist"; sourceTree = "<group>"; };
-		E6944CFC817641E88E4B3BA57E9FADBA /* Debugger.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Debugger.bundle; path = "Debugger-Debugger.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6944CFC817641E88E4B3BA57E9FADBA /* Debugger.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Debugger.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E10D8E86B576A0710A063BE310A171 /* Pods-Debugger_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Debugger_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		EB9C7CB7D6EA15ED0C8E64A1F2F67111 /* Debugger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Debugger-dummy.m"; sourceTree = "<group>"; };
 		EE01F56FA1ECD60AC2788C614DEDB099 /* InitialTouchPanGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InitialTouchPanGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -243,7 +243,6 @@
 				3ED4191BEDD7EBD9E69CFCAA6766FC87 /* DebuggerCoordinator.swift */,
 				1B9927917649F84673236E5A15A1390C /* DebuggerViewController */,
 			);
-			name = Debugger;
 			path = Debugger;
 			sourceTree = "<group>";
 		};
@@ -252,7 +251,6 @@
 			children = (
 				95FBCA6BD39079ADF748269B2A8F3953 /* DebuggerHTTPRequestViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
@@ -262,7 +260,6 @@
 				54B8A1D66D160F5139D835699A555F61 /* DebuggerViewController.swift */,
 				55077B69AED18229CC9351A448A995B4 /* View */,
 			);
-			name = DebuggerViewController;
 			path = DebuggerViewController;
 			sourceTree = "<group>";
 		};
@@ -272,7 +269,6 @@
 				EFB9C81E42486D29969CB4078522A837 /* DebuggerHTTPRequestTableViewCell.swift */,
 				24168BF341C65F3B2EDFBB74C51BCDA3 /* DebuggerHTTPRequestTableViewCell.xib */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -281,7 +277,6 @@
 			children = (
 				17A852A384E1D23E5DBA4AA32AC9632F /* NibLoadable.swift */,
 			);
-			name = Nibloadble;
 			path = Nibloadble;
 			sourceTree = "<group>";
 		};
@@ -291,7 +286,6 @@
 				1E5B039F9212520F0A0F003A3C6FD322 /* View */,
 				1B5E350F5DC43C8F8ECC7D10EAD5AE5A /* ViewModel */,
 			);
-			name = HTTPRequest;
 			path = HTTPRequest;
 			sourceTree = "<group>";
 		};
@@ -340,7 +334,6 @@
 				5F9FB6A60E3C56399B39D2698E071BBF /* AlwaysSelectedCollectionView */,
 				F3F9291AD418B9925D0A558D5A36410F /* Cell */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -349,7 +342,6 @@
 			children = (
 				A76103EC640160C233F84462D4DF8E5F /* Extension-UIView.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -385,7 +377,6 @@
 				9035921A1BC1C9C476B120AE448BDC85 /* AlwaysSelectedCollectionView.swift */,
 				E36AE370FD4C0A649EE526A809B381F2 /* Cell */,
 			);
-			name = AlwaysSelectedCollectionView;
 			path = AlwaysSelectedCollectionView;
 			sourceTree = "<group>";
 		};
@@ -433,7 +424,6 @@
 			children = (
 				25A6FC7460E48128EBE27287A63B5B89 /* Button.swift */,
 			);
-			name = Button;
 			path = Button;
 			sourceTree = "<group>";
 		};
@@ -486,7 +476,6 @@
 			children = (
 				87B34ADA829B7739D6B7E159DDC80AA4 /* TogglesNavigationViewController.swift */,
 			);
-			name = TogglesNavigationViewController;
 			path = TogglesNavigationViewController;
 			sourceTree = "<group>";
 		};
@@ -513,7 +502,6 @@
 				150844A4A66E17A86AF87B9E9752FCDA /* TogglesCoordinator.swift */,
 				A54802EEB64F6B72021CBB06076B59E0 /* TogglesNavigationViewController */,
 			);
-			name = Toggles;
 			path = Toggles;
 			sourceTree = "<group>";
 		};
@@ -522,7 +510,6 @@
 			children = (
 				A844A4AD7A9164F391C8AC1B6733587F /* Extension-UIImage.swift */,
 			);
-			name = Image;
 			path = Image;
 			sourceTree = "<group>";
 		};
@@ -571,7 +558,6 @@
 				C96AD7568AB519598880C752843F4D61 /* Listener.swift */,
 				6671C03ED401353C107D70FB25364D17 /* ListenerManager.swift */,
 			);
-			name = Listener;
 			path = Listener;
 			sourceTree = "<group>";
 		};
@@ -582,7 +568,6 @@
 				B69B2ECE2D2C9A3924A9231138CE0BBC /* Support Files */,
 				906402ECC4C6C5EB58DD365FD2C64E92 /* SwiftSupport */,
 			);
-			name = FBSnapshotTestCase;
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
@@ -614,7 +599,6 @@
 			children = (
 				BCDA59969DE96E3EA63D78D811470791 /* Signal.swift */,
 			);
-			name = Signal;
 			path = Signal;
 			sourceTree = "<group>";
 		};
@@ -624,7 +608,6 @@
 				EEABEAB045093E67CD2C1C0750A89FBC /* AlwaysSelectedCollectionViewCell.swift */,
 				0B88C1C4DA8D6828A36F976767AAFE92 /* AlwaysSelectedCollectionViewCell.xib */,
 			);
-			name = Cell;
 			path = Cell;
 			sourceTree = "<group>";
 		};
@@ -642,7 +625,6 @@
 				3B1C18999B77356178C944D8FFC6EA26 /* DebuggerItemViewModel.swift */,
 				26AE96CADCAA0D66D792F5F24549A8F3 /* HTTPRequest */,
 			);
-			name = Cell;
 			path = Cell;
 			sourceTree = "<group>";
 		};
@@ -651,7 +633,6 @@
 			children = (
 				FB1B2916D8885B396F568FEE59171F66 /* Extension-Bundle.swift */,
 			);
-			name = Bundle;
 			path = Bundle;
 			sourceTree = "<group>";
 		};
@@ -660,7 +641,6 @@
 			children = (
 				EE01F56FA1ECD60AC2788C614DEDB099 /* InitialTouchPanGestureRecognizer.swift */,
 			);
-			name = Gesture;
 			path = Gesture;
 			sourceTree = "<group>";
 		};
@@ -809,7 +789,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1110;
+				TargetAttributes = {
+					98A98149697C80CEF8D5772791E92E66 = {
+						LastSwiftMigration = 1110;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1031,8 +1016,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1077,7 +1061,6 @@
 			baseConfigurationReference = 4545B5BCB71C9A1ADED08D6A0FCCA96E /* Pods-Debugger_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1113,7 +1096,6 @@
 			baseConfigurationReference = 6E1C56998BF04C8BBF9304945E445D39 /* Pods-Debugger_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1148,7 +1130,6 @@
 			baseConfigurationReference = 07289123C4839F4451EE3EAA0A39806F /* Pods-Debugger_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1182,7 +1163,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE914AA77F5D1A58B907EA2341466871 /* Debugger.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1215,7 +1195,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C6513B09838318BD763CFD5390D1DE0 /* FBSnapshotTestCase.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1236,7 +1215,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1249,7 +1228,6 @@
 			baseConfigurationReference = C939FB71E85CFEB494A42DE6D1983C31 /* Pods-Debugger_Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1348,7 +1326,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D54723FBE49D3BF10307C360C141E4F /* Debugger.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1382,7 +1359,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9468E867498BBAF36F9AFFE4845F8B09 /* FBSnapshotTestCase.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1403,7 +1379,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
