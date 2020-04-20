@@ -15,6 +15,11 @@
 		14C511527597E5846AB2627F791C7D8E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716A9972B9D9103B54DB950893FAF104 /* QuartzCore.framework */; };
 		14EDECFF0D03A992F5642E6234E42E67 /* Extension-Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1B2916D8885B396F568FEE59171F66 /* Extension-Bundle.swift */; };
 		1BAC4F76B70DCFDD6C95C9887C999D03 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B7EA746BF6557FD565BAE12AF9198 /* FBSnapshotTestController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		25DDDA02244E5A8200A0E0F3 /* iPod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DDD9FD244E5A8200A0E0F3 /* iPod.swift */; };
+		25DDDA03244E5A8200A0E0F3 /* iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DDD9FE244E5A8200A0E0F3 /* iPad.swift */; };
+		25DDDA04244E5A8200A0E0F3 /* AppleTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DDD9FF244E5A8200A0E0F3 /* AppleTV.swift */; };
+		25DDDA05244E5A8200A0E0F3 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DDDA00244E5A8200A0E0F3 /* Device.swift */; };
+		25DDDA06244E5A8200A0E0F3 /* iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DDDA01244E5A8200A0E0F3 /* iPhone.swift */; };
 		270B627926F12B0FC8498A7686B9A491 /* Pods-Debugger_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86CFF593DD387CBD87B7A9DC1544FB31 /* Pods-Debugger_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		287699F4EF2A684F585E9BAF82B755B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD4ED544B638D07C7D755AF1C27116A /* Foundation.framework */; };
 		2E8DB826DEC8F1129A65DCB249D886AD /* Extension-UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83596FC915036E524B3E7B2D50003BB /* Extension-UIWindow.swift */; };
@@ -112,6 +117,11 @@
 		24168BF341C65F3B2EDFBB74C51BCDA3 /* DebuggerHTTPRequestTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = DebuggerHTTPRequestTableViewCell.xib; sourceTree = "<group>"; };
 		25A6FC7460E48128EBE27287A63B5B89 /* Button.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		25ACFEC8C0C6C0209ACB355025ECCCCE /* Pods-Debugger_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Debugger_Example-frameworks.sh"; sourceTree = "<group>"; };
+		25DDD9FD244E5A8200A0E0F3 /* iPod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPod.swift; sourceTree = "<group>"; };
+		25DDD9FE244E5A8200A0E0F3 /* iPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPad.swift; sourceTree = "<group>"; };
+		25DDD9FF244E5A8200A0E0F3 /* AppleTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleTV.swift; sourceTree = "<group>"; };
+		25DDDA00244E5A8200A0E0F3 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		25DDDA01244E5A8200A0E0F3 /* iPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iPhone.swift; sourceTree = "<group>"; };
 		2682C490609FC6DC1092D6590F13FF32 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		277B6BE10C665F515606A22FD60C6DCC /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		284833D18C244D2B42966B6EE425AA59 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
@@ -278,6 +288,18 @@
 				17A852A384E1D23E5DBA4AA32AC9632F /* NibLoadable.swift */,
 			);
 			path = Nibloadble;
+			sourceTree = "<group>";
+		};
+		25DDD9FC244E5A8200A0E0F3 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				25DDD9FD244E5A8200A0E0F3 /* iPod.swift */,
+				25DDD9FE244E5A8200A0E0F3 /* iPad.swift */,
+				25DDD9FF244E5A8200A0E0F3 /* AppleTV.swift */,
+				25DDDA00244E5A8200A0E0F3 /* Device.swift */,
+				25DDDA01244E5A8200A0E0F3 /* iPhone.swift */,
+			);
+			path = Device;
 			sourceTree = "<group>";
 		};
 		26AE96CADCAA0D66D792F5F24549A8F3 /* HTTPRequest */ = {
@@ -541,6 +563,7 @@
 			children = (
 				F82EBD5F04689D5BF16AE86319580EC0 /* Bundle */,
 				821414B806786856D912462015724034 /* Button */,
+				25DDD9FC244E5A8200A0E0F3 /* Device */,
 				FE43FC3504434B7E7935C6A906FB07D5 /* Gesture */,
 				B58FC619C7309FC6F07C4A7951313A84 /* Image */,
 				BD27B605D64440C69BD5AE107114B073 /* Listener */,
@@ -886,8 +909,10 @@
 				82B2A7EB9EA1B7E041076E7483B7D8C5 /* Debug.swift in Sources */,
 				C95575E3C8D1B5B840A8EC9F21C1E7F1 /* Debugger-dummy.m in Sources */,
 				49052424F0864049BCE0ECD3B1F22123 /* DebuggerCoordinator.swift in Sources */,
+				25DDDA02244E5A8200A0E0F3 /* iPod.swift in Sources */,
 				58006ABEC89B39F2250ADD0C14EE8A43 /* DebuggerHTTPRequestModel.swift in Sources */,
 				5AB2D3278E5EBED0E52063AB07D3769C /* DebuggerHTTPRequestTableViewCell.swift in Sources */,
+				25DDDA03244E5A8200A0E0F3 /* iPad.swift in Sources */,
 				93478CD0FC4C9DB757D1860E068D7B18 /* DebuggerHTTPRequestTableViewCell.xib in Sources */,
 				D6A784FCD80F4A4DFAFD410A69A31892 /* DebuggerHTTPRequestViewModel.swift in Sources */,
 				97C14932D235423A079C7095318AF607 /* DebuggerItemViewModel.swift in Sources */,
@@ -899,12 +924,15 @@
 				BFE901D8CDACEF1A9D91BE8BD8127DDF /* Extension-UIImage.swift in Sources */,
 				B8A5F92DF693FF695C205BA62F7DFB96 /* Extension-UIView.swift in Sources */,
 				2E8DB826DEC8F1129A65DCB249D886AD /* Extension-UIWindow.swift in Sources */,
+				25DDDA05244E5A8200A0E0F3 /* Device.swift in Sources */,
 				D0D0917A9A2B63E23B9CE74CF7019E21 /* InitialTouchPanGestureRecognizer.swift in Sources */,
 				DF0E573FE4A2D12E5C367F2C7386915C /* Listener.swift in Sources */,
+				25DDDA04244E5A8200A0E0F3 /* AppleTV.swift in Sources */,
 				A5E8850105AD03B83589F63D7A899656 /* ListenerManager.swift in Sources */,
 				334D106EDDF36B04B4E73A5496FF7389 /* NibLoadable.swift in Sources */,
 				09125A4E4630A78B5569C6DA478C8348 /* Signal.swift in Sources */,
 				E4C37EEA35FA7A8744A1CAAEB05DFA1A /* TogglesCoordinator.swift in Sources */,
+				25DDDA06244E5A8200A0E0F3 /* iPhone.swift in Sources */,
 				BB41ACDE2758227E6B8D44487A0C6387 /* TogglesNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

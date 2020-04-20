@@ -26,8 +26,10 @@ class TogglesNavigationViewController: UINavigationController {
         self.navigationBar.barTintColor = self.view.backgroundColor
         let gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
         self.view.addGestureRecognizer(gesture)
-        self.view.layer.masksToBounds = true
-        self.view.layer.cornerRadius = 34
+        if iPhone.current.isInfiniteScreen {
+            self.view.layer.masksToBounds = true
+            self.view.layer.cornerRadius = 34
+        }
     }
     
     
