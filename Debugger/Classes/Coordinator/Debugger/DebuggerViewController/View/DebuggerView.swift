@@ -148,7 +148,7 @@ class DebuggerView: UIView, NibLoadable {
     private func setUpButtonClear() {
         self.btnClear.setTitle(nil, for: .normal)
         self.btnClear.setTitle(nil, for: .highlighted)
-        let image = UIImage(named: "trash", in: Bundle(for: DebuggerView.self), compatibleWith: nil)?
+        let image = UIImage(named: "trash", in: Bundle.local, compatibleWith: nil)?
             .resize(toWidth: 15)
             .tintPicto(.white)
         self.btnClear.setImage(image, for: .normal)

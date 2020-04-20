@@ -26,16 +26,13 @@ With good tools, it's easier and faster to code and debug. Here are some of thos
   s.author           = { 'claudiomadureira' => 'claudiomsilvaf@gmail.com' }
   s.source           = { :git => 'https://github.com/claudiomadureira/swift-debugger.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '11.0'
 
   s.source_files = 'Debugger/Classes/**/*'
   s.swift_version = '5.0'
   
    s.resource_bundles = {
-     'Debugger' => [
-        'Debugger/Assets/*.{xcassets,png}',
-        'Debugger/Classes/*.xib'
-     ]
+     'Debugger' => ['Debugger/Assets/*.{xcassets,png}']
    }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

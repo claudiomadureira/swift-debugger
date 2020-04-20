@@ -16,14 +16,13 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "11.0"
   },
   "source_files": "Debugger/Classes/**/*",
   "swift_versions": "5.0",
   "resource_bundles": {
     "Debugger": [
-      "Debugger/Assets/*.{xcassets,png}",
-      "Debugger/Classes/*.xib"
+      "Debugger/Assets/*.{xcassets,png}"
     ]
   },
   "swift_version": "5.0"
