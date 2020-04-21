@@ -143,7 +143,7 @@ class DebuggerView: UIView, NibLoadable {
         self.tableView.separatorStyle = .none
         self.tableView.reloadData()
         self.tableView.backgroundColor = #colorLiteral(red: 0.147652775, green: 0.1476788819, blue: 0.1476462185, alpha: 1)
-        self.tableView.layer.borderWidth = 1
+        self.tableView.layer.borderWidth = DebuggerViewConstants.borderWidth
         self.tableView.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
     }
     
@@ -185,7 +185,7 @@ class DebuggerView: UIView, NibLoadable {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = #colorLiteral(red: 0.0700000003, green: 0.0700000003, blue: 0.0700000003, alpha: 1)
-        view.layer.borderWidth = 1
+        view.layer.borderWidth = DebuggerViewConstants.borderWidth
         view.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 25

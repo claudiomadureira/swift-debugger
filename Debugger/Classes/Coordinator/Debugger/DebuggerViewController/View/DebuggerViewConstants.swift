@@ -13,4 +13,5 @@ public enum DebuggerViewConstants {
     public static let redColor: UIColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
     public static let yellowColor: UIColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
     public static let whiteColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    public static let borderWidth: CGFloat = 0.5
 }
