@@ -1,10 +1,5 @@
 # Debugger
 
-[![CI Status](https://img.shields.io/travis/claudiomadureira/Debugger.svg?style=flat)](https://travis-ci.org/claudiomadureira/Debugger)
-[![Version](https://img.shields.io/cocoapods/v/Debugger.svg?style=flat)](https://cocoapods.org/pods/Debugger)
-[![License](https://img.shields.io/cocoapods/l/Debugger.svg?style=flat)](https://cocoapods.org/pods/Debugger)
-[![Platform](https://img.shields.io/cocoapods/p/Debugger.svg?style=flat)](https://cocoapods.org/pods/Debugger)
-
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
