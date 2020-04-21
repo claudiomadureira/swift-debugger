@@ -14,10 +14,15 @@ class DebuggerViewController: UIViewController {
     enum Event {
         case didDismiss
         case didPressToSeeToggles
+        case didPressToDetailAt(Int)
     }
     
     var events = Signal<(DebuggerViewController, Event)>()
     var didAppear: Bool = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func loadView() {
         self.view = self.customView
@@ -29,6 +34,11 @@ class DebuggerViewController: UIViewController {
         super.viewDidLoad()
         self.customView.setSideMenuAndShadow(hidden: true)
         self.customView.alpha = 1
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +63,10 @@ class DebuggerViewController: UIViewController {
 }
 
 extension DebuggerViewController: DebuggerViewDelegate {
+    
+    func debugger(_ view: DebuggerView, didPressToDetailAt index: Int) {
+        self.events.emit((self, .didPressToDetailAt(index)))
+    }
     
     func debugger(_ view: DebuggerView, didDismiss animated: Bool) {
         self.events.emit((self, .didDismiss))

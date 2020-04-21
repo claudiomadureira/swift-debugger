@@ -20,6 +20,8 @@
 		1DBADB04570F8A78596ED56593E85FF6 /* AlwaysSelectedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341DE724FC6BAD657ECF666BB24CC6F2 /* AlwaysSelectedCollectionView.swift */; };
 		20448C13C1236150C29746987668B033 /* Extension-Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FF6ACBA1E44854C35E7B0957F725 /* Extension-Bundle.swift */; };
 		25938C83244E939600BCC744 /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25938C82244E939600BCC744 /* LogModel.swift */; };
+		25938C86244E976000BCC744 /* LeftCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25938C85244E976000BCC744 /* LeftCoordinator.swift */; };
+		25938C89244E987700BCC744 /* LogDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25938C88244E987700BCC744 /* LogDetailCoordinator.swift */; };
 		270B627926F12B0FC8498A7686B9A491 /* Pods-Debugger_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86CFF593DD387CBD87B7A9DC1544FB31 /* Pods-Debugger_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		287699F4EF2A684F585E9BAF82B755B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD4ED544B638D07C7D755AF1C27116A /* Foundation.framework */; };
 		2C924D17CA409C4DD5F9D8C0E44F224A /* DebuggerItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C725884A5A61260748227293A922EA /* DebuggerItemViewModel.swift */; };
@@ -72,7 +74,7 @@
 		E0B8D095C732352C854D365B9E5B993D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CAA89EEF1039078430D7A886477E365 /* UIKit.framework */; };
 		E22C81632343CC1B295AA2841ED83EDD /* Pods-Debugger_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D33F403EAA8CF36D22F36E282B625C2F /* Pods-Debugger_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E72D8C87F95FE17B61FDB470B750C9C0 /* DebuggerDecodingErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBABEACE5A6A9554D0B39EDBC7F43E7 /* DebuggerDecodingErrorModel.swift */; };
-		EE7852DCEBA7872A69E674DF68A9EE5D /* TogglesNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C8FF5CCE62384F797AD8C7CE06459 /* TogglesNavigationViewController.swift */; };
+		EE7852DCEBA7872A69E674DF68A9EE5D /* LeftNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C8FF5CCE62384F797AD8C7CE06459 /* LeftNavigationViewController.swift */; };
 		EFA41366431738064C859781CA205C22 /* iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593C680D29DDD44E7B8BD09C39FC2FD1 /* iPad.swift */; };
 		F16FE16E46EBC55AEEF01B859FCA3B7F /* DebuggerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A108E6F72D20997166B57D96EDD7D4 /* DebuggerModel.swift */; };
 		F1AAAE00BB32B733B238E2B4E8424506 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 656116C8FA5458F45D4707110C9530EC /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -116,7 +118,7 @@
 		04714462D97C6F952F306646703E98C5 /* AlwaysSelectedCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = AlwaysSelectedCollectionViewCell.xib; sourceTree = "<group>"; };
 		07289123C4839F4451EE3EAA0A39806F /* Pods-Debugger_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Debugger_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		0952FF6ACBA1E44854C35E7B0957F725 /* Extension-Bundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Extension-Bundle.swift"; sourceTree = "<group>"; };
-		0F2C8FF5CCE62384F797AD8C7CE06459 /* TogglesNavigationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TogglesNavigationViewController.swift; sourceTree = "<group>"; };
+		0F2C8FF5CCE62384F797AD8C7CE06459 /* LeftNavigationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LeftNavigationViewController.swift; sourceTree = "<group>"; };
 		0F538C426803AE34255FC6E35B408CCA /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
 		1650DEEE037CD6D55CD053849DAB46B5 /* Pods-Debugger_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Debugger_Example-Info.plist"; sourceTree = "<group>"; };
 		1ADA6E655DC84D06359BD0ED5E36C783 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
@@ -125,6 +127,8 @@
 		235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
 		255268ECB7FBC2C84925E45C31BB5638 /* Extension-UIWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Extension-UIWindow.swift"; path = "Debugger/Classes/Extension-UIWindow.swift"; sourceTree = "<group>"; };
 		25938C82244E939600BCC744 /* LogModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogModel.swift; path = Debugger/Classes/LogModel.swift; sourceTree = "<group>"; };
+		25938C85244E976000BCC744 /* LeftCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftCoordinator.swift; sourceTree = "<group>"; };
+		25938C88244E987700BCC744 /* LogDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDetailCoordinator.swift; sourceTree = "<group>"; };
 		25ACFEC8C0C6C0209ACB355025ECCCCE /* Pods-Debugger_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Debugger_Example-frameworks.sh"; sourceTree = "<group>"; };
 		277B6BE10C665F515606A22FD60C6DCC /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		284833D18C244D2B42966B6EE425AA59 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
@@ -324,6 +328,25 @@
 				FBA2D6D4D4EF97CF878A3FEBDDD23C27 /* TogglesNavigationViewController */,
 			);
 			path = Toggles;
+			sourceTree = "<group>";
+		};
+		25938C84244E973100BCC744 /* Left */ = {
+			isa = PBXGroup;
+			children = (
+				25938C85244E976000BCC744 /* LeftCoordinator.swift */,
+				0F2C8FF5CCE62384F797AD8C7CE06459 /* LeftNavigationViewController.swift */,
+				25938C87244E986100BCC744 /* LogDetail */,
+				1A53F319350F952EF662A0776BC75AD9 /* Toggles */,
+			);
+			path = Left;
+			sourceTree = "<group>";
+		};
+		25938C87244E986100BCC744 /* LogDetail */ = {
+			isa = PBXGroup;
+			children = (
+				25938C88244E987700BCC744 /* LogDetailCoordinator.swift */,
+			);
+			path = LogDetail;
 			sourceTree = "<group>";
 		};
 		2E5E2B186C6A88202620E50AF3180864 /* Development Pods */ = {
@@ -620,7 +643,7 @@
 			children = (
 				D7DD6499E92F5D79576F6571B7943354 /* Coordinator.swift */,
 				8F7E33C8E8761407FB66B19DA257FB77 /* Debugger */,
-				1A53F319350F952EF662A0776BC75AD9 /* Toggles */,
+				25938C84244E973100BCC744 /* Left */,
 			);
 			name = Coordinator;
 			path = Debugger/Classes/Coordinator;
@@ -683,7 +706,6 @@
 		FBA2D6D4D4EF97CF878A3FEBDDD23C27 /* TogglesNavigationViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0F2C8FF5CCE62384F797AD8C7CE06459 /* TogglesNavigationViewController.swift */,
 			);
 			path = TogglesNavigationViewController;
 			sourceTree = "<group>";
@@ -937,6 +959,8 @@
 				C8FF0955A09BAAE26FD4E8E46BAE3149 /* Device.swift in Sources */,
 				20448C13C1236150C29746987668B033 /* Extension-Bundle.swift in Sources */,
 				554980F77447FCE46FCC02EA08E4BEB1 /* Extension-UIImage.swift in Sources */,
+				25938C86244E976000BCC744 /* LeftCoordinator.swift in Sources */,
+				25938C89244E987700BCC744 /* LogDetailCoordinator.swift in Sources */,
 				7BEC518BAF3844B0E9FF620CC7936B04 /* Extension-UIView.swift in Sources */,
 				25938C83244E939600BCC744 /* LogModel.swift in Sources */,
 				8CCE4A59CDA4A5F1A7F4AF9C03C06648 /* Extension-UIWindow.swift in Sources */,
@@ -949,7 +973,7 @@
 				410F3F9499FDB3D1A1C57FD4F94694EE /* NibLoadable.swift in Sources */,
 				55AA65F9EF13C39FB6154CDFDD5F0329 /* Signal.swift in Sources */,
 				42C8AB6E8B132BB95F2903ACAFDE8193 /* TogglesCoordinator.swift in Sources */,
-				EE7852DCEBA7872A69E674DF68A9EE5D /* TogglesNavigationViewController.swift in Sources */,
+				EE7852DCEBA7872A69E674DF68A9EE5D /* LeftNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

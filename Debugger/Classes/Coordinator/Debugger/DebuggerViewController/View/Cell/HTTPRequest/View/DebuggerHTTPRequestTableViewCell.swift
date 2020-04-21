@@ -54,4 +54,10 @@ class DebuggerHTTPRequestTableViewCell: UITableViewCell {
         }
     }
     
+    func onTouchUpInside(_ handler: @escaping () -> Void) {
+        self.btn.onTouchUpInside { (btn) in
+            handler()
+        }
+    }
+    
 }

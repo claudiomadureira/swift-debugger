@@ -1,41 +1,46 @@
 //
-//  TogglesCoordinator.swift
-//  SwiftDebugger
+//  LeftCoordinator.swift
+//  Debugger
 //
-//  Created by Claudio Madureira Silva Filho on 4/18/20.
-//  Copyright © 2020 Claudio Madureira Silva Filho. All rights reserved.
+//  Created by Claudio Madureira Silva Filho on 4/20/20.
 //
 
 import UIKit
 
-class TogglesCoordinator: Coordinator {
+class LeftCoordinator: Coordinator {
     
     let rootViewController: UIViewController
     
-    var togglesNavigationController: TogglesNavigationViewController?
+    var togglesNavigationController: LeftNavigationViewController?
     
     enum Event {
         case didPanToDismissToggles(CGFloat)
+        case willStart
+        case willFinish
+        case didStart
         case didFinish
     }
     
-    let events = Signal<(TogglesCoordinator, Event)>()
+    let events = Signal<(LeftCoordinator, Event)>()
     
     required init(rootViewController: UIViewController) {
         self.rootViewController = rootViewController
     }
     
     func start() {
-        let viewController = UIViewController()
-        viewController.title = "Toggles"
-        viewController.view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        let navController = TogglesNavigationViewController(rootViewController: viewController)
+        let navController = LeftNavigationViewController(rootViewController: self.getFirstViewController())
         navController.events.on { [weak self] (vc, event) in
             switch event {
             case .didPanToDismiss(let progress):
                 guard let self = self else { return }
                 self.events.emit((self, .didPanToDismissToggles(progress)))
-            case .didHide:
+            case .viewWillAppear:
+                self?.willStart()
+            case .viewWillDisapper:
+                self?.willFinish()
+            case .viewDidAppear:
+                self?.willFinish()
+            case .viewDidDisapper:
                 self?.finish()
             }
         }
@@ -46,7 +51,9 @@ class TogglesCoordinator: Coordinator {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
             self?.togglesNavigationController?.setTogglesNavigationControllerHidden(progress: 1)
             self?.togglesNavigationController?.view.alpha = 1
-            self?.togglesNavigationController?.animate(toHide: false, duration: 0.3, completion: nil)
+            self?.togglesNavigationController?.animate(toHide: false, duration: 0.3, completion: { [weak self] in
+                self?.didStart()
+            })
         })
     }
     
@@ -55,5 +62,21 @@ class TogglesCoordinator: Coordinator {
         self.events.emit((self, .didFinish))
     }
     
-
+    func getFirstViewController() -> UIViewController {
+        return .init()
+    }
+    
+    private func willStart() {
+        self.events.emit((self, .willStart))
+    }
+    
+    private func didStart() {
+        self.events.emit((self, .didStart))
+    }
+    
+    private func willFinish() {
+        self.events.emit((self, .willStart))
+    }
+    
+    
 }

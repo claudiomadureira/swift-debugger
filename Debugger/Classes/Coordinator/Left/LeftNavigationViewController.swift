@@ -1,5 +1,5 @@
 //
-//  TogglesNavigationViewController.swift
+//  LeftNavigationViewController.swift
 //  SwiftDebugger
 //
 //  Created by Claudio Madureira Silva Filho on 4/18/20.
@@ -8,14 +8,18 @@
 
 import UIKit
 
-class TogglesNavigationViewController: UINavigationController {
+class LeftNavigationViewController: UINavigationController {
     
     enum Event {
         case didPanToDismiss(CGFloat)
-        case didHide
+        case viewWillAppear
+        case viewWillDisapper
+        case viewDidAppear
+        case viewDidDisapper
     }
     
-    let events = Signal<(TogglesNavigationViewController, Event)>()
+    let events = Signal<(LeftNavigationViewController, Event)>()
+    var oldStatusBarStyle: UIStatusBarStyle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,20 @@ class TogglesNavigationViewController: UINavigationController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.oldStatusBarStyle == nil {
+            self.oldStatusBarStyle = UIApplication.shared.statusBarStyle
+        }
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let style = self.oldStatusBarStyle {
+            UIApplication.shared.statusBarStyle = style
+        }
+    }
     
     func setTogglesNavigationControllerHidden(progress: CGFloat) {
 //        let smallScale: CGFloat = 0.2
@@ -48,6 +66,13 @@ class TogglesNavigationViewController: UINavigationController {
     }
     
     func animate(toHide: Bool, duration: TimeInterval? = nil, emitProgress: Bool = false, completion: (() -> Void)?) {
+        if toHide {
+            self.events.emit((self, .viewWillDisapper))
+            self.viewWillDisappear(true)
+        } else {
+            self.viewWillAppear(true)
+            self.events.emit((self, .viewWillAppear))
+        }
         UIView.animate(withDuration: duration ?? 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
             let progress: CGFloat = toHide ? 1 : 0
             self?.setTogglesNavigationControllerHidden(progress: progress)
@@ -57,7 +82,11 @@ class TogglesNavigationViewController: UINavigationController {
             }
         }, completion: { _ in
             if toHide {
-                self.events.emit((self, .didHide))
+                self.viewDidDisappear(true)
+                self.events.emit((self, .viewDidDisapper))
+            } else {
+                self.viewDidAppear(true)
+                self.events.emit((self, .viewDidAppear))
             }
         })
     }

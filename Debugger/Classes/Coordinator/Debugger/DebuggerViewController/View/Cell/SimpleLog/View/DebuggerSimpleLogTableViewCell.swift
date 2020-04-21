@@ -33,5 +33,11 @@ class DebuggerSimpleLogTableViewCell: UITableViewCell {
             btn.superview?.alpha = state.alpha
         }
     }
-
+    
+    func onTouchUpInside(_ handler: @escaping () -> Void) {
+        self.btn.onTouchUpInside { (btn) in
+            handler()
+        }
+    }
+    
 }

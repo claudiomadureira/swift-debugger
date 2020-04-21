@@ -8,6 +8,7 @@
 import UIKit
 
 protocol DebuggerViewDelegate: class {
+    func debugger(_ view: DebuggerView, didPressToDetailAt index: Int)
     func debugger(_ view: DebuggerView, didDismiss animated: Bool)
     func debugger(_ view: DebuggerView, didPressClearLog button: UIButton)
     func debugger(_ view: DebuggerView, didPressToggles button: UIButton)
@@ -201,6 +202,11 @@ class DebuggerView: UIView, NibLoadable {
         self.viewBackground.alpha = 1 - progress
     }
     
+    private func didPressToDetailAt(row: Int) {
+        let invertedRow = self.items.count - 1 - row // The view displays the log upsidedown.
+        self.delegate?.debugger(self, didPressToDetailAt: invertedRow)
+    }
+    
     @objc
     private func tapDismissSideMenuAction() {
         self.animateSideMenu(toHide: true) { [weak self] in
@@ -302,11 +308,17 @@ extension DebuggerView: UITableViewDataSource {
         if let item = item as? DebuggerHTTPRequestCellViewModel {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.cellHTTPRequestIdentifier, for: indexPath) as! DebuggerHTTPRequestTableViewCell
             cell.viewModel = item
+            cell.onTouchUpInside { [weak self] in
+                self?.didPressToDetailAt(row: row)
+            }
             return cell
         }
         if let item = item as? DebuggerSimpleLogViewModel {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.cellSimpleLogIdentifier, for: indexPath) as! DebuggerSimpleLogTableViewCell
             cell.viewModel = item
+            cell.onTouchUpInside { [weak self] in
+                self?.didPressToDetailAt(row: row)
+            }
             return cell
         }
         return .init()
