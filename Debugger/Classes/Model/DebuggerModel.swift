@@ -8,6 +8,5 @@
 
 import UIKit
 
-public protocol DebuggerModel {
+public protocol DebuggerModel { }
 
-}

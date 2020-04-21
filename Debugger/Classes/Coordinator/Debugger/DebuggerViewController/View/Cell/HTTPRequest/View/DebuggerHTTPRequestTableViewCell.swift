@@ -16,6 +16,7 @@ class DebuggerHTTPRequestTableViewCell: UITableViewCell {
     @IBOutlet private weak var lblDuration: UILabel!
     @IBOutlet private weak var imvBody: UIImageView!
     @IBOutlet private weak var btn: Button!
+    @IBOutlet private weak var lineView: UIView!
     
     var viewModel: DebuggerHTTPRequestCellViewModel? {
         didSet {
@@ -37,13 +38,14 @@ class DebuggerHTTPRequestTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .none
         let size: CGFloat = 14
-        let fontRegular: UIFont = UIFont.systemFont(ofSize: size, weight: .regular)
+        let fontRegular: UIFont = DebuggerViewConstants.fontRegular
         let fontBold: UIFont = UIFont.systemFont(ofSize: size, weight: .bold)
         self.lblURL.font = fontRegular
         self.lblMethod.font = fontRegular
         self.lblStatusCode.font = fontBold
-        self.lblStartedAt.font = fontRegular
+        self.lblStartedAt.font = DebuggerViewConstants.fontThin
         self.lblDuration.font = fontRegular
+        self.lineView.backgroundColor = DebuggerViewConstants.lineColor
         self.imvBody.layer.masksToBounds = true
         self.imvBody.layer.cornerRadius = 6
         self.imvBody.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)

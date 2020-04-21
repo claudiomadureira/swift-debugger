@@ -34,8 +34,31 @@ class ViewController: UIViewController {
             startDate: nil,
             duration: 150)
         Debug.debug(item1)
+        
+        Debug.warn("Warning!")
+        Debug.error("Error!")
+        Debug.print("Print!")
+        
+        let data = """
+        {
+            "test": null
+        }
+        """.data(using: .utf8)!
+        do {
+            let model = try JSONDecoder().decode(MyCustomModel.self, from: data)
+            print(model)
+        } catch let error {
+            Debug.errorDecoding(error, data: data, modelToConvert: MyCustomModel.self)
+        }
     }
     
     
+    
+}
+
+
+
+struct MyCustomModel: Codable {
+    var test: String
     
 }

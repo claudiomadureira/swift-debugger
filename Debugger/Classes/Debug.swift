@@ -17,7 +17,7 @@ public enum Debug {
     public static var items: [DebuggerModel] = []
     
     static var mappedItems: [DebuggerItemViewModel] {
-        return self.items.map { self.factoryViewModel(model: $0) }
+        return self.items.compactMap { self.factoryViewModel(model: $0) }
     }
     
     static var eventHandler: ((Event) -> Void)?
@@ -43,9 +43,39 @@ public enum Debug {
         self.eventHandler = eventHandler
     }
     
-    public static  func debug(_ model: DebuggerModel) {
+    public static func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
+        guard let _error = error as? DecodingError else { return }
+        let model = DebuggerDecodingErrorModel(error: _error, model: modelToConvert, data: data)
+        self.debug(model)
+    }
+    
+    public static func error(_ text: String) {
+        let model = LogModel(
+            shortDescription: text,
+            textColor: DebuggerViewConstants.redColor,
+            date: Date())
+        self.debug(model)
+    }
+    
+    public static func print(_ text: String) {
+        let model = LogModel(
+            shortDescription: text,
+            textColor: DebuggerViewConstants.whiteColor,
+            date: Date())
+        self.debug(model)
+    }
+    
+    public static func warn(_ text: String) {
+        let model = LogModel(
+            shortDescription: text,
+            textColor: DebuggerViewConstants.yellowColor,
+            date: Date())
+        self.debug(model)
+    }
+    
+    public static func debug(_ model: DebuggerModel) {
         self.items.append(model)
-        let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model)
+        guard let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model) else { return }
         self.listenerManager.emit(viewModel)
     }
     
@@ -69,11 +99,15 @@ public enum Debug {
         self.listenerManager.bind(listener)
     }
     
-    static func factoryViewModel(model: DebuggerModel) -> DebuggerItemViewModel {
+    static func factoryViewModel(model: DebuggerModel) -> DebuggerItemViewModel? {
         if let httpRequestModel = model as? DebuggerHTTPRequestModel {
             return DebuggerHTTPRequestCellViewModel(model: httpRequestModel)
         }
-        return DebuggerItemViewModel()
+        if let simpleLogModel = model as? DebuggerLogModel {
+            return DebuggerSimpleLogViewModel(model: simpleLogModel)
+        }
+        
+        return nil
     }
 
 }

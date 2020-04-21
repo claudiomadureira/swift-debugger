@@ -30,9 +30,14 @@ class DebuggerView: UIView, NibLoadable {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var btnToggles: Button!
     
-    let cellHTTPRequest = DebuggerHTTPRequestTableViewCell.self
-    
     weak var delegate: DebuggerViewDelegate?
+    
+    let cellHTTPRequest = DebuggerHTTPRequestTableViewCell.self
+    let cellSimpleLog = DebuggerSimpleLogTableViewCell.self
+    
+    var cellSimpleLogIdentifier: String {
+        return String(describing: self.cellSimpleLog)
+    }
     
     var cellHTTPRequestIdentifier: String {
         return String(describing: self.cellHTTPRequest)
@@ -118,8 +123,18 @@ class DebuggerView: UIView, NibLoadable {
     }
     
     private func setUpTableView() {
-        let nib = UINib(nibName: self.cellHTTPRequestIdentifier, bundle: Bundle(for: cellHTTPRequest))
-        self.tableView.register(nib, forCellReuseIdentifier: self.cellHTTPRequestIdentifier)
+        
+        // DebuggerHTTPRequesTableViewtCell
+        let bundleHTTPRequest = Bundle(for: self.cellHTTPRequest)
+        let nibHTTPRequest = UINib(nibName: self.cellHTTPRequestIdentifier, bundle: bundleHTTPRequest)
+        self.tableView.register(nibHTTPRequest, forCellReuseIdentifier: self.cellHTTPRequestIdentifier)
+        
+        // DebuggerSimpleLogTableViewCell
+        let bundleSimpleLog = Bundle(for: self.cellSimpleLog)
+        let nibSimpleLog = UINib(nibName: self.cellSimpleLogIdentifier, bundle: bundleSimpleLog)
+        self.tableView.register(nibSimpleLog, forCellReuseIdentifier: self.cellSimpleLogIdentifier)
+        
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 250
@@ -286,6 +301,11 @@ extension DebuggerView: UITableViewDataSource {
         let item = self.items[row]
         if let item = item as? DebuggerHTTPRequestCellViewModel {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.cellHTTPRequestIdentifier, for: indexPath) as! DebuggerHTTPRequestTableViewCell
+            cell.viewModel = item
+            return cell
+        }
+        if let item = item as? DebuggerSimpleLogViewModel {
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellSimpleLogIdentifier, for: indexPath) as! DebuggerSimpleLogTableViewCell
             cell.viewModel = item
             return cell
         }

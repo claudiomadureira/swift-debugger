@@ -93,7 +93,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-bK-qPR">
                                 <rect key="frame" x="12" y="111" width="452" height="1"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="1" id="3ke-8v-AhN"/>
                                 </constraints>
@@ -129,6 +129,7 @@
                 <outlet property="lblStartedAt" destination="6kq-bs-aSb" id="UIa-En-Fto"/>
                 <outlet property="lblStatusCode" destination="1pj-ah-xd1" id="qFz-Vo-fBc"/>
                 <outlet property="lblURL" destination="vna-Ad-r79" id="bIW-Tl-Fnk"/>
+                <outlet property="lineView" destination="Clt-bK-qPR" id="tOo-j1-AHr"/>
             </connections>
             <point key="canvasLocation" x="33.333333333333336" y="176.11607142857142"/>
         </tableViewCell>
