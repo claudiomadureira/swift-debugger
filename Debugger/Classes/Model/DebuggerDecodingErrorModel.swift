@@ -14,7 +14,24 @@ struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerLogModel {
     var date: Date = Date()
     
     var shortDescription: String {
-        return "Failed to decode <\(self.model)>."
+        switch self.error {
+        case DecodingError.dataCorrupted(let context):
+            return "[\(self.model)] " + context.debugDescription
+        case DecodingError.typeMismatch(let value, let context):
+            let text = context.debugDescription.components(separatedBy: " ")
+            let expectedType = text[3]
+            let foundType = text[7].capitalized
+            return "[\(self.model)] expected <\(expectedType)> but found <\(foundType)> for \'\(context.codingPath.first?.stringValue ?? "")\'."
+        case DecodingError.keyNotFound(let key, let context):
+            return "[\(self.model)] key \'\(key.stringValue)\' not found."
+            
+        case DecodingError.valueNotFound(let value, let context):
+            let parameterType =  context.debugDescription.components(separatedBy: " ")[1]
+            return "[\(self.model)] required <\(parameterType)> found null for \'\(context.codingPath.first?.stringValue ?? "")\'."
+        default:
+            break
+        }
+        return "Failed to decode \(self.model)."
     }
     
     var detailedDescription: String {
@@ -36,5 +53,6 @@ struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerLogModel {
     var textColor: UIColor {
         return DebuggerViewConstants.redColor
     }
-
+    
+    
 }

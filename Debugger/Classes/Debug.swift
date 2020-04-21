@@ -49,6 +49,14 @@ public enum Debug {
         self.debug(model)
     }
     
+    public static func success(_ text: String) {
+        let model = LogModel(
+            shortDescription: text,
+            textColor: DebuggerViewConstants.greenColor,
+            date: Date())
+        self.debug(model)
+    }
+    
     public static func error(_ text: String) {
         let model = LogModel(
             shortDescription: text,

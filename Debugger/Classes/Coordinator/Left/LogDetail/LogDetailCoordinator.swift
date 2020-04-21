@@ -22,7 +22,11 @@ class LogDetailCoordinator: LeftCoordinator {
             viewController.title = viewModel.getTopText()
         }
         viewController.view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-//        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(<#T##@objc method#>))
+        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "back-debug", in: Bundle.local, compatibleWith: nil),
+            style: .plain,
+            target: self,
+            action: #selector(self.didPressToDismiss))
         return viewController
     }()
     
@@ -38,6 +42,11 @@ class LogDetailCoordinator: LeftCoordinator {
     
     override func getFirstViewController() -> UIViewController {
         return self.firstViewController
+    }
+    
+    @objc
+    private func didPressToDismiss() {
+        self.dismiss()
     }
     
     

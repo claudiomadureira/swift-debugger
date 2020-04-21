@@ -51,7 +51,7 @@ class DebuggerHTTPRequestCellViewModel: DebuggerItemViewModel {
     }
     
     func getStatusCodeColor() -> UIColor {
-        return self.model.statusCode == 404 ? #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1) : #colorLiteral(red: 0.1990376711, green: 0.7803677917, blue: 0.3488332629, alpha: 1)
+        return self.model.statusCode == 404 ? DebuggerViewConstants.redColor : DebuggerViewConstants.greenColor
     }
     
     func getDurationText() -> String? {

@@ -33,17 +33,11 @@ class DebuggerCoordinator: Coordinator {
                     switch event {
                     case .didPanToDismissToggles(let progress):
                         self?.debuggerViewController?.setSideMenuHidden(progress: 1 - progress)
-                    case .willStart:
-                        self?.debuggerViewController?.viewWillDisappear(true)
-                    case .didStart:
-                        self?.debuggerViewController?.viewDidDisappear(true)
-                    case .willFinish:
-                        self?.debuggerViewController?.viewWillDisappear(true)
                     case .didFinish:
-                        self?.debuggerViewController?.viewDidDisappear(true)
                         self?.logDetailCoordinator = nil
+                    case .dismiss:
+                        self?.debuggerViewController?.animateSideMenu(hidden: false, animated: true, completion: nil)
                     }
-                    
                 })
                 self?.logDetailCoordinator?.start()
                 
@@ -54,17 +48,12 @@ class DebuggerCoordinator: Coordinator {
                     switch event {
                     case .didPanToDismissToggles(let progress):
                         self?.debuggerViewController?.setSideMenuHidden(progress: 1 - progress)
-                    case .willStart:
-                        self?.debuggerViewController?.viewWillDisappear(true)
-                    case .didStart:
-                        self?.debuggerViewController?.viewDidDisappear(true)
-                    case .willFinish:
-                        self?.debuggerViewController?.viewWillDisappear(true)
+                        
                     case .didFinish:
-                        self?.debuggerViewController?.viewDidDisappear(true)
                         self?.togglesCoordinator = nil
+                    case .dismiss:
+                        self?.debuggerViewController?.animateSideMenu(hidden: false, animated: true, completion: nil)
                     }
-                    
                 })
                 self?.togglesCoordinator?.start()
             case .didDismiss:

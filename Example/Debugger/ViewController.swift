@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let item0 = ExampleHTTPResquest(
-            url: "https://test.api.com/some-image",
-            method: "get",
+            url: "https://test.api.com/auth",
+            method: "post",
             statusCode: 404,
             headers: [:],
             body: Data(),
@@ -24,32 +24,36 @@ class ViewController: UIViewController {
             duration: 3)
         Debug.debug(item0)
         
-        let item1 = ExampleHTTPResquest(
-            url: "https://test.api.com/some-image2",
-            method: "get",
-            statusCode: 200,
-            headers: [:],
-            body: Data(),
-            responseBody: UIImage(named: "testImage")?.pngData() ?? Data(),
-            startDate: nil,
-            duration: 150)
-        Debug.debug(item1)
+//        let item1 = ExampleHTTPResquest(
+//            url: "https://test.api.com/some-image2",
+//            method: "get",
+//            statusCode: 200,
+//            headers: [:],
+//            body: Data(),
+//            responseBody: UIImage(named: "testImage")?.pngData() ?? Data(),
+//            startDate: nil,
+//            duration: 150)
+//        Debug.debug(item1)
+        
+        
+        
+        let data = """
+        {
+            "userName"
+        }
+        """.data(using: .utf8)!
+        let model = ExampleAuthModel.self
+        do {
+            let model = try JSONDecoder().decode(model, from: data)
+            print(model)
+        } catch let error {
+            Debug.errorDecoding(error, data: data, modelToConvert: model)
+        }
         
         Debug.warn("Warning!")
         Debug.error("Error!")
         Debug.print("Print!")
-        
-        let data = """
-        {
-            "test": null
-        }
-        """.data(using: .utf8)!
-        do {
-            let model = try JSONDecoder().decode(MyCustomModel.self, from: data)
-            print(model)
-        } catch let error {
-            Debug.errorDecoding(error, data: data, modelToConvert: MyCustomModel.self)
-        }
+        Debug.success("Success!")
     }
     
     
@@ -58,7 +62,6 @@ class ViewController: UIViewController {
 
 
 
-struct MyCustomModel: Codable {
-    var test: String
-    
+struct ExampleAuthModel: Codable {
+    var userName: Double
 }

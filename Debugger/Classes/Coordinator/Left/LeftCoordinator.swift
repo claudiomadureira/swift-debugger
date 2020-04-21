@@ -15,9 +15,7 @@ class LeftCoordinator: Coordinator {
     
     enum Event {
         case didPanToDismissToggles(CGFloat)
-        case willStart
-        case willFinish
-        case didStart
+        case dismiss
         case didFinish
     }
     
@@ -34,14 +32,10 @@ class LeftCoordinator: Coordinator {
             case .didPanToDismiss(let progress):
                 guard let self = self else { return }
                 self.events.emit((self, .didPanToDismissToggles(progress)))
-            case .viewWillAppear:
-                self?.willStart()
-            case .viewWillDisapper:
-                self?.willFinish()
-            case .viewDidAppear:
-                self?.willFinish()
             case .viewDidDisapper:
                 self?.finish()
+            default:
+                break
             }
         }
         navController.modalPresentationStyle = .overCurrentContext
@@ -51,9 +45,14 @@ class LeftCoordinator: Coordinator {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
             self?.togglesNavigationController?.setTogglesNavigationControllerHidden(progress: 1)
             self?.togglesNavigationController?.view.alpha = 1
-            self?.togglesNavigationController?.animate(toHide: false, duration: 0.3, completion: { [weak self] in
-                self?.didStart()
-            })
+            self?.togglesNavigationController?.animate(toHide: false, duration: 0.3, completion: nil)
+        })
+    }
+    
+    func dismiss() {
+        self.events.emit((self, .dismiss))
+        self.togglesNavigationController?.animate(toHide: true, duration: 0.3, completion: { [weak self] in
+            self?.finish()
         })
     }
     
@@ -64,18 +63,6 @@ class LeftCoordinator: Coordinator {
     
     func getFirstViewController() -> UIViewController {
         return .init()
-    }
-    
-    private func willStart() {
-        self.events.emit((self, .willStart))
-    }
-    
-    private func didStart() {
-        self.events.emit((self, .didStart))
-    }
-    
-    private func willFinish() {
-        self.events.emit((self, .willStart))
     }
     
     
