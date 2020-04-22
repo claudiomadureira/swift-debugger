@@ -16,7 +16,7 @@ class DebuggerSimpleLogViewModel: DebuggerItemViewModel {
     }
     
     func logTopText() -> String {
-        return self.model.shortDescription
+        return self.model.description
     }
     
     func logTopTextColor() -> UIColor {

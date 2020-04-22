@@ -8,7 +8,7 @@
 import UIKit
 
 struct LogModel: DebuggerLogModel {
-    var shortDescription: String
+    var description: String
     var textColor: UIColor
     var date: Date
 }

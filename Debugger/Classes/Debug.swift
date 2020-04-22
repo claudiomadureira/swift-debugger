@@ -47,38 +47,44 @@ public enum Debug {
         guard let _error = error as? DecodingError else { return }
         let model = DebuggerDecodingErrorModel(error: _error, model: modelToConvert, data: data)
         self.debug(model)
+        let prettyJSONText = self.stringfy(data)
+        self.log("(DecodingError): " + model.description + "\nInput data:\n" + prettyJSONText)
     }
     
     public static func success(_ text: String) {
         let model = LogModel(
-            shortDescription: text,
+            description: text,
             textColor: DebuggerViewConstants.greenColor,
             date: Date())
         self.debug(model)
+        self.log("(Success): " + text)
     }
     
     public static func error(_ text: String) {
         let model = LogModel(
-            shortDescription: text,
+            description: text,
             textColor: DebuggerViewConstants.redColor,
             date: Date())
         self.debug(model)
+        self.log("(Error): " + text)
     }
     
     public static func print(_ text: String) {
         let model = LogModel(
-            shortDescription: text,
-            textColor: DebuggerViewConstants.whiteColor,
+            description: text,
+            textColor: .white,
             date: Date())
         self.debug(model)
+        self.log("(Print): " + text)
     }
     
     public static func warn(_ text: String) {
         let model = LogModel(
-            shortDescription: text,
+            description: text,
             textColor: DebuggerViewConstants.yellowColor,
             date: Date())
         self.debug(model)
+        self.log("(Warnning): " + text)
     }
     
     public static func debug(_ model: DebuggerModel) {
@@ -117,5 +123,43 @@ public enum Debug {
         
         return nil
     }
-
+    
+    static func log(_ meesage: String) {
+        self.runIfNeeded {
+            NSLog(meesage)
+        }
+    }
+    
+    static func runIfNeeded(_ handler: @escaping () -> Void) {
+        #if DEBUG
+        handler()
+        #endif
+    }
+    
+    private static func stringfy(_ any: Any?) -> String {
+        if let data = any as? Data {
+            if let anyObject = try? JSONSerialization.jsonObject(with: data) {
+                return self.stringfy(anyObject)
+            }
+            if let text = String(data: data, encoding: .utf8) {
+                return text
+            }
+        }
+        if let collection = any as? Array<AnyObject> {
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: collection, options: [.prettyPrinted]),
+                let jsonString = String(data: jsonData, encoding: .utf8) else {
+                    return "{\n}"
+            }
+            return jsonString.replacingOccurrences(of: "\\/", with: "/")
+        }
+        if let collection = any as? Dictionary<AnyHashable, AnyObject> {
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: collection, options: [.prettyPrinted]),
+                let jsonString = String(data: jsonData, encoding: .utf8) else {
+                    return "{\n}"
+            }
+            return jsonString.replacingOccurrences(of: "\\/", with: "/")
+        }
+        return "\(any ?? "nil")"
+    }
+    
 }

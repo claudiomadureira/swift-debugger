@@ -64,7 +64,7 @@ class DebuggerView: UIView, NibLoadable {
         self.switchIdentifier.setOn(!Debug.labelTextIdentifierIsHidden, animated: false)
         self.setUpButtonToggles()
         self.setUpButtonClear()
-        self.lblVersion.text = "Main bundle at " + Bundle.main.readableVersion
+        self.lblVersion.text = Bundle.main.readableVersion
         self.addDismissSideMenuTapGesture()
         self.addDismissSideMenuPanGesture()
         self.items = Debug.mappedItems.reversed()
@@ -264,11 +264,6 @@ class DebuggerView: UIView, NibLoadable {
 extension DebuggerView: AlwaysSelectedCollectionViewDelegate {
     
     func collection(collectionView: AlwaysSelectedCollectionView, didSelectItemAt index: Int) {
-        if #available(iOS 10.0, *) {
-            let generator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-            generator.prepare()
-            generator.impactOccurred()
-        }
         switch collectionView {
         case self.collectionEnvironments:
             Debug.indexSelectedEnvironment = index

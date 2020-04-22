@@ -7,13 +7,21 @@
 
 import UIKit
 
-struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerLogModel {
+protocol DebuggerErrorModel: DebuggerLogModel {
+    var modelName: String { get }
+}
+
+struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
     let error: Error
     let model: Model.Type
     let data: Data
     var date: Date = Date()
     
-    var shortDescription: String {
+    var modelName: String {
+        return "\(self.model)"
+    }
+    
+    var description: String {
         switch self.error {
         case DecodingError.dataCorrupted(let context):
             return "[\(self.model)] " + context.debugDescription

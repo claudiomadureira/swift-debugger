@@ -50,10 +50,10 @@ class ViewController: UIViewController {
             Debug.errorDecoding(error, data: data, modelToConvert: model)
         }
         
-        Debug.warn("Warning!")
-        Debug.error("Error!")
-        Debug.print("Print!")
-        Debug.success("Success!")
+        Debug.warn("Warning message!")
+        Debug.error("Error message!")
+        Debug.print("Print message!")
+        Debug.success("Success message!")
     }
     
     

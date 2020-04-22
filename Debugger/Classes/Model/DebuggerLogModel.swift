@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DebuggerLogModel: DebuggerModel {
-    var shortDescription: String { get }
+    var description: String { get }
     var textColor: UIColor { get }
     var date: Date { get }
 }

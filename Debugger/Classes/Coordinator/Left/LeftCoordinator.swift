@@ -26,7 +26,13 @@ class LeftCoordinator: Coordinator {
     }
     
     func start() {
-        let navController = LeftNavigationViewController(rootViewController: self.getFirstViewController())
+        let viewController = self.getFirstViewController()
+        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                   image: UIImage(named: "back-debug", in: Bundle.local, compatibleWith: nil),
+                   style: .plain,
+                   target: self,
+                   action: #selector(self.dismiss))
+        let navController = LeftNavigationViewController(rootViewController: viewController)
         navController.events.on { [weak self] (vc, event) in
             switch event {
             case .didPanToDismiss(let progress):
@@ -49,6 +55,7 @@ class LeftCoordinator: Coordinator {
         })
     }
     
+    @objc
     func dismiss() {
         self.events.emit((self, .dismiss))
         self.togglesNavigationController?.animate(toHide: true, duration: 0.3, completion: { [weak self] in
