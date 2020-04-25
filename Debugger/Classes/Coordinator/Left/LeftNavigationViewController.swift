@@ -99,7 +99,7 @@ class LeftNavigationViewController: UINavigationController {
         case .cancelled, .failed:
             self.animate(toHide: false, emitProgress: true, completion: nil)
         case .began:
-            break
+            self.view.endEditing(false)
         case .ended:
             let speed = gesture.velocity(in: gesture.view).x
             if speed == -100 {

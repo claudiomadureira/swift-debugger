@@ -23,7 +23,10 @@ extension Debug {
         Debug.localizations = kLocalizations
         Debug.indexSelectedLocalization = kLocalizations.firstIndex(where: { $0 == delegate.currentLocalization }) ?? 0
         Debug.isVisibleIdentifier = true
-        Debug.localSettings = [:]
+        Debug.localSettings = [
+            "dateFormat": "yyyy-MM-dd",
+            "isLoginFacebookEnabled": true,
+        ]
     }
     
 }

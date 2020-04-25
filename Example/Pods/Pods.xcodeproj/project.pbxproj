@@ -21,6 +21,9 @@
 		20448C13C1236150C29746987668B033 /* Extension-Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FF6ACBA1E44854C35E7B0957F725 /* Extension-Bundle.swift */; };
 		255B003A2454A2670042D733 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B00392454A2670042D733 /* Emoji.swift */; };
 		255B003C2454A7A70042D733 /* LogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B003B2454A7A70042D733 /* LogType.swift */; };
+		255B003E2454F4F00042D733 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B003D2454F4F00042D733 /* SettingsViewController.swift */; };
+		255B00412454F5080042D733 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B00402454F5080042D733 /* SettingsView.swift */; };
+		255B00432454F5170042D733 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 255B00422454F5170042D733 /* SettingsView.xib */; };
 		256C490F244F63200018A7DA /* DebugDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C490E244F63200018A7DA /* DebugDetailViewController.swift */; };
 		256C4913244F635C0018A7DA /* DebugDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C4912244F635C0018A7DA /* DebugDetailView.swift */; };
 		256C4915244F63A50018A7DA /* DebugDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256C4914244F63A50018A7DA /* DebugDetailView.xib */; };
@@ -134,6 +137,9 @@
 		255268ECB7FBC2C84925E45C31BB5638 /* Extension-UIWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Extension-UIWindow.swift"; path = "Debugger/Classes/Extension-UIWindow.swift"; sourceTree = "<group>"; };
 		255B00392454A2670042D733 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		255B003B2454A7A70042D733 /* LogType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogType.swift; sourceTree = "<group>"; };
+		255B003D2454F4F00042D733 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		255B00402454F5080042D733 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		255B00422454F5170042D733 /* SettingsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
 		256C490E244F63200018A7DA /* DebugDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDetailViewController.swift; sourceTree = "<group>"; };
 		256C4912244F635C0018A7DA /* DebugDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDetailView.swift; sourceTree = "<group>"; };
 		256C4914244F63A50018A7DA /* DebugDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugDetailView.xib; sourceTree = "<group>"; };
@@ -338,6 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				45E3DB7F6C75DC9A8D802712665BC0D6 /* SettingsCoordinator.swift */,
+				255B003D2454F4F00042D733 /* SettingsViewController.swift */,
+				255B003F2454F4F30042D733 /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -348,6 +356,15 @@
 				255B00392454A2670042D733 /* Emoji.swift */,
 			);
 			path = Emoji;
+			sourceTree = "<group>";
+		};
+		255B003F2454F4F30042D733 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				255B00402454F5080042D733 /* SettingsView.swift */,
+				255B00422454F5170042D733 /* SettingsView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		256C4910244F63280018A7DA /* DebugDetail */ = {
@@ -955,6 +972,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				255B00432454F5170042D733 /* SettingsView.xib in Resources */,
 				4F89B7B9BA04977A0D87498B90D436CB /* Debugger.bundle in Resources */,
 				256C4915244F63A50018A7DA /* DebugDetailView.xib in Resources */,
 			);
@@ -981,6 +999,7 @@
 				62631675123535B6DE41A985B3D2882E /* DebuggerHTTPRequestModel.swift in Sources */,
 				192C1499E86EDFE222A4AD5E9CA8749D /* DebuggerHTTPRequestTableViewCell.swift in Sources */,
 				3715E39C98E638CE5C4EF18220C637CC /* DebuggerHTTPRequestTableViewCell.xib in Sources */,
+				255B00412454F5080042D733 /* SettingsView.swift in Sources */,
 				D95204DB017345E3D9510CD207EB2DA0 /* DebuggerHTTPRequestViewModel.swift in Sources */,
 				2C924D17CA409C4DD5F9D8C0E44F224A /* DebuggerItemViewModel.swift in Sources */,
 				256C4917244F655E0018A7DA /* DebugDetailViewModel.swift in Sources */,
@@ -990,6 +1009,7 @@
 				8A26DA316E3D7F020A39F7D2E4413F0B /* DebuggerSimpleLogTableViewCell.xib in Sources */,
 				9F49ABCC6588D3B38EED6B48AF8F766A /* DebuggerSimpleLogViewModel.swift in Sources */,
 				8F92E73E0FAE73E3351CB4462FF317D8 /* DebuggerView.swift in Sources */,
+				255B003E2454F4F00042D733 /* SettingsViewController.swift in Sources */,
 				CEA899815CDD218C20C1945D2E593B0D /* DebuggerView.xib in Sources */,
 				106DFA6F93C9964A398C47E6032BFC88 /* DebuggerViewConstants.swift in Sources */,
 				8488FCB8D1E6FB84285079513C59CB30 /* DebuggerViewController.swift in Sources */,
