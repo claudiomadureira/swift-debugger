@@ -1,11 +1,5 @@
 # Debugger
 
-
-## Proggress
-
-Following up with the future features and desires to add to this module and also check status on developing features.
-Check it out :point_right: [here](https://trello.com/b/uefadp8P/swift-debugger)
-
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
