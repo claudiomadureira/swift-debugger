@@ -45,46 +45,42 @@ public enum Debug {
     
     public static func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
         guard let _error = error as? DecodingError else { return }
-        let model = DebuggerDecodingErrorModel(error: _error, model: modelToConvert, data: data)
+        let model = DebuggerDecodingErrorModel(error: _error, model: modelToConvert, data: data, type: .decodingError)
         self.debug(model)
         let prettyJSONText = self.stringfy(data)
-        self.log("(DecodingError): " + model.description + "\nInput data:\n" + prettyJSONText)
+        self.log(model.type.printTag + model.description + "\nInput data:\n" + prettyJSONText)
     }
     
     public static func success(_ text: String) {
         let model = LogModel(
             description: text,
-            textColor: DebuggerViewConstants.greenColor,
-            date: Date())
+            type: .success)
         self.debug(model)
-        self.log("(Success): " + text)
+        self.log(model.type.printTag + text)
     }
     
     public static func error(_ text: String) {
         let model = LogModel(
             description: text,
-            textColor: DebuggerViewConstants.redColor,
-            date: Date())
+            type: .error)
         self.debug(model)
-        self.log("(Error): " + text)
+        self.log(model.type.printTag + text)
     }
     
     public static func print(_ text: String) {
         let model = LogModel(
             description: text,
-            textColor: .white,
-            date: Date())
+            type: .print)
         self.debug(model)
-        self.log("(Print): " + text)
+        self.log(model.type.printTag + text)
     }
     
     public static func warn(_ text: String) {
         let model = LogModel(
             description: text,
-            textColor: DebuggerViewConstants.yellowColor,
-            date: Date())
+            type: .warning)
         self.debug(model)
-        self.log("(Warnning): " + text)
+        self.log(model.type.printTag + text)
     }
     
     public static func debug(_ model: DebuggerModel) {
@@ -136,7 +132,7 @@ public enum Debug {
         #endif
     }
     
-    private static func stringfy(_ any: Any?) -> String {
+    static func stringfy(_ any: Any?) -> String {
         if let data = any as? Data {
             if let anyObject = try? JSONSerialization.jsonObject(with: data) {
                 return self.stringfy(anyObject)

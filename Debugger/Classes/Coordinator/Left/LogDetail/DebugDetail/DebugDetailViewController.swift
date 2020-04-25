@@ -15,6 +15,7 @@ class DebugDetailViewController: UIViewController {
     required init(model: DebuggerModel) {
         self.viewModel = DebugDetailViewModel(model: model)
         super.init(nibName: nil, bundle: nil)
+        self.title = self.viewModel.title
     }
     
     required init?(coder: NSCoder) {

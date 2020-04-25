@@ -9,13 +9,16 @@ import UIKit
 
 protocol DebuggerErrorModel: DebuggerLogModel {
     var modelName: String { get }
+    var readableData: String { get }
 }
 
 struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
+    
     let error: Error
     let model: Model.Type
     let data: Data
     var date: Date = Date()
+    var type: LogType
     
     var modelName: String {
         return "\(self.model)"
@@ -59,7 +62,11 @@ struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
     }
     
     var textColor: UIColor {
-        return DebuggerViewConstants.redColor
+        return self.type.debuggerColor
+    }
+    
+    var readableData: String {
+        return Debug.stringfy(self.data)
     }
     
     

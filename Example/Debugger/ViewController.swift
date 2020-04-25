@@ -35,7 +35,10 @@ class ViewController: UIViewController {
 //            duration: 150)
 //        Debug.debug(item1)
         
-        
+        Debug.warn("Warning message!")
+        Debug.error("Error message!")
+        Debug.print("Print message!")
+        Debug.success("Success message!")
         
         let data = """
         {
@@ -50,10 +53,7 @@ class ViewController: UIViewController {
             Debug.errorDecoding(error, data: data, modelToConvert: model)
         }
         
-        Debug.warn("Warning message!")
-        Debug.error("Error message!")
-        Debug.print("Print message!")
-        Debug.success("Success message!")
+        
     }
     
     

@@ -9,6 +9,10 @@ import UIKit
 
 struct LogModel: DebuggerLogModel {
     var description: String
-    var textColor: UIColor
-    var date: Date
+    var type: LogType
+    var date: Date = Date()
+    
+    var textColor: UIColor {
+        return self.type.debuggerColor
+    }
 }

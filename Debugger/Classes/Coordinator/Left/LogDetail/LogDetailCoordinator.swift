@@ -13,20 +13,7 @@ class LogDetailCoordinator: LeftCoordinator {
     
     lazy var firstViewController: UIViewController = {
         let model = Debug.items[self.index]
-        let viewController = DebugDetailViewController(model: model)
-        if model is LogModel {
-            viewController.title = "Log"
-        }
-        if let model = model as? DebuggerErrorModel {
-            viewController.title = model.modelName
-        }
-        if let model = model as? DebuggerHTTPRequestModel {
-            let viewModel = DebuggerHTTPRequestCellViewModel(model: model)
-            viewController.title = viewModel.getTopText()
-        }
-        viewController.view.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-       
-        return viewController
+        return DebugDetailViewController(model: model)
     }()
     
     init(rootViewController: UIViewController, index: Int) {

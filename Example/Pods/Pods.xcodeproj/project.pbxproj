@@ -19,6 +19,8 @@
 		1BAC4F76B70DCFDD6C95C9887C999D03 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B7EA746BF6557FD565BAE12AF9198 /* FBSnapshotTestController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1DBADB04570F8A78596ED56593E85FF6 /* AlwaysSelectedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341DE724FC6BAD657ECF666BB24CC6F2 /* AlwaysSelectedCollectionView.swift */; };
 		20448C13C1236150C29746987668B033 /* Extension-Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952FF6ACBA1E44854C35E7B0957F725 /* Extension-Bundle.swift */; };
+		255B003A2454A2670042D733 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B00392454A2670042D733 /* Emoji.swift */; };
+		255B003C2454A7A70042D733 /* LogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B003B2454A7A70042D733 /* LogType.swift */; };
 		256C490F244F63200018A7DA /* DebugDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C490E244F63200018A7DA /* DebugDetailViewController.swift */; };
 		256C4913244F635C0018A7DA /* DebugDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C4912244F635C0018A7DA /* DebugDetailView.swift */; };
 		256C4915244F63A50018A7DA /* DebugDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256C4914244F63A50018A7DA /* DebugDetailView.xib */; };
@@ -130,6 +132,8 @@
 		20A108E6F72D20997166B57D96EDD7D4 /* DebuggerModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DebuggerModel.swift; sourceTree = "<group>"; };
 		235A78CFFA6D8B8D86CACD733531CB13 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
 		255268ECB7FBC2C84925E45C31BB5638 /* Extension-UIWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Extension-UIWindow.swift"; path = "Debugger/Classes/Extension-UIWindow.swift"; sourceTree = "<group>"; };
+		255B00392454A2670042D733 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		255B003B2454A7A70042D733 /* LogType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogType.swift; sourceTree = "<group>"; };
 		256C490E244F63200018A7DA /* DebugDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDetailViewController.swift; sourceTree = "<group>"; };
 		256C4912244F635C0018A7DA /* DebugDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDetailView.swift; sourceTree = "<group>"; };
 		256C4914244F63A50018A7DA /* DebugDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugDetailView.xib; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				87814499A91D233B6EFF820495702399 /* Debug.swift */,
 				255268ECB7FBC2C84925E45C31BB5638 /* Extension-UIWindow.swift */,
 				25938C82244E939600BCC744 /* LogModel.swift */,
+				255B003B2454A7A70042D733 /* LogType.swift */,
 				D2EB6E72A60E12495B53971ACF5D79E6 /* Coordinator */,
 				82E2B50CA921A7D40C9550D50B685A68 /* Framework */,
 				45CEE4B08CE0094F4976C06F773E9A84 /* Model */,
@@ -336,6 +341,14 @@
 				FBA2D6D4D4EF97CF878A3FEBDDD23C27 /* TogglesNavigationViewController */,
 			);
 			path = Toggles;
+			sourceTree = "<group>";
+		};
+		255B00382454A2560042D733 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				255B00392454A2670042D733 /* Emoji.swift */,
+			);
+			path = Emoji;
 			sourceTree = "<group>";
 		};
 		256C4910244F63280018A7DA /* DebugDetail */ = {
@@ -522,6 +535,7 @@
 		82E2B50CA921A7D40C9550D50B685A68 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				255B00382454A2560042D733 /* Emoji */,
 				441D8560352CFBB3EF682A60CED1B648 /* Bundle */,
 				CF7B04C33DB90FAB9B117B1F360A0C94 /* Button */,
 				F18CAD5087DED5D6E9B62F3755738933 /* Device */,
@@ -993,12 +1007,14 @@
 				25938C86244E976000BCC744 /* LeftCoordinator.swift in Sources */,
 				25938C89244E987700BCC744 /* LogDetailCoordinator.swift in Sources */,
 				7BEC518BAF3844B0E9FF620CC7936B04 /* Extension-UIView.swift in Sources */,
+				255B003C2454A7A70042D733 /* LogType.swift in Sources */,
 				25938C83244E939600BCC744 /* LogModel.swift in Sources */,
 				8CCE4A59CDA4A5F1A7F4AF9C03C06648 /* Extension-UIWindow.swift in Sources */,
 				C2C0C5E9363839D249B25F9893665E35 /* InitialTouchPanGestureRecognizer.swift in Sources */,
 				EFA41366431738064C859781CA205C22 /* iPad.swift in Sources */,
 				256C490F244F63200018A7DA /* DebugDetailViewController.swift in Sources */,
 				4475CE370E4C72AD44BB0AD6FD3F579B /* iPhone.swift in Sources */,
+				255B003A2454A2670042D733 /* Emoji.swift in Sources */,
 				11173788E3E292C6ED122925CCB50ACF /* iPod.swift in Sources */,
 				BD6464277BA949CCC9A356EA352E1C05 /* Listener.swift in Sources */,
 				AB32C778A92594A7C6778847422FAED7 /* ListenerManager.swift in Sources */,
