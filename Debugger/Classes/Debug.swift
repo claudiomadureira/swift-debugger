@@ -9,38 +9,39 @@ import UIKit
 
 public enum Debug {
     
-    public static var environments: [String] = []
+    public static var environments: [String] = [] {
+        didSet {
+            self.indexSelectedEnvironment = 0
+        }
+    }
+    
     public static var indexSelectedEnvironment: Int = 0
-    public static var localizations: [String] = []
+    
+    public static var localizations: [String] = [] {
+        didSet {
+            self.indexSelectedLocalization = 0
+        }
+    }
+    
     public static var indexSelectedLocalization: Int = 0
-    public static var labelTextIdentifierIsHidden: Bool = true
-    public static var items: [DebuggerModel] = []
+    public static var isVisibleIdentifier: Bool?
+    public static let events: Signal<Event> = .init()
+    
+    public static var localSettings: [String: Any]?
+    
+    private(set) static var items: [DebuggerModel] = []
     
     static var mappedItems: [DebuggerItemViewModel] {
         return self.items.compactMap { self.factoryViewModel(model: $0) }
     }
     
-    static var eventHandler: ((Event) -> Void)?
     static var listenerManager = ListenerManager<DebuggerItemViewModel>()
     
     public enum Event {
         case didChangeEnvironment(String)
         case didChangeLocalization(String)
-        case didSetLabelsTextIdentifierHidden(Bool)
-    }
-    
-    public static func setUp(environments: [String],
-                      selectedEnvironmentAt indexEnvironment: Int,
-                      localizations: [String],
-                      selectedLocalizationAt indexLocalization: Int,
-                      showTextIdentifierOnLabels: Bool,
-                      eventHandler: @escaping (Event) -> Void) {
-        self.environments = environments
-        self.indexSelectedEnvironment = indexEnvironment
-        self.localizations = localizations
-        self.indexSelectedLocalization = indexLocalization
-        self.labelTextIdentifierIsHidden = !showTextIdentifierOnLabels
-        self.eventHandler = eventHandler
+        case didChangeIdentifierVisibility(Bool)
+        case didChangeLocalSettings([String: Any]?)
     }
     
     public static func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
@@ -101,8 +102,38 @@ public enum Debug {
         }
     }
     
+    public static func stringfy(_ any: Any?) -> String {
+        if let data = any as? Data {
+            if let anyObject = try? JSONSerialization.jsonObject(with: data) {
+                return self.stringfy(anyObject)
+            }
+            if let text = String(data: data, encoding: .utf8) {
+                return text
+            }
+        }
+        if let collection = any as? Array<AnyObject> {
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: collection, options: [.prettyPrinted]),
+                let jsonString = String(data: jsonData, encoding: .utf8) else {
+                    return "{\n}"
+            }
+            return jsonString.replacingOccurrences(of: "\\/", with: "/")
+        }
+        if let collection = any as? Dictionary<AnyHashable, AnyObject> {
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: collection, options: [.prettyPrinted]),
+                let jsonString = String(data: jsonData, encoding: .utf8) else {
+                    return "{\n}"
+            }
+            return jsonString.replacingOccurrences(of: "\\/", with: "/")
+        }
+        return "\(any ?? "nil")"
+    }
+    
+    static func clearLogs() {
+        self.items.removeAll()
+    }
+    
     static func emit(event: Event) {
-        self.eventHandler?(event)
+        self.events.emit(event)
     }
     
     static func bindDebug(listener: Listener<DebuggerItemViewModel>) {
@@ -130,32 +161,6 @@ public enum Debug {
         #if DEBUG
         handler()
         #endif
-    }
-    
-    static func stringfy(_ any: Any?) -> String {
-        if let data = any as? Data {
-            if let anyObject = try? JSONSerialization.jsonObject(with: data) {
-                return self.stringfy(anyObject)
-            }
-            if let text = String(data: data, encoding: .utf8) {
-                return text
-            }
-        }
-        if let collection = any as? Array<AnyObject> {
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: collection, options: [.prettyPrinted]),
-                let jsonString = String(data: jsonData, encoding: .utf8) else {
-                    return "{\n}"
-            }
-            return jsonString.replacingOccurrences(of: "\\/", with: "/")
-        }
-        if let collection = any as? Dictionary<AnyHashable, AnyObject> {
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: collection, options: [.prettyPrinted]),
-                let jsonString = String(data: jsonData, encoding: .utf8) else {
-                    return "{\n}"
-            }
-            return jsonString.replacingOccurrences(of: "\\/", with: "/")
-        }
-        return "\(any ?? "nil")"
     }
     
 }

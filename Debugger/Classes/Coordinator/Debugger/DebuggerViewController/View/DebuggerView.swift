@@ -29,7 +29,10 @@ class DebuggerView: UIView, NibLoadable {
     @IBOutlet private weak var viewHiddablePointer: UIView!
     @IBOutlet private weak var viewHiddableSideMenu: UIView!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var btnToggles: Button!
+    @IBOutlet private weak var btnSettings: Button!
+    @IBOutlet private weak var constHeightIdentifier: NSLayoutConstraint!
+    @IBOutlet private weak var constHeightLocalizations: NSLayoutConstraint!
+    @IBOutlet private weak var constHeightEnvironments: NSLayoutConstraint!
     
     weak var delegate: DebuggerViewDelegate?
     
@@ -52,24 +55,34 @@ class DebuggerView: UIView, NibLoadable {
         super.awakeFromNib()
         self.setUpHiddablePointer()
         self.setUpSideMenuBackground()
-        self.lblEnvironments.text = "Environment"
-        self.collectionEnvironments.delegateAwlaysSelected = self
-        self.collectionEnvironments.selectedIndex = Debug.indexSelectedEnvironment
-        self.collectionEnvironments.items = Debug.environments
+        
+        self.lblIdentifier.text = "Identifier"
+        if let isOn = Debug.isVisibleIdentifier {
+            self.switchIdentifier.setOn(isOn, animated: false)
+        }
+        self.setIdentifier(hidden: Debug.isVisibleIdentifier == nil)
+        
         self.lblLocalizations.text = "Localization"
         self.collectionLocalizations.delegateAwlaysSelected = self
         self.collectionLocalizations.selectedIndex = Debug.indexSelectedLocalization
         self.collectionLocalizations.items = Debug.localizations
-        self.lblIdentifier.text = "Identifier"
-        self.switchIdentifier.setOn(!Debug.labelTextIdentifierIsHidden, animated: false)
-        self.setUpButtonToggles()
+        self.setLocalizations(hidden: Debug.localizations.isEmpty)
+        
+        self.lblEnvironments.text = "Environment"
+        self.collectionEnvironments.delegateAwlaysSelected = self
+        self.collectionEnvironments.selectedIndex = Debug.indexSelectedEnvironment
+        self.collectionEnvironments.items = Debug.environments
+        self.setEnvironments(hidden: Debug.environments.isEmpty)
+        
+        self.setUpButtonLocalSettings()
+        self.setLocalSettings(hidden: Debug.localSettings == nil)
+        
         self.setUpButtonClear()
         self.lblVersion.text = Bundle.main.readableVersion
         self.addDismissSideMenuTapGesture()
         self.addDismissSideMenuPanGesture()
         self.items = Debug.mappedItems.reversed()
         self.setUpTableView()
-        
     }
     
     func animateSideMenu(toHide: Bool, completion: (() -> Void)?) {
@@ -101,6 +114,51 @@ class DebuggerView: UIView, NibLoadable {
         self.viewHiddablePointer.transform = self.viewSideMenu.transform
         self.viewHiddableSideMenu.transform = self.viewSideMenu.transform
         
+    }
+    
+    func clearLog(animated: Bool, completion: (() -> Void)?) {
+        if animated {
+            self.deleteFirstRowTillEmpty(completion: completion)
+        } else {
+            self.tableView.beginUpdates()
+            let indexPathes = self.items.enumerated().map({ IndexPath(row: $0.0, section: 0) })
+            self.tableView.deleteRows(at: indexPathes, with: .top)
+            self.items.removeAll()
+            self.tableView.endUpdates()
+        }
+    }
+    
+    private func setIdentifier(hidden: Bool) {
+        self.constHeightIdentifier.priority = hidden ? .init(999) : .init(1)
+        self.layoutIfNeeded()
+    }
+    
+    private func setLocalizations(hidden: Bool) {
+        self.constHeightLocalizations.priority = hidden ? .init(999) : .init(1)
+        self.layoutIfNeeded()
+    }
+    
+    private func setEnvironments(hidden: Bool) {
+        self.constHeightEnvironments.priority = hidden ? .init(999) : .init(1)
+        self.layoutIfNeeded()
+    }
+    
+    private func setLocalSettings(hidden: Bool) {
+        self.btnSettings.alpha = hidden ? 0 : 1
+    }
+    
+    private func deleteFirstRowTillEmpty(completion: (() -> Void)?) {
+        self.tableView.beginUpdates()
+        self.items.removeFirst()
+        self.tableView.deleteRows(at: [[0, 0]], with: .top)
+        self.tableView.endUpdates()
+        guard !self.items.isEmpty else {
+            completion?()
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+            self.deleteFirstRowTillEmpty(completion: completion)
+        })
     }
     
     private func addDismissSideMenuPanGesture() {
@@ -135,7 +193,6 @@ class DebuggerView: UIView, NibLoadable {
         let nibSimpleLog = UINib(nibName: self.cellSimpleLogIdentifier, bundle: bundleSimpleLog)
         self.tableView.register(nibSimpleLog, forCellReuseIdentifier: self.cellSimpleLogIdentifier)
         
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 250
@@ -147,15 +204,15 @@ class DebuggerView: UIView, NibLoadable {
         self.tableView.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor
     }
     
-    private func setUpButtonToggles() {
-        self.btnToggles.setTitle("Toggles", for: .normal)
+    private func setUpButtonLocalSettings() {
+        self.btnSettings.setTitle("Settings", for: .normal)
         let titleColor: UIColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        self.btnToggles.setTitleColor(titleColor, for: .normal)
-        self.btnToggles.setTitleColor(titleColor, for: .highlighted)
-        self.btnToggles.onChangeState { (btn, state) in
+        self.btnSettings.setTitleColor(titleColor, for: .normal)
+        self.btnSettings.setTitleColor(titleColor, for: .highlighted)
+        self.btnSettings.onChangeState { (btn, state) in
             btn.alpha = state.alpha
         }
-        self.btnToggles.onTouchUpInside  { [weak self] (btn) in
+        self.btnSettings.onTouchUpInside  { [weak self] (btn) in
             guard let self = self else { return }
             self.delegate?.debugger(self, didPressToggles: btn)
         }

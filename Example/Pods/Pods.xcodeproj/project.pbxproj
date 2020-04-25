@@ -36,7 +36,7 @@
 		3715E39C98E638CE5C4EF18220C637CC /* DebuggerHTTPRequestTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = AA0AC7AE0DE4013B695C5FB1C147F47F /* DebuggerHTTPRequestTableViewCell.xib */; };
 		40039E0AF0D764360B1D4FC4F7950D2E /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A67367E018411D614EC8536A8A1C5B /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		410F3F9499FDB3D1A1C57FD4F94694EE /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE12DE1362C2A5CE5818E4E419EE42 /* NibLoadable.swift */; };
-		42C8AB6E8B132BB95F2903ACAFDE8193 /* TogglesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3DB7F6C75DC9A8D802712665BC0D6 /* TogglesCoordinator.swift */; };
+		42C8AB6E8B132BB95F2903ACAFDE8193 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3DB7F6C75DC9A8D802712665BC0D6 /* SettingsCoordinator.swift */; };
 		4475CE370E4C72AD44BB0AD6FD3F579B /* iPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF3AAB52BEC5FF15153FB2E2FDDA4D /* iPhone.swift */; };
 		4F89B7B9BA04977A0D87498B90D436CB /* Debugger.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E6944CFC817641E88E4B3BA57E9FADBA /* Debugger.bundle */; };
 		53317B04AB548F3568225C7390E37C26 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -151,7 +151,7 @@
 		415146B408A984321F023C1C0033FAE6 /* Pods_Debugger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Debugger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4545B5BCB71C9A1ADED08D6A0FCCA96E /* Pods-Debugger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Debugger_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4568279DE47DC3AB91598E1317503995 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
-		45E3DB7F6C75DC9A8D802712665BC0D6 /* TogglesCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TogglesCoordinator.swift; sourceTree = "<group>"; };
+		45E3DB7F6C75DC9A8D802712665BC0D6 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		4C6513B09838318BD763CFD5390D1DE0 /* FBSnapshotTestCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.release.xcconfig; sourceTree = "<group>"; };
 		4D1EF144075485A204ADB0B95C883750 /* ResourceBundle-Debugger-Debugger-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Debugger-Debugger-Info.plist"; sourceTree = "<group>"; };
 		5073D0566EE7F0C95D85437E8A356BAB /* DebuggerHTTPRequestTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DebuggerHTTPRequestTableViewCell.swift; sourceTree = "<group>"; };
@@ -334,13 +334,12 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
-		1A53F319350F952EF662A0776BC75AD9 /* Toggles */ = {
+		1A53F319350F952EF662A0776BC75AD9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				45E3DB7F6C75DC9A8D802712665BC0D6 /* TogglesCoordinator.swift */,
-				FBA2D6D4D4EF97CF878A3FEBDDD23C27 /* TogglesNavigationViewController */,
+				45E3DB7F6C75DC9A8D802712665BC0D6 /* SettingsCoordinator.swift */,
 			);
-			path = Toggles;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		255B00382454A2560042D733 /* Emoji */ = {
@@ -376,7 +375,7 @@
 				25938C85244E976000BCC744 /* LeftCoordinator.swift */,
 				0F2C8FF5CCE62384F797AD8C7CE06459 /* LeftNavigationViewController.swift */,
 				25938C87244E986100BCC744 /* LogDetail */,
-				1A53F319350F952EF662A0776BC75AD9 /* Toggles */,
+				1A53F319350F952EF662A0776BC75AD9 /* Settings */,
 			);
 			path = Left;
 			sourceTree = "<group>";
@@ -745,13 +744,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		FBA2D6D4D4EF97CF878A3FEBDDD23C27 /* TogglesNavigationViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TogglesNavigationViewController;
-			sourceTree = "<group>";
-		};
 		FEEB50048A51B4075BACDFD23DF47CC4 /* Nibloadble */ = {
 			isa = PBXGroup;
 			children = (
@@ -1020,7 +1012,7 @@
 				AB32C778A92594A7C6778847422FAED7 /* ListenerManager.swift in Sources */,
 				410F3F9499FDB3D1A1C57FD4F94694EE /* NibLoadable.swift in Sources */,
 				55AA65F9EF13C39FB6154CDFDD5F0329 /* Signal.swift in Sources */,
-				42C8AB6E8B132BB95F2903ACAFDE8193 /* TogglesCoordinator.swift in Sources */,
+				42C8AB6E8B132BB95F2903ACAFDE8193 /* SettingsCoordinator.swift in Sources */,
 				EE7852DCEBA7872A69E674DF68A9EE5D /* LeftNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

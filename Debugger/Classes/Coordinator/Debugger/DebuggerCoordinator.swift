@@ -14,7 +14,7 @@ class DebuggerCoordinator: Coordinator {
     let window: UIWindow
     
     weak var debuggerViewController: DebuggerViewController?
-    var togglesCoordinator: TogglesCoordinator?
+    var togglesCoordinator: SettingsCoordinator?
     var logDetailCoordinator: LogDetailCoordinator?
     
     required init(window: UIWindow) {
@@ -43,7 +43,7 @@ class DebuggerCoordinator: Coordinator {
                 
             case .didPressToSeeToggles:
                 vc.animateSideMenu(hidden: true, animated: true, completion: nil)
-                self?.togglesCoordinator = TogglesCoordinator(rootViewController: vc)
+                self?.togglesCoordinator = SettingsCoordinator(rootViewController: vc)
                 self?.togglesCoordinator?.events.on({ [weak self] (coordinator, event) in
                     switch event {
                     case .didPanToDismissToggles(let progress):

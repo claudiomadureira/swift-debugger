@@ -73,7 +73,8 @@ extension DebuggerViewController: DebuggerViewDelegate {
     }
     
     func debugger(_ view: DebuggerView, didPressClearLog button: UIButton) {
-        
+        Debug.clearLogs()
+        view.clearLog(animated: false, completion: nil)
     }
     
     func debugger(_ view: DebuggerView, didPressToggles button: UIButton) {

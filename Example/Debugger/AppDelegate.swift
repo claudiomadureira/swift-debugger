@@ -10,7 +10,23 @@ import UIKit
 import Debugger
 
 let kEnvironments = ["DEBUG", "RELEASE"]
-let kLocalizations = ["en_US", "pt_BR", "es_MX"]
+//let kEnvironments = [String]()
+//let kLocalizations = ["en_US", "pt_BR", "es_MX"]
+let kLocalizations = [String]()
+
+extension Debug {
+    
+    static func setUp() {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        Debug.environments = kEnvironments
+        Debug.indexSelectedEnvironment = kEnvironments.firstIndex(where: { $0 == delegate.currentEnvironment }) ?? 0
+        Debug.localizations = kLocalizations
+        Debug.indexSelectedLocalization = kLocalizations.firstIndex(where: { $0 == delegate.currentLocalization }) ?? 0
+        Debug.isVisibleIdentifier = true
+        Debug.localSettings = [:]
+    }
+    
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,27 +49,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.window?.makeKeyAndVisible()
         self.window?.attachDebugger()
-        Debug.setUp(
-            environments: kEnvironments,
-            selectedEnvironmentAt: kEnvironments.firstIndex(where: { $0 == self.currentEnvironment }) ?? 0,
-            localizations: kLocalizations,
-            selectedLocalizationAt: kLocalizations.firstIndex(where: { $0 == self.currentLocalization }) ?? 0,
-            showTextIdentifierOnLabels: false,
-            eventHandler: { event in
-                Debug.dismissSideMenu(animated: true, completion: {
-                    switch event {
-                    case .didChangeEnvironment(let environment):
-                        self.currentEnvironment = environment
-                        self.launchApp()
-                        print("Did change environment to " + environment)
-                    case .didChangeLocalization(let localization):
-                        print("Did change localization to " + localization)
-                        self.currentLocalization = localization
-                    case .didSetLabelsTextIdentifierHidden(let hidden):
-                        print("Labels identifier " + (hidden ? "hidden" : "showing"))
-                    }
-                })
-        })
+        Debug.setUp()
+        Debug.events.on { event in
+            Debug.dismissSideMenu(animated: true, completion: {
+                switch event {
+                case .didChangeEnvironment(let environment):
+                    self.currentEnvironment = environment
+                    self.launchApp()
+                    print("Did change environment to " + environment)
+                case .didChangeLocalization(let localization):
+                    print("Did change localization to " + localization)
+                    self.currentLocalization = localization
+                case .didChangeIdentifierVisibility(let hidden):
+                    print("Labels identifier " + (hidden ? "hidden" : "showing"))
+                case .didChangeLocalSettings(let settings):
+                    print("Settings:\n" + Debug.stringfy(settings))
+                }
+            })
+        }
     }
 
     // MARK: UISceneSession Lifecycle
