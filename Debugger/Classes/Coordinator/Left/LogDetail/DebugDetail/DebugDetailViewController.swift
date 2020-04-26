@@ -28,8 +28,7 @@ class DebugDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.customView.text = self.viewModel.text
+        self.customView.viewModel = self.viewModel
     }
     
 }

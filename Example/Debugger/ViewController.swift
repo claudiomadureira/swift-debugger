@@ -13,14 +13,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let json: [String: Any] = [
+            "email": "claudiomsilvaf@gmail.com",
+            "password": "12345",
+            "time": [
+                "date": "\(Date())",
+                "zone": "-3"
+            ]
+        ]
+        let dataJSON = try! JSONSerialization.data(withJSONObject: json)
         let item0 = ExampleHTTPResquest(
             url: "https://test.api.com/auth",
-            method: "post",
+            method: "connect",
             statusCode: 404,
-            headers: [:],
-            body: Data(),
-            responseBody: Data(),
-            startDate: nil,
+            headers: [
+                "X-Authorization": "Bearer SAD812n0dl3km1239n08dsfn1230uhs8djISDJ08ysFh91g2SUD",
+                "Content-Type": "json"
+            ],
+            body: dataJSON,
+            responseBody: nil,
+            startDate: Date(),
             duration: 3)
         Debug.debug(item0)
         
@@ -52,8 +64,6 @@ class ViewController: UIViewController {
         } catch let error {
             Debug.errorDecoding(error, data: data, modelToConvert: model)
         }
-        
-        
     }
     
     

@@ -43,7 +43,10 @@ class DebuggerHTTPRequestCellViewModel: DebuggerItemViewModel {
     }
     
     func getImage() -> UIImage? {
-        return UIImage(data: self.model.responseBody)
+        if let data = self.model.responseBody {
+            return UIImage(data: data)
+        }
+        return nil
     }
     
     func getStatusCodeText() -> String {
@@ -56,16 +59,7 @@ class DebuggerHTTPRequestCellViewModel: DebuggerItemViewModel {
     
     func getDurationText() -> String? {
         guard let duration = self.model.duration else { return nil }
-        if duration > 120 {
-            let minutes = duration/60
-            let rest = duration - 60*Int(Double(duration)/60.0)
-            var text = String(minutes) + "m"
-            if rest > 0 {
-                text.append(" " + String(rest) + "s")
-            }
-            return text
-        }
-        return String(duration) + "s"
+        return duration.readableDuration
     }
     
     func getStartedAtText() -> String? {

@@ -125,7 +125,7 @@ public enum Debug {
             }
             return jsonString.replacingOccurrences(of: "\\/", with: "/")
         }
-        return "\(any ?? "nil")"
+        return "\(any ?? "null")"
     }
     
     static func clearLogs() {

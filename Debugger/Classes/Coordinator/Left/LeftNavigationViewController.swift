@@ -29,6 +29,7 @@ class LeftNavigationViewController: UINavigationController {
         self.navigationBar.isTranslucent = false
         self.navigationBar.barTintColor = self.view.backgroundColor
         let gesture = InitialTouchPanGestureRecognizer(target: self, action: #selector(self.panGesturePanned))
+        gesture.delegate = self
         self.view.addGestureRecognizer(gesture)
         if iPhone.current.isInfiniteScreen {
             self.view.layer.masksToBounds = true
@@ -52,17 +53,17 @@ class LeftNavigationViewController: UINavigationController {
     }
     
     func setTogglesNavigationControllerHidden(progress: CGFloat) {
-//        let smallScale: CGFloat = 0.2
-//        let largeScale: CGFloat = 1.0
-//        var scale = largeScale - progress * (1 - smallScale)
-//        if scale > largeScale {
-//            scale = largeScale
-//        } else if scale < smallScale {
-//            scale = smallScale
-//        }
+        //        let smallScale: CGFloat = 0.2
+        //        let largeScale: CGFloat = 1.0
+        //        var scale = largeScale - progress * (1 - smallScale)
+        //        if scale > largeScale {
+        //            scale = largeScale
+        //        } else if scale < smallScale {
+        //            scale = smallScale
+        //        }
         self.view.transform = CGAffineTransform.identity
             .translatedBy(x: -UIScreen.main.bounds.width*progress, y: 0)
-//            .scaledBy(x: scale, y: scale)
+        //            .scaledBy(x: scale, y: scale)
     }
     
     func animate(toHide: Bool, duration: TimeInterval? = nil, emitProgress: Bool = false, completion: (() -> Void)?) {
@@ -80,14 +81,14 @@ class LeftNavigationViewController: UINavigationController {
                 guard let self = self else { return }
                 self.events.emit((self, .didPanToDismiss(progress)))
             }
-        }, completion: { _ in
-            if toHide {
-                self.viewDidDisappear(true)
-                self.events.emit((self, .viewDidDisapper))
-            } else {
-                self.viewDidAppear(true)
-                self.events.emit((self, .viewDidAppear))
-            }
+            }, completion: { _ in
+                if toHide {
+                    self.viewDidDisappear(true)
+                    self.events.emit((self, .viewDidDisapper))
+                } else {
+                    self.viewDidAppear(true)
+                    self.events.emit((self, .viewDidAppear))
+                }
         })
     }
     
@@ -119,10 +120,51 @@ class LeftNavigationViewController: UINavigationController {
             progress = -progress
             UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
                 self?.setTogglesNavigationControllerHidden(progress: progress)
-            }, completion: nil)
+                }, completion: nil)
             self.events.emit((self, .didPanToDismiss(progress)))
         }
     }
     
+    private func findTextViewsIn(view: UIView) -> [UITextView] {
+        var textViews: [UITextView] = []
+        if let textView = view as? ContentTextView {
+            return [textView]
+        }
+        for subview in view.subviews {
+            let _textViews = self.findTextViewsIn(view: subview)
+            textViews.append(contentsOf: _textViews)
+        }
+        return textViews
+    }
+    
+    private func getTextViewUnderTouch(textViews: [UITextView], touchPoint: CGPoint) -> [UITextView] {
+        var textViewsUnderTouch = [UITextView]()
+        for textView in textViews {
+            if var frame = textView.superview?.convert(textView.frame, from: self.view) {
+                frame.origin.y = -frame.origin.y
+                if frame.contains(touchPoint) {
+                    textViewsUnderTouch.append(textView)
+                }
+            }
+        }
+        return textViewsUnderTouch
+    }
+    
+}
+
+extension LeftNavigationViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panGestureRecognizer = gestureRecognizer as? InitialTouchPanGestureRecognizer,
+            let point = panGestureRecognizer.initialTouchLocation else { return true }
+        let textViews = self.findTextViewsIn(view: self.view)
+        let textViewsUnderTouch = self.getTextViewUnderTouch(textViews: textViews, touchPoint: point)
+        if textViewsUnderTouch.count == 1 {
+            if textViewsUnderTouch[0].isScrollEnabled {
+                return false
+            }
+        }
+        return true
+    }
     
 }

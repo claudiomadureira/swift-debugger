@@ -17,11 +17,11 @@ struct ExampleHTTPResquest: DebuggerHTTPRequestModel {
     
     var statusCode: Int
     
-    var headers: [String : String]
+    var headers: [String : String]?
     
-    var body: Data
+    var body: Data?
     
-    var responseBody: Data
+    var responseBody: Data?
     
     var startDate: Date?
     
