@@ -30,11 +30,11 @@
                             </textView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="oEJ-i9-eCq" secondAttribute="bottom" id="BLN-Ga-cuc"/>
-                            <constraint firstItem="oEJ-i9-eCq" firstAttribute="top" secondItem="BuZ-rN-0iP" secondAttribute="top" id="MuM-4h-ETb"/>
-                            <constraint firstItem="oEJ-i9-eCq" firstAttribute="leading" secondItem="QKl-lR-lo6" secondAttribute="leading" id="QLl-0i-4QK"/>
-                            <constraint firstAttribute="height" constant="34" id="mdk-02-ZO1"/>
-                            <constraint firstAttribute="trailing" secondItem="oEJ-i9-eCq" secondAttribute="trailing" id="xjI-o0-JgI"/>
+                            <constraint firstAttribute="bottom" secondItem="oEJ-i9-eCq" secondAttribute="bottom" priority="999" id="BLN-Ga-cuc"/>
+                            <constraint firstItem="oEJ-i9-eCq" firstAttribute="top" secondItem="BuZ-rN-0iP" secondAttribute="top" priority="999" id="MuM-4h-ETb"/>
+                            <constraint firstItem="oEJ-i9-eCq" firstAttribute="leading" secondItem="QKl-lR-lo6" secondAttribute="leading" priority="999" id="QLl-0i-4QK"/>
+                            <constraint firstAttribute="height" priority="999" constant="34" id="mdk-02-ZO1"/>
+                            <constraint firstAttribute="trailing" secondItem="oEJ-i9-eCq" secondAttribute="trailing" priority="999" id="xjI-o0-JgI"/>
                         </constraints>
                         <viewLayoutGuide key="contentLayoutGuide" id="JU5-f7-F76"/>
                         <viewLayoutGuide key="frameLayoutGuide" id="BuZ-rN-0iP"/>
@@ -42,14 +42,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="oEJ-i9-eCq" secondAttribute="bottom" constant="5" id="4YD-Lb-uc1"/>
-                    <constraint firstAttribute="bottom" secondItem="QKl-lR-lo6" secondAttribute="bottom" constant="5" id="JqB-Dc-YdU"/>
-                    <constraint firstItem="QKl-lR-lo6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="MNS-ad-UkO"/>
-                    <constraint firstItem="oEJ-i9-eCq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="QA4-Ia-a84"/>
-                    <constraint firstAttribute="trailing" secondItem="QKl-lR-lo6" secondAttribute="trailing" constant="20" id="XEK-Ax-2bg"/>
-                    <constraint firstItem="QKl-lR-lo6" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" constant="-36" id="Xu7-vd-Fby"/>
-                    <constraint firstAttribute="trailing" secondItem="oEJ-i9-eCq" secondAttribute="trailing" constant="20" id="Xz8-9B-R3L"/>
-                    <constraint firstItem="QKl-lR-lo6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ZdO-UQ-PSy"/>
+                    <constraint firstAttribute="bottom" secondItem="oEJ-i9-eCq" secondAttribute="bottom" priority="999" constant="5" id="4YD-Lb-uc1"/>
+                    <constraint firstAttribute="bottom" secondItem="QKl-lR-lo6" secondAttribute="bottom" priority="999" constant="5" id="JqB-Dc-YdU"/>
+                    <constraint firstItem="QKl-lR-lo6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="999" constant="5" id="MNS-ad-UkO"/>
+                    <constraint firstItem="oEJ-i9-eCq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="999" constant="5" id="QA4-Ia-a84"/>
+                    <constraint firstAttribute="trailing" secondItem="QKl-lR-lo6" secondAttribute="trailing" priority="999" constant="20" id="XEK-Ax-2bg"/>
+                    <constraint firstItem="QKl-lR-lo6" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" priority="999" constant="-36" id="Xu7-vd-Fby"/>
+                    <constraint firstAttribute="trailing" secondItem="oEJ-i9-eCq" secondAttribute="trailing" priority="999" constant="20" id="Xz8-9B-R3L"/>
+                    <constraint firstItem="QKl-lR-lo6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" priority="999" constant="16" id="ZdO-UQ-PSy"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

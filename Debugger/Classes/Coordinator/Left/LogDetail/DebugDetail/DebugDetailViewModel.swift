@@ -38,6 +38,17 @@ class DebugDetailViewModel: NSObject {
             let responseBodyText = Debug.stringfy(model.responseBody)
             self.items.append(DebugDetailContentItemViewModel(text: responseBodyText, shouldBreakLine: false))
         }
+        if let model = self.model as? DebuggerErrorModel {
+            self.items.append(DebugDetailTitleItemViewModel(text: "Description:"))
+            let descriptionText = model.description
+                .replacingOccurrences(of: "[\(model.modelName)] ", with: "")
+            self.items.append(DebugDetailContentItemViewModel(text: descriptionText, shouldBreakLine: true))
+            self.items.append(DebugDetailTitleItemViewModel(text: "Data attempted to decode:"))
+            self.items.append(DebugDetailContentItemViewModel(text: model.readableData, shouldBreakLine: false))
+            self.items.append(DebugDetailTitleItemViewModel(text: "Auto-generated acceptable example based on data used:"))
+            let readableJSON = Debug.stringfy(model.example)
+            self.items.append(DebugDetailContentItemViewModel(text: readableJSON, shouldBreakLine: false))
+        }
     }
     
     func getIsTableContent() -> Bool {
@@ -47,6 +58,9 @@ class DebugDetailViewModel: NSObject {
     
     func getText() -> NSAttributedString {
         let text = NSMutableAttributedString()
+        if self.model is DebuggerErrorModel {
+            return text
+        }
         let fontSize: CGFloat = 18
         let color: UIColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         let titleAttributes: [NSAttributedString.Key: Any] = [
@@ -57,19 +71,6 @@ class DebugDetailViewModel: NSObject {
             .foregroundColor: UIColor.white,
             .font: UIFont.systemFont(ofSize: fontSize)
         ]
-        if let model = self.model as? DebuggerErrorModel {
-            let descriptionTitle: NSAttributedString = .init(string: "Description:\n\n", attributes: titleAttributes)
-            text.append(descriptionTitle)
-            let descriptionText = model.description
-                .replacingOccurrences(of: "[\(model.modelName)] ", with: "")
-            let description: NSAttributedString = .init(string: descriptionText, attributes: valueAttributes)
-            text.append(description)
-            let inputDataTitle: NSAttributedString = .init(string: "\n\nInput data:\n\n", attributes: titleAttributes)
-            text.append(inputDataTitle)
-            let readableData: NSAttributedString = .init(string: model.readableData, attributes: valueAttributes)
-            text.append(readableData)
-            return text
-        }
         if let model = self.model as? DebuggerLogModel {
             let description = NSAttributedString(string: model.description, attributes: valueAttributes)
             text.append(description)

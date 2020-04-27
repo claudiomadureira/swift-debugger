@@ -46,7 +46,8 @@ public enum Debug {
     
     public static func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
         guard let _error = error as? DecodingError else { return }
-        let model = DebuggerDecodingErrorModel(error: _error, model: modelToConvert, data: data, type: .decodingError)
+        let exampleJSON = ExampleBuilder.example(for: modelToConvert, inputData: data)
+        let model = DebuggerDecodingErrorModel(error: _error, model: modelToConvert, data: data, type: .decodingError, example: exampleJSON)
         self.debug(model)
         let prettyJSONText = self.stringfy(data)
         self.log(model.type.printTag + model.description + "\nInput data:\n" + prettyJSONText)

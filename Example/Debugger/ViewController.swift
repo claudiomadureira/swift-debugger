@@ -27,8 +27,8 @@ class ViewController: UIViewController {
             method: "connect",
             statusCode: 404,
             headers: [
-                "X-Authorization": "Bearer SAD812n0dl3km1239n08dsfn1230uhs8djISDJ08ysFh91g2SUD",
-                "Content-Type": "json"
+                "X-Authorization": "Bearer " + UUID().uuidString,
+                "Content-Type": "application/json"
             ],
             body: dataJSON,
             responseBody: nil,
@@ -54,7 +54,11 @@ class ViewController: UIViewController {
         
         let data = """
         {
-            "userName"
+            "objectId": "A21K3Lqp3JH",
+            "firstName": "Claudio",
+            "lastName": "Madureira",
+            "email": "claudiomsilvaf@gmail.com",
+            "emails": [""]
         }
         """.data(using: .utf8)!
         let model = ExampleAuthModel.self
@@ -70,8 +74,18 @@ class ViewController: UIViewController {
     
 }
 
+struct Object: Codable {
+    var something: String?
+}
 
 
 struct ExampleAuthModel: Codable {
-    var userName: Double
+    var objectId: String
+    var firstName: String
+    var lastName: String
+    var email: String
+    var createdAt: String
+
+    var emails: [String]
+    var object: Object
 }

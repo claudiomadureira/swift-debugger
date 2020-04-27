@@ -157,6 +157,9 @@ extension LeftNavigationViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let panGestureRecognizer = gestureRecognizer as? InitialTouchPanGestureRecognizer,
             let point = panGestureRecognizer.initialTouchLocation else { return true }
+        if (point.x > UIScreen.main.bounds.width - 40) {
+            return true
+        }
         let textViews = self.findTextViewsIn(view: self.view)
         let textViewsUnderTouch = self.getTextViewUnderTouch(textViews: textViews, touchPoint: point)
         if textViewsUnderTouch.count == 1 {

@@ -10,6 +10,7 @@ import UIKit
 protocol DebuggerErrorModel: DebuggerLogModel {
     var modelName: String { get }
     var readableData: String { get }
+    var example: [String: Any] { get }
 }
 
 struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
@@ -19,6 +20,7 @@ struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
     let data: Data
     var date: Date = Date()
     var type: LogType
+    var example: [String : Any]
     
     var modelName: String {
         return "\(self.model)"
@@ -37,7 +39,7 @@ struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
             return "[\(self.model)] key \'\(key.stringValue)\' not found."
             
         case DecodingError.valueNotFound(let value, let context):
-            let parameterType =  context.debugDescription.components(separatedBy: " ")[1]
+            let parameterType = context.debugDescription.parameterType
             return "[\(self.model)] required <\(parameterType)> found null for \'\(context.codingPath.first?.stringValue ?? "")\'."
         default:
             break
@@ -46,15 +48,11 @@ struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
     }
     
     var detailedDescription: String {
-        print("\(self.error)")
         switch self.error {
         case DecodingError.keyNotFound(let key, let context):
-            print("Context: ", context)
             return key.stringValue
             
         case DecodingError.valueNotFound(let value, let context):
-            print("Context: ", context)
-            print("Value: ", value)
             return "[\(context.codingPath.first?.stringValue ?? "")] " + context.debugDescription
         default:
             return self.error.localizedDescription
@@ -68,6 +66,5 @@ struct DebuggerDecodingErrorModel<Model: Decodable>: DebuggerErrorModel {
     var readableData: String {
         return Debug.stringfy(self.data)
     }
-    
     
 }

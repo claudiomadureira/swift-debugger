@@ -9,8 +9,8 @@
 import UIKit
 import Debugger
 
-let kEnvironments = ["DEBUG", "RELEASE"]
-//let kEnvironments = [String]()
+//let kEnvironments = ["DEBUG", "RELEASE"]
+let kEnvironments = [String]()
 //let kLocalizations = ["en_US", "pt_BR", "es_MX"]
 let kLocalizations = [String]()
 
@@ -22,7 +22,7 @@ extension Debug {
         Debug.indexSelectedEnvironment = kEnvironments.firstIndex(where: { $0 == delegate.currentEnvironment }) ?? 0
         Debug.localizations = kLocalizations
         Debug.indexSelectedLocalization = kLocalizations.firstIndex(where: { $0 == delegate.currentLocalization }) ?? 0
-        Debug.isVisibleIdentifier = true
+//        Debug.isVisibleIdentifier = true
         Debug.localSettings = [
             "dateFormat": "yyyy-MM-dd",
             "isLoginFacebookEnabled": true,
