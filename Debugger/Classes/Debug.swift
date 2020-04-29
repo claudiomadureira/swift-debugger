@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftArsenal
 
 public enum Debug {
     

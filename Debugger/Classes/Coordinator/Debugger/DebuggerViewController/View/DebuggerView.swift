@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftArsenal
 
 protocol DebuggerViewDelegate: class {
     func debugger(_ view: DebuggerView, didPressToDetailAt index: Int)

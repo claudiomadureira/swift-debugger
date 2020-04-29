@@ -1,0 +1,6 @@
+framework module SwiftArsenal {
+  umbrella header "SwiftArsenal-umbrella.h"
+
+  export *
+  module * { export * }
+}

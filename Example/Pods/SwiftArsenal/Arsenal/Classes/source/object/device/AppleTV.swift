@@ -18,7 +18,6 @@ public enum AppleTV: String, CaseIterable {
     }
     
     static func current(for identifier: String) -> AppleTV {
-        #if os(iOS)
         switch identifier {
         case "AppleTV5,3":
             return .normal
@@ -27,16 +26,6 @@ public enum AppleTV: String, CaseIterable {
         default:
             break
         }
-        #elseif os(tvOS)
-        switch identifier {
-        case "AppleTV5,3":
-            return .normal
-        case "AppleTV6,2":
-            return .with4k
-        default:
-            break
-        }
-        #endif
         return .undefined
     }
     

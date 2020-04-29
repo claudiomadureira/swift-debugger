@@ -46,7 +46,7 @@ enum StringExample: CaseIterable {
                         email.append(Bool.random() ? "." : "_")
                     }
                 }
-                let host = hosts.random()
+                let host = hosts.randomElement() ?? ""
                 email.append("@" + host + ".com")
                 return email
             })

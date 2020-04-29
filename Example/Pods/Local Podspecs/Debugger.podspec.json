@@ -20,6 +20,11 @@
   },
   "source_files": "Debugger/Classes/**/*",
   "swift_versions": "5.0",
+  "dependencies": {
+    "SwiftArsenal": [
+
+    ]
+  },
   "resource_bundles": {
     "Debugger": [
       "Debugger/Assets/*.{xcassets,png}"

@@ -2,7 +2,6 @@
 //  Extension-UIImage.swift
 //
 //  Created by Claudio Madureira on 11/12/19.
-//  Copyright © 2019. All rights reserved.
 //
 
 import UIKit

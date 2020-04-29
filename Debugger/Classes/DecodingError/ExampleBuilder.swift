@@ -37,13 +37,13 @@ enum ExampleBuilder {
                             })
                             return result != nil
                         }) {
-                            json.updateValue([exampleType.examples.random()], forKey: key)
+                            json.updateValue([exampleType.examples.randomElement()!], forKey: key)
                         } else {
                             json.updateValue([], forKey: key)
                         }
                     case "string":
                         if let exampleType = StringExample.allCases.first(where: { $0.keyExamples.contains(key) }) {
-                            json.updateValue(exampleType.examples.random(), forKey: key)
+                            json.updateValue(exampleType.examples.randomElement()!, forKey: key)
                         } else {
                             json.updateValue("", forKey: key)
                         }

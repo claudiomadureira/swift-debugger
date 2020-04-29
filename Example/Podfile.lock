@@ -1,10 +1,12 @@
 PODS:
-  - Debugger (0.1.0)
+  - Debugger (0.1.0):
+    - SwiftArsenal
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
+  - SwiftArsenal (0.1.0)
 
 DEPENDENCIES:
   - Debugger (from `../`)
@@ -13,14 +15,16 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - FBSnapshotTestCase
+    - SwiftArsenal
 
 EXTERNAL SOURCES:
   Debugger:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Debugger: 71ecbc6a9a9848bba4ae62a38f97d2f5418fa665
+  Debugger: 4ee613826954c44b563c91947b88ef2625899ba6
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  SwiftArsenal: ef655fa52238fb26c7b5e567d161b64a0733464f
 
 PODFILE CHECKSUM: 4ef193a06eeceeda59658355c77d15e75f65b5bd
 

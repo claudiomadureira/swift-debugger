@@ -30,12 +30,10 @@ With good tools, it's easier and faster to code and debug. Here are some of thos
 
   s.source_files = 'Debugger/Classes/**/*'
   s.swift_version = '5.0'
+  s.dependency 'SwiftArsenal'
   
-   s.resource_bundles = {
-     'Debugger' => ['Debugger/Assets/*.{xcassets,png}']
-   }
+  s.resource_bundles = {
+    'Debugger' => ['Debugger/Assets/*.{xcassets,png}']
+  }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

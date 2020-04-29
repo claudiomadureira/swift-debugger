@@ -303,10 +303,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Debugger_Example/Pods-Debugger_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Debugger/Debugger.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftArsenal/SwiftArsenal.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Debugger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftArsenal.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
