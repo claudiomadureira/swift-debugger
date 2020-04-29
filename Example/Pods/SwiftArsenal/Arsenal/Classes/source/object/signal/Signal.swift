@@ -2,7 +2,6 @@
 //  Signal.swift
 //
 //  Created by Claudio Madureira Silva Filho on 6/20/19.
-//  Copyright © 2019. All rights reserved.
 //
 
 import UIKit

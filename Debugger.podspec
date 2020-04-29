@@ -27,11 +27,11 @@ With good tools, it's easier and faster to code and debug. Here are some of thos
   s.source           = { :git => 'https://github.com/claudiomadureira/swift-debugger.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '11.0'
-
-  s.source_files = 'Debugger/Classes/**/*'
   s.swift_version = '5.0'
-  s.dependency 'SwiftArsenal'
   
+  s.dependency 'SwiftArsenal', '0.1.1'
+  
+  s.source_files = 'Debugger/Classes/**/*'
   s.resource_bundles = {
     'Debugger' => ['Debugger/Assets/*.{xcassets,png}']
   }

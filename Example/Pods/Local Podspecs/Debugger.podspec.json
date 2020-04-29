@@ -18,13 +18,13 @@
   "platforms": {
     "ios": "11.0"
   },
-  "source_files": "Debugger/Classes/**/*",
   "swift_versions": "5.0",
   "dependencies": {
     "SwiftArsenal": [
-
+      "0.1.1"
     ]
   },
+  "source_files": "Debugger/Classes/**/*",
   "resource_bundles": {
     "Debugger": [
       "Debugger/Assets/*.{xcassets,png}"
