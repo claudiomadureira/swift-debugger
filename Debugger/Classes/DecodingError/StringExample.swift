@@ -78,6 +78,7 @@ enum StringExample: CaseIterable {
             return ["email", "mail", "e-mail", "userName", "user_name", "username"]
         case .random:
             return [
+                "_id",
                 "id",
                 "objectId",
                 "object_id",

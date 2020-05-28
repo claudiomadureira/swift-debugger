@@ -12,7 +12,7 @@ class LeftCoordinator: Coordinator {
     
     let rootViewController: UIViewController
     
-    var togglesNavigationController: LeftNavigationViewController?
+    var navigationController: LeftNavigationViewController?
     
     enum Event {
         case didPanToDismissToggles(CGFloat)
@@ -47,25 +47,26 @@ class LeftCoordinator: Coordinator {
         }
         navController.modalPresentationStyle = .overCurrentContext
         navController.view.alpha = 0
-        self.togglesNavigationController = navController
+        self.navigationController = navController
         self.rootViewController.present(navController, animated: false, completion: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
-            self?.togglesNavigationController?.setTogglesNavigationControllerHidden(progress: 1)
-            self?.togglesNavigationController?.view.alpha = 1
-            self?.togglesNavigationController?.animate(toHide: false, duration: 0.3, completion: nil)
+            self?.navigationController?.setTogglesNavigationControllerHidden(progress: 1)
+            self?.navigationController?.view.alpha = 1
+            self?.navigationController?.animate(toHide: false, duration: 0.3, completion: nil)
         })
     }
     
     @objc
     func dismiss() {
+        self.navigationController?.view.endEditing(false)
         self.events.emit((self, .dismiss))
-        self.togglesNavigationController?.animate(toHide: true, duration: 0.3, completion: { [weak self] in
+        self.navigationController?.animate(toHide: true, duration: 0.3, completion: { [weak self] in
             self?.finish()
         })
     }
     
     func finish() {
-        self.togglesNavigationController?.dismiss(animated: false, completion: nil)
+        self.navigationController?.dismiss(animated: false, completion: nil)
         self.events.emit((self, .didFinish))
     }
     

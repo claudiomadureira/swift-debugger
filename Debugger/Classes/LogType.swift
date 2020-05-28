@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum LogType: String {
+enum LogType: String, Codable {
     case error = "Error"
     case warning = "Warning"
     case print = "Print"
