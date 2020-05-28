@@ -20,7 +20,7 @@ class DebuggerSimpleLogViewModel: DebuggerItemViewModel {
     }
     
     func logTopTextColor() -> UIColor {
-        return self.model.textColor
+        return self.model.type.debuggerColor
     }
     
     func dateBottomText() -> String? {

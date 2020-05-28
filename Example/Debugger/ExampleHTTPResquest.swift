@@ -27,4 +27,6 @@ struct ExampleHTTPResquest: DebuggerHTTPRequestModel {
     
     var duration: Int?
     
+    var date: Date = Date()
+    
 }

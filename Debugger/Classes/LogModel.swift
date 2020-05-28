@@ -11,8 +11,4 @@ struct LogModel: DebuggerLogModel {
     var description: String
     var type: LogType
     var date: Date = Date()
-    
-    var textColor: UIColor {
-        return self.type.debuggerColor
-    }
 }

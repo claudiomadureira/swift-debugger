@@ -30,7 +30,7 @@ public enum Debug {
     
     public static var localSettings: [String: Any]?
     
-    private(set) static var items: [DebuggerModel] = []
+    private(set) static var items: [DebuggerModel] = LogStorage.getAll()
     
     static var mappedItems: [DebuggerItemViewModel] {
         return self.items.compactMap { self.factoryViewModel(model: $0) }
@@ -48,7 +48,16 @@ public enum Debug {
     public static func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
         guard let _error = error as? DecodingError else { return }
         let exampleJSON = ExampleBuilder.example(for: modelToConvert, inputData: data)
-        let model = DebuggerDecodingErrorModel(error: _error, model: modelToConvert, data: data, type: .decodingError, example: exampleJSON)
+        let modelName: String = "\(modelToConvert)"
+        let description: String = ErrorMessageExtractor.description(from: error, modelName: modelName)
+        let detailedDescription: String = ErrorMessageExtractor.detailedDescription(from: error)
+        let model = DebuggerDecodingErrorModel(
+            data: data,
+            type: .decodingError,
+            example: exampleJSON,
+            modelName: modelName,
+            description: description,
+            detailedDescription: detailedDescription)
         self.debug(model)
         let prettyJSONText = self.stringfy(data)
         self.log(model.type.printTag + model.description + "\nInput data:\n" + prettyJSONText)
@@ -88,6 +97,9 @@ public enum Debug {
     
     public static func debug(_ model: DebuggerModel) {
         self.items.append(model)
+        self.runIfNeeded {
+            LogStorage.save(model)
+        }
         guard let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model) else { return }
         self.listenerManager.emit(viewModel)
     }
@@ -132,6 +144,9 @@ public enum Debug {
     
     static func clearLogs() {
         self.items.removeAll()
+        self.runIfNeeded {
+            LogStorage.removeAll()
+        }
     }
     
     static func emit(event: Event) {
@@ -153,9 +168,9 @@ public enum Debug {
         return nil
     }
     
-    static func log(_ meesage: String) {
+    static func log(_ message: String) {
         self.runIfNeeded {
-            NSLog(meesage)
+            NSLog(message)
         }
     }
     

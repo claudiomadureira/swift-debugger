@@ -8,5 +8,7 @@
 
 import UIKit
 
-public protocol DebuggerModel { }
+public protocol DebuggerModel: Codable {
+    var date: Date { get }
+}
 
