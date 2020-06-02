@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct LogModel: DebuggerLogModel {
+struct LogModel: DebuggerLogModel, Codable {
     var description: String
     var type: LogType
     var date: Date = Date()

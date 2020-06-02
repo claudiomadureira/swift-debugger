@@ -47,19 +47,19 @@ public enum Debug {
     
     public static func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
         guard let _error = error as? DecodingError else { return }
-        let exampleJSON = ExampleBuilder.example(for: modelToConvert, inputData: data)
+        let exampleJSONString: String = self.stringfy(ExampleBuilder.example(for: modelToConvert, inputData: data))
         let modelName: String = "\(modelToConvert)"
         let description: String = ErrorMessageExtractor.description(from: error, modelName: modelName)
         let detailedDescription: String = ErrorMessageExtractor.detailedDescription(from: error)
+        let prettyJSONText: String = self.stringfy(data)
         let model = DebuggerDecodingErrorModel(
-            data: data,
             type: .decodingError,
-            example: exampleJSON,
+            exampleJSONString: exampleJSONString,
             modelName: modelName,
             description: description,
-            detailedDescription: detailedDescription)
+            detailedDescription: detailedDescription,
+            readableData: prettyJSONText)
         self.debug(model)
-        let prettyJSONText = self.stringfy(data)
         self.log(model.type.printTag + model.description + "\nInput data:\n" + prettyJSONText)
     }
     

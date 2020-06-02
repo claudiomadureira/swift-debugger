@@ -10,21 +10,17 @@ import UIKit
 protocol DebuggerErrorModel: DebuggerLogModel {
     var modelName: String { get }
     var readableData: String { get }
-    var example: [String: Any] { get }
+    var exampleJSONString: String { get }
 }
 
-struct DebuggerDecodingErrorModel: DebuggerErrorModel {
+struct DebuggerDecodingErrorModel: DebuggerErrorModel, Codable {
     
-    let data: Data
     var date: Date = Date()
     var type: LogType
-    var example: [String : Any]
+    var exampleJSONString: String
     var modelName: String
     var description: String
     var detailedDescription: String
-    
-    var readableData: String {
-        return Debug.stringfy(self.data)
-    }
+    var readableData: String
     
 }

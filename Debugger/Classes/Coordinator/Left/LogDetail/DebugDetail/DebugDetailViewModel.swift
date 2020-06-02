@@ -46,8 +46,7 @@ class DebugDetailViewModel: NSObject {
             self.items.append(DebugDetailTitleItemViewModel(text: "Data attempted to decode:"))
             self.items.append(DebugDetailContentItemViewModel(text: model.readableData, shouldBreakLine: false))
             self.items.append(DebugDetailTitleItemViewModel(text: "Auto-generated acceptable example based on data used:"))
-            let readableJSON = Debug.stringfy(model.example)
-            self.items.append(DebugDetailContentItemViewModel(text: readableJSON, shouldBreakLine: false))
+            self.items.append(DebugDetailContentItemViewModel(text: model.exampleJSONString, shouldBreakLine: false))
         }
     }
     

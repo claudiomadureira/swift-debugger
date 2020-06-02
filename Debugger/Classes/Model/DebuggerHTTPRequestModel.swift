@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol DebuggerHTTPRequestModel: DebuggerModel {
+public protocol DebuggerHTTPRequestModel: DebuggerModel, Codable {
     var url: String { get }
     var method: String { get }
     var statusCode: Int { get }
@@ -18,3 +18,28 @@ public protocol DebuggerHTTPRequestModel: DebuggerModel {
     var duration: Int? { get } // in seconds
 }
 
+struct DebuggerHTTPRequest: DebuggerHTTPRequestModel {
+    
+    static func from(model: DebuggerHTTPRequestModel) -> DebuggerHTTPRequest {
+        return DebuggerHTTPRequest(
+            date: model.date,
+            url: model.url,
+            method: model.method,
+            statusCode: model.statusCode,
+            headers: model.headers,
+            body: model.body,
+            responseBody: model.responseBody,
+            startDate: model.startDate,
+            duration: model.duration)
+    }
+    
+    var date: Date
+    var url: String
+    var method: String
+    var statusCode: Int
+    var headers: [String: String]?
+    var body: Data?
+    var responseBody: Data?
+    var startDate: Date?
+    var duration: Int?
+}
