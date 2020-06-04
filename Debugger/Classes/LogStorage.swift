@@ -9,22 +9,32 @@ import UIKit
 
 enum LogStorage {
     
-    private static let storage: UserDefaults = .standard
+    // MARK: Variables
     
+    private static let storage: UserDefaults = .standard
+    private static var models: [Data] = LogStorage.getAllData()
+    private static let storageKey: String = "Debug.storage"
+    
+    // MARK: Local public
     
     static func save(_ model: DebuggerModel) {
-        var all = self.getAll()
-        all.append(model)
-        self.storage.set(all.map({ self.parseToData(model: $0) }), forKey: "storage")
+        guard let data = self.parseToData(model: model) else { return }
+        self.models.append(data)
+        self.storage.set(self.models, forKey: self.storageKey)
     }
     
     static func getAll() -> [DebuggerModel] {
-        let array: [Data] = self.storage.value(forKey: "storage") as? [Data] ?? []
-        return array.compactMap({ self.parseToModel(data: $0) })
+        return self.getAllData().compactMap({ self.parseToModel(data: $0) })
     }
     
     static func removeAll() {
-        self.storage.set([], forKey: "storage")
+        self.storage.set([], forKey: self.storageKey)
+    }
+    
+    // MARK: Private
+    
+    private static func getAllData() -> [Data] {
+        return self.storage.value(forKey: self.storageKey) as? [Data] ?? []
     }
     
     private static func parseToData(model: DebuggerModel) -> Data? {
@@ -50,8 +60,6 @@ enum LogStorage {
                 
             }
         }
-        
-        
         
         return nil
     }
