@@ -25,12 +25,13 @@ public enum Debug {
     }
     
     public static var indexSelectedLocalization: Int = 0
+    public static var isLocalStorageEnabled: Bool = true
     public static var isVisibleIdentifier: Bool?
     public static let events: Signal<Event> = .init()
     
     public static var localSettings: [String: Any]?
     
-    private(set) static var items: [DebuggerModel] = LogStorage.getAll()
+    private(set) static var items: [DebuggerModel] = Debug.isLocalStorageEnabled ? LogStorage.getAll() : []
     
     static var mappedItems: [DebuggerItemViewModel] {
         return self.items.compactMap { self.factoryViewModel(model: $0) }
@@ -97,8 +98,10 @@ public enum Debug {
     
     public static func debug(_ model: DebuggerModel) {
         self.items.append(model)
-        self.runIfNeeded {
-            LogStorage.save(model)
+        if self.isLocalStorageEnabled {
+            self.runIfNeeded {
+                LogStorage.save(model)
+            }
         }
         guard let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model) else { return }
         self.listenerManager.emit(viewModel)
@@ -144,8 +147,10 @@ public enum Debug {
     
     static func clearLogs() {
         self.items.removeAll()
-        self.runIfNeeded {
-            LogStorage.removeAll()
+        if self.isLocalStorageEnabled {
+            self.runIfNeeded {
+                LogStorage.removeAll()
+            }
         }
     }
     
