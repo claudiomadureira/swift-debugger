@@ -16,7 +16,11 @@ public enum Debug {
         }
     }
     
-    public static var indexSelectedEnvironment: Int = 0
+    public private(set) static var indexSelectedEnvironment: Int = 0
+    
+    public static var selectedEnvironment: String {
+        return self.environments[self.indexSelectedEnvironment]
+    }
     
     public static var localizations: [String] = [] {
         didSet {
@@ -24,7 +28,12 @@ public enum Debug {
         }
     }
     
-    public static var indexSelectedLocalization: Int = 0
+    public private(set) static var indexSelectedLocalization: Int = 0
+    
+    public static var selectedLocalization: String {
+        return self.localizations[self.indexSelectedLocalization]
+    }
+    
     public static var isLocalStorageEnabled: Bool = true
     public static var isVisibleIdentifier: Bool?
     public static let events: Signal<Event> = .init()
