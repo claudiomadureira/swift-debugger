@@ -68,6 +68,9 @@ class ViewController: UIViewController {
         } catch let error {
             Debug.errorDecoding(error, data: data, modelToConvert: model)
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.viewDidLoad()
+        })
     }
     
     
