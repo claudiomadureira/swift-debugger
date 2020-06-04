@@ -31,7 +31,12 @@ enum LogType: String, Codable {
     
     var printTag: String {
         let emoji = self.emoji.rawValue
-        return "\(emoji) \(self.rawValue) => "
+        switch self {
+        case .error, .print:
+            return "\(emoji) \(self.rawValue)   => "
+        default:
+            return "\(emoji) \(self.rawValue) => "
+        }
     }
     
     var debuggerColor: UIColor {
