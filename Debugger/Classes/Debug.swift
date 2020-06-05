@@ -16,7 +16,7 @@ public enum Debug {
         }
     }
     
-    public private(set) static var indexSelectedEnvironment: Int = 0
+    public static var indexSelectedEnvironment: Int = 0
     
     public static var selectedEnvironment: String {
         return self.environments[self.indexSelectedEnvironment]
@@ -28,7 +28,7 @@ public enum Debug {
         }
     }
     
-    public private(set) static var indexSelectedLocalization: Int = 0
+    public static var indexSelectedLocalization: Int = 0
     
     public static var selectedLocalization: String {
         return self.localizations[self.indexSelectedLocalization]
