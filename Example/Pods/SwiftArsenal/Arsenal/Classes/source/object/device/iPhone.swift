@@ -46,7 +46,7 @@ public enum iPhone: String, CaseIterable {
     }
     
     public static var current: iPhone {
-        return self.current(for: Device.identifier)
+        return self.current(for: Device.correctIdentifier)
     }
     
     static func current(for identifier: String) -> iPhone {

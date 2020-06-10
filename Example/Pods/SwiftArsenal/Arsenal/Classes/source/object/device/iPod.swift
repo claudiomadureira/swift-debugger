@@ -20,7 +20,7 @@ public enum iPod: String, CaseIterable {
     case undefined
     
     public static var current: iPod {
-        return self.current(for: Device.identifier)
+        return self.current(for: Device.correctIdentifier)
     }
     
     static func current(for identifier: String) -> iPod {

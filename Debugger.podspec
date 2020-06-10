@@ -29,7 +29,7 @@ With good tools, it's easier and faster to code and debug. Here are some of thos
   s.ios.deployment_target = '11.0'
   s.swift_version = '5.0'
   
-  s.dependency 'SwiftArsenal', '0.1.1'
+  s.dependency 'SwiftArsenal', '0.1.2'
   
   s.source_files = 'Debugger/Classes/**/*'
   s.resource_bundles = {

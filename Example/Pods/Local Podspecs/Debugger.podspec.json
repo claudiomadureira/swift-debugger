@@ -21,7 +21,7 @@
   "swift_versions": "5.0",
   "dependencies": {
     "SwiftArsenal": [
-      "0.1.1"
+      "0.1.2"
     ]
   },
   "source_files": "Debugger/Classes/**/*",

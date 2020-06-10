@@ -33,7 +33,7 @@ public enum Device: String, CaseIterable {
         case .homePod:
             return Device.homePod.rawValue
         case .simulator:
-            let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"
+            let identifier = self.simulatorIdentifier
             let device = self.current(for: identifier)
             var name: String = "Simulator "
             switch device {
@@ -91,6 +91,14 @@ public enum Device: String, CaseIterable {
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         return identifier
+    }
+    
+    static var simulatorIdentifier: String {
+        return ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"
+    }
+    
+    static var correctIdentifier: String {
+        return self.current == .simulator ? self.simulatorIdentifier : self.identifier
     }
     
 }
