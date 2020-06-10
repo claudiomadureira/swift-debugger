@@ -10,7 +10,7 @@ import SwiftArsenal
 
 class SettingsView: UIView, NibLoadable {
 
-    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var textView: JSONWriterTextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

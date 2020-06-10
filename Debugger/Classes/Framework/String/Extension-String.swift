@@ -21,4 +21,18 @@ extension String {
         return parameterType
     }
     
+    var firstString: String? {
+        if let first = self.first {
+            return String(first)
+        }
+        return nil
+    }
+    
+    var lastString: String? {
+        if let last = self.last {
+            return String(last)
+        }
+        return nil
+    }
+    
 }
