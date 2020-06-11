@@ -18,12 +18,12 @@ extension Debug {
     
     static func setUp() {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        Debug.environments = kEnvironments
-        Debug.indexSelectedEnvironment = kEnvironments.firstIndex(where: { $0 == delegate.currentEnvironment }) ?? 0
-        Debug.localizations = kLocalizations
-        Debug.indexSelectedLocalization = kLocalizations.firstIndex(where: { $0 == delegate.currentLocalization }) ?? 0
-//        Debug.isVisibleIdentifier = true
-        Debug.localSettings = [
+        Debug.shared.environments = kEnvironments
+        Debug.shared.indexSelectedEnvironment = kEnvironments.firstIndex(where: { $0 == delegate.currentEnvironment }) ?? 0
+        Debug.shared.localizations = kLocalizations
+        Debug.shared.indexSelectedLocalization = kLocalizations.firstIndex(where: { $0 == delegate.currentLocalization }) ?? 0
+//        Debug.shared.isVisibleIdentifier = true
+        Debug.shared.localSettings = [
             "dateFormat": "yyyy-MM-dd",
             "isLoginFacebookEnabled": true,
         ]
@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Debug.shared = Debug(isLocalStorageEnabled: false)
         guard #available(iOS 13.0, *) else {
             self.launchApp()
             return true
@@ -53,8 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         self.window?.attachDebugger()
         Debug.setUp()
-        Debug.events.on { event in
-            Debug.dismissSideMenu(animated: true, completion: {
+        Debug.shared.events.on { event in
+            Debug.shared.dismissSideMenu(animated: true, completion: {
                 switch event {
                 case .didChangeEnvironment(let environment):
                     self.currentEnvironment = environment

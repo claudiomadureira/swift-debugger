@@ -58,31 +58,31 @@ class DebuggerView: UIView, NibLoadable {
         self.setUpSideMenuBackground()
         
         self.lblIdentifier.text = "Identifier"
-        if let isOn = Debug.isVisibleIdentifier {
+        if let isOn = Debug.shared.isVisibleIdentifier {
             self.switchIdentifier.setOn(isOn, animated: false)
         }
-        self.setIdentifier(hidden: Debug.isVisibleIdentifier == nil)
+        self.setIdentifier(hidden: Debug.shared.isVisibleIdentifier == nil)
         
         self.lblLocalizations.text = "Localization"
         self.collectionLocalizations.delegateAwlaysSelected = self
-        self.collectionLocalizations.selectedIndex = Debug.indexSelectedLocalization
-        self.collectionLocalizations.items = Debug.localizations
-        self.setLocalizations(hidden: Debug.localizations.isEmpty)
+        self.collectionLocalizations.selectedIndex = Debug.shared.indexSelectedLocalization
+        self.collectionLocalizations.items = Debug.shared.localizations
+        self.setLocalizations(hidden: Debug.shared.localizations.isEmpty)
         
         self.lblEnvironments.text = "Environment"
         self.collectionEnvironments.delegateAwlaysSelected = self
-        self.collectionEnvironments.selectedIndex = Debug.indexSelectedEnvironment
-        self.collectionEnvironments.items = Debug.environments
-        self.setEnvironments(hidden: Debug.environments.isEmpty)
+        self.collectionEnvironments.selectedIndex = Debug.shared.indexSelectedEnvironment
+        self.collectionEnvironments.items = Debug.shared.environments
+        self.setEnvironments(hidden: Debug.shared.environments.isEmpty)
         
         self.setUpButtonLocalSettings()
-        self.setLocalSettings(hidden: Debug.localSettings == nil)
+        self.setLocalSettings(hidden: Debug.shared.localSettings == nil)
         
         self.setUpButtonClear()
         self.lblVersion.text = Bundle.main.readableVersion
         self.addDismissSideMenuTapGesture()
         self.addDismissSideMenuPanGesture()
-        self.items = Debug.mappedItems.reversed()
+        self.items = Debug.shared.mappedItems.reversed()
         self.setUpTableView()
     }
     
@@ -324,11 +324,11 @@ extension DebuggerView: AlwaysSelectedCollectionViewDelegate {
     func collection(collectionView: AlwaysSelectedCollectionView, didSelectItemAt index: Int) {
         switch collectionView {
         case self.collectionEnvironments:
-            Debug.indexSelectedEnvironment = index
-            Debug.emit(event: .didChangeEnvironment(Debug.environments[index]))
+            Debug.shared.indexSelectedEnvironment = index
+            Debug.shared.emit(event: .didChangeEnvironment(Debug.shared.environments[index]))
         case self.collectionLocalizations:
-            Debug.indexSelectedLocalization = index
-            Debug.emit(event: .didChangeLocalization(Debug.localizations[index]))
+            Debug.shared.indexSelectedLocalization = index
+            Debug.shared.emit(event: .didChangeLocalization(Debug.shared.localizations[index]))
         default:
             break
         }

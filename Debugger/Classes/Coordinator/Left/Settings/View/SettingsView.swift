@@ -14,7 +14,7 @@ class SettingsView: UIView, NibLoadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.textView.text = Debug.stringfy(Debug.localSettings)
+        self.textView.text = Debug.stringfy(Debug.shared.localSettings)
     }
 
 }

@@ -8,53 +8,55 @@
 import UIKit
 import SwiftArsenal
 
-public enum Debug {
+public class Debug {
     
-    public static var environments: [String] = [] {
+    public static var shared: Debug = .init(isLocalStorageEnabled: true)
+    
+    public var environments: [String] = [] {
         didSet {
             self.indexSelectedEnvironment = 0
         }
     }
     
-    public static var indexSelectedEnvironment: Int = 0
+    public var indexSelectedEnvironment: Int = 0
     
-    public static var selectedEnvironment: String {
+    public var selectedEnvironment: String {
         return self.environments[self.indexSelectedEnvironment]
     }
     
-    public static var localizations: [String] = [] {
+    public var localizations: [String] = [] {
         didSet {
             self.indexSelectedLocalization = 0
         }
     }
     
-    public static var indexSelectedLocalization: Int = 0
+    public var indexSelectedLocalization: Int = 0
     
-    public static var selectedLocalization: String {
+    public var selectedLocalization: String {
         return self.localizations[self.indexSelectedLocalization]
     }
     
-    public static var isLocalStorageEnabled: Bool = true
-    public static var isVisibleIdentifier: Bool?
-    public static let events: Signal<Event> = .init()
+    public var isLocalStorageEnabled: Bool = true
+    public var isVisibleIdentifier: Bool?
+    public let events: Signal<Event> = .init()
     
-    public static var localSettings: [String: Any]? = Debug.isLocalStorageEnabled ? Storage.getSettings() : nil {
+    public var localSettings: [String: Any]? {
         didSet {
-            if Debug.isLocalStorageEnabled {
-                self.runIfNeeded {
+            if self.isLocalStorageEnabled {
+                Debug.runIfNeeded {
                     Storage.saveSettings(self.localSettings)
                 }
             }   
         }
     }
     
-    private(set) static var items: [DebuggerModel] = Debug.isLocalStorageEnabled ? Storage.getAll() : []
+    private(set) var items: [DebuggerModel] = []
     
-    static var mappedItems: [DebuggerItemViewModel] {
-        return self.items.compactMap { self.factoryViewModel(model: $0) }
+    var mappedItems: [DebuggerItemViewModel] {
+        return self.items.compactMap { Debug.factoryViewModel(model: $0) }
     }
     
-    static var listenerManager = ListenerManager<DebuggerItemViewModel>()
+    var listenerManager = ListenerManager<DebuggerItemViewModel>()
     
     public enum Event {
         case didChangeEnvironment(String)
@@ -63,13 +65,19 @@ public enum Debug {
         case didChangeLocalSettings([String: Any]?)
     }
     
-    public static func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
+    public required init(isLocalStorageEnabled: Bool) {
+        self.isLocalStorageEnabled = isLocalStorageEnabled
+        self.localSettings = isLocalStorageEnabled ? Storage.getSettings() : nil
+        self.items = isLocalStorageEnabled ? Storage.getAll() : []
+    }
+    
+    public func errorDecoding<Model: Decodable>(_ error: Error, data: Data, modelToConvert: Model.Type) {
         guard let _error = error as? DecodingError else { return }
-        let exampleJSONString: String = self.stringfy(ExampleBuilder.example(for: modelToConvert, inputData: data))
+        let exampleJSONString: String = Debug.stringfy(ExampleBuilder.example(for: modelToConvert, inputData: data))
         let modelName: String = "\(modelToConvert)"
         let description: String = ErrorMessageExtractor.description(from: error, modelName: modelName)
         let detailedDescription: String = ErrorMessageExtractor.detailedDescription(from: error)
-        let prettyJSONText: String = self.stringfy(data)
+        let prettyJSONText: String = Debug.stringfy(data)
         let model = DebuggerDecodingErrorModel(
             type: .decodingError,
             exampleJSONString: exampleJSONString,
@@ -81,7 +89,7 @@ public enum Debug {
         self.log(model.type.printTag + model.description + "\nInput data:\n" + prettyJSONText)
     }
     
-    public static func success(_ text: String) {
+    public func success(_ text: String) {
         let model = LogModel(
             description: text,
             type: .success)
@@ -89,7 +97,7 @@ public enum Debug {
         self.log(model.type.printTag + text)
     }
     
-    public static func error(_ text: String) {
+    public func error(_ text: String) {
         let model = LogModel(
             description: text,
             type: .error)
@@ -97,7 +105,7 @@ public enum Debug {
         self.log(model.type.printTag + text)
     }
     
-    public static func print(_ text: String) {
+    public func print(_ text: String) {
         let model = LogModel(
             description: text,
             type: .print)
@@ -105,7 +113,7 @@ public enum Debug {
         self.log(model.type.printTag + text)
     }
     
-    public static func warn(_ text: String) {
+    public func warn(_ text: String) {
         let model = LogModel(
             description: text,
             type: .warning)
@@ -113,18 +121,18 @@ public enum Debug {
         self.log(model.type.printTag + text)
     }
     
-    public static func debug(_ model: DebuggerModel) {
+    public func debug(_ model: DebuggerModel) {
         self.items.append(model)
         if self.isLocalStorageEnabled {
-            self.runIfNeeded {
+            Debug.runIfNeeded {
                 Storage.save(model)
             }
         }
-        guard let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model) else { return }
+        guard let viewModel: DebuggerItemViewModel = Debug.factoryViewModel(model: model) else { return }
         self.listenerManager.emit(viewModel)
     }
     
-    public static func dismissSideMenu(animated flag: Bool, completion: (() -> Void)?) {
+    public func dismissSideMenu(animated flag: Bool, completion: (() -> Void)?) {
         let view: DebuggerView? = DebuggerView.shared
         if flag {
             view?.animateSideMenu(toHide: true, completion: { [weak view] in
@@ -134,6 +142,35 @@ public enum Debug {
         } else {
             view?.removeFromSuperview()
         }
+    }
+    
+    func clearLogs() {
+        self.items.removeAll()
+        if self.isLocalStorageEnabled {
+            Debug.runIfNeeded {
+                Storage.removeAll()
+            }
+        }
+    }
+    
+    func emit(event: Event) {
+        self.events.emit(event)
+    }
+    
+    func bindDebug(listener: Listener<DebuggerItemViewModel>) {
+        self.listenerManager.bind(listener)
+    }
+    
+    func log(_ message: String) {
+        Debug.runIfNeeded {
+            NSLog(message)
+        }
+    }
+    
+    static func runIfNeeded(_ handler: @escaping () -> Void) {
+        #if DEBUG
+        handler()
+        #endif
     }
     
     public static func stringfy(_ any: Any?) -> String {
@@ -162,23 +199,6 @@ public enum Debug {
         return "\(any ?? "null")"
     }
     
-    static func clearLogs() {
-        self.items.removeAll()
-        if self.isLocalStorageEnabled {
-            self.runIfNeeded {
-                Storage.removeAll()
-            }
-        }
-    }
-    
-    static func emit(event: Event) {
-        self.events.emit(event)
-    }
-    
-    static func bindDebug(listener: Listener<DebuggerItemViewModel>) {
-        self.listenerManager.bind(listener)
-    }
-    
     static func factoryViewModel(model: DebuggerModel) -> DebuggerItemViewModel? {
         if let httpRequestModel = model as? DebuggerHTTPRequestModel {
             return DebuggerHTTPRequestCellViewModel(model: httpRequestModel)
@@ -188,18 +208,6 @@ public enum Debug {
         }
         
         return nil
-    }
-    
-    static func log(_ message: String) {
-        self.runIfNeeded {
-            NSLog(message)
-        }
-    }
-    
-    static func runIfNeeded(_ handler: @escaping () -> Void) {
-        #if DEBUG
-        handler()
-        #endif
     }
     
 }

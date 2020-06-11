@@ -74,7 +74,7 @@ extension DebuggerViewController: DebuggerViewDelegate {
     }
     
     func debugger(_ view: DebuggerView, didPressClearLog button: UIButton) {
-        Debug.clearLogs()
+        Debug.shared.clearLogs()
         view.clearLog(animated: false, completion: nil)
     }
     

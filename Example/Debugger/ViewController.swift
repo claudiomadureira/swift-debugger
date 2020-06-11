@@ -34,7 +34,7 @@ class ViewController: UIViewController {
             responseBody: nil,
             startDate: Date(),
             duration: 3)
-        Debug.debug(item0)
+        Debug.shared.debug(item0)
         
 //        let item1 = ExampleHTTPResquest(
 //            url: "https://test.api.com/some-image2",
@@ -47,10 +47,10 @@ class ViewController: UIViewController {
 //            duration: 150)
 //        Debug.debug(item1)
         
-        Debug.warn("Warning message!")
-        Debug.error("Error message!")
-        Debug.print("Print message!")
-        Debug.success("Success message!")
+        Debug.shared.warn("Warning message!")
+        Debug.shared.error("Error message!")
+        Debug.shared.print("Print message!")
+        Debug.shared.success("Success message!")
         
         let data = """
         {
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
             let model = try JSONDecoder().decode(model, from: data)
             print(model)
         } catch let error {
-            Debug.errorDecoding(error, data: data, modelToConvert: model)
+            Debug.shared.errorDecoding(error, data: data, modelToConvert: model)
         }
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
 //            self.viewDidLoad()

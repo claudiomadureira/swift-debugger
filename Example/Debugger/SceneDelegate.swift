@@ -29,8 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.attachDebugger()
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
         Debug.setUp()
-        Debug.events.on { event in
-            Debug.dismissSideMenu(animated: true, completion: {
+        Debug.shared.events.on { event in
+            Debug.shared.dismissSideMenu(animated: true, completion: {
                 switch event {
                 case .didChangeEnvironment(let environment):
                     delegate.currentEnvironment = environment

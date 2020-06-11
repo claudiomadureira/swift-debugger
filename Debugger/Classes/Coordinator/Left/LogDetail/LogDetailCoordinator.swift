@@ -12,7 +12,7 @@ class LogDetailCoordinator: LeftCoordinator {
     let index: Int
     
     lazy var firstViewController: UIViewController = {
-        let model = Debug.items[self.index]
+        let model = Debug.shared.items[self.index]
         return DebugDetailViewController(model: model)
     }()
     
