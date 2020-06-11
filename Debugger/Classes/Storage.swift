@@ -7,20 +7,37 @@
 
 import UIKit
 
-enum LogStorage {
+enum Storage {
     
     // MARK: Variables
     
     private static let storage: UserDefaults = .standard
-    private static var models: [Data] = LogStorage.getAllData()
-    private static let storageKey: String = "Debug.storage"
+    private static var models: [Data] = Storage.getAllData()
+    private static let storageKeyLog: String = "Storage.log"
+    private static let storageKeySettings: String = "Storage.settings"
     
     // MARK: Local public
+    
+    static func saveSettings(_ json: [String: Any]?) {
+        if let json = json {
+            let data: Data? = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            self.storage.set(data, forKey: self.storageKeySettings)
+        } else {
+            self.storage.set(nil, forKey: self.storageKeySettings)
+        }
+    }
+    
+    static func getSettings() -> [String: Any]? {
+        if let data = self.storage.data(forKey: self.storageKeySettings) {
+            return try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+        }
+        return nil
+    }
     
     static func save(_ model: DebuggerModel) {
         guard let data = self.parseToData(model: model) else { return }
         self.models.append(data)
-        self.storage.set(self.models, forKey: self.storageKey)
+        self.storage.set(self.models, forKey: self.storageKeyLog)
     }
     
     static func getAll() -> [DebuggerModel] {
@@ -28,13 +45,13 @@ enum LogStorage {
     }
     
     static func removeAll() {
-        self.storage.set([], forKey: self.storageKey)
+        self.storage.set([], forKey: self.storageKeyLog)
     }
     
     // MARK: Private
     
     private static func getAllData() -> [Data] {
-        return self.storage.value(forKey: self.storageKey) as? [Data] ?? []
+        return self.storage.value(forKey: self.storageKeyLog) as? [Data] ?? []
     }
     
     private static func parseToData(model: DebuggerModel) -> Data? {

@@ -38,9 +38,17 @@ public enum Debug {
     public static var isVisibleIdentifier: Bool?
     public static let events: Signal<Event> = .init()
     
-    public static var localSettings: [String: Any]?
+    public static var localSettings: [String: Any]? = Debug.isLocalStorageEnabled ? Storage.getSettings() : nil {
+        didSet {
+            if Debug.isLocalStorageEnabled {
+                self.runIfNeeded {
+                    Storage.saveSettings(self.localSettings)
+                }
+            }   
+        }
+    }
     
-    private(set) static var items: [DebuggerModel] = Debug.isLocalStorageEnabled ? LogStorage.getAll() : []
+    private(set) static var items: [DebuggerModel] = Debug.isLocalStorageEnabled ? Storage.getAll() : []
     
     static var mappedItems: [DebuggerItemViewModel] {
         return self.items.compactMap { self.factoryViewModel(model: $0) }
@@ -109,7 +117,7 @@ public enum Debug {
         self.items.append(model)
         if self.isLocalStorageEnabled {
             self.runIfNeeded {
-                LogStorage.save(model)
+                Storage.save(model)
             }
         }
         guard let viewModel: DebuggerItemViewModel = self.factoryViewModel(model: model) else { return }
@@ -158,7 +166,7 @@ public enum Debug {
         self.items.removeAll()
         if self.isLocalStorageEnabled {
             self.runIfNeeded {
-                LogStorage.removeAll()
+                Storage.removeAll()
             }
         }
     }

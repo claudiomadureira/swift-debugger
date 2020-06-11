@@ -24,19 +24,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="468" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpa-j3-a9i">
-                                            <rect key="frame" x="30" y="19.5" width="42" height="21"/>
+                                            <rect key="frame" x="15" y="19.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeV-mB-NXB">
-                                            <rect key="frame" x="72" y="19.5" width="42" height="21"/>
+                                            <rect key="frame" x="57" y="19.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2P-L1-DD7" customClass="Button" customModule="Debugger" customModuleProvider="target">
-                                            <rect key="frame" x="393" y="5" width="50" height="50"/>
+                                            <rect key="frame" x="403" y="5" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="2Xn-lw-o3U"/>
                                                 <constraint firstAttribute="height" constant="50" id="sWY-Bi-RSf"/>
@@ -46,6 +46,39 @@
                                                 <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="G9h-aJ-DyD"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAu-33-zSV" customClass="Button" customModule="Debugger" customModuleProvider="target">
+                                            <rect key="frame" x="333" y="5" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="HQi-HX-Her"/>
+                                                <constraint firstAttribute="width" constant="50" id="yKn-Ql-LGa"/>
+                                            </constraints>
+                                            <state key="normal" title="Done"/>
+                                            <connections>
+                                                <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="c0F-ed-yUc"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-Sk-dQW" customClass="Button" customModule="Debugger" customModuleProvider="target">
+                                            <rect key="frame" x="263" y="5" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="29w-Qc-EaH"/>
+                                                <constraint firstAttribute="width" constant="50" id="afJ-KB-FcV"/>
+                                            </constraints>
+                                            <state key="normal" title="Done"/>
+                                            <connections>
+                                                <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="dLw-TL-gi3"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-Bu-cDp" customClass="Button" customModule="Debugger" customModuleProvider="target">
+                                            <rect key="frame" x="193" y="5" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="2dm-m5-JzM"/>
+                                                <constraint firstAttribute="width" constant="50" id="YfQ-KV-NTz"/>
+                                            </constraints>
+                                            <state key="normal" title="Done"/>
+                                            <connections>
+                                                <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="cd3-Y2-ed5"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -53,9 +86,15 @@
                                         <constraint firstItem="FeV-mB-NXB" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="1yb-4q-ZWG"/>
                                         <constraint firstItem="Xpa-j3-a9i" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="5By-Uj-mnE"/>
                                         <constraint firstItem="L2P-L1-DD7" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="FsG-T4-KjW"/>
-                                        <constraint firstAttribute="trailing" secondItem="L2P-L1-DD7" secondAttribute="trailing" constant="25" id="Lh7-BC-bnf"/>
-                                        <constraint firstItem="Xpa-j3-a9i" firstAttribute="leading" secondItem="yaQ-3N-Tz0" secondAttribute="leading" constant="30" id="VHB-j1-gRE"/>
+                                        <constraint firstItem="Q7p-Sk-dQW" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="IEU-th-eu2"/>
+                                        <constraint firstItem="L2P-L1-DD7" firstAttribute="leading" secondItem="DAu-33-zSV" secondAttribute="trailing" constant="20" id="JSS-5f-gSR"/>
+                                        <constraint firstAttribute="trailing" secondItem="L2P-L1-DD7" secondAttribute="trailing" constant="15" id="Lh7-BC-bnf"/>
+                                        <constraint firstItem="aeK-Bu-cDp" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="P50-Sn-vqv"/>
+                                        <constraint firstItem="Xpa-j3-a9i" firstAttribute="leading" secondItem="yaQ-3N-Tz0" secondAttribute="leading" constant="15" id="VHB-j1-gRE"/>
                                         <constraint firstItem="L2P-L1-DD7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FeV-mB-NXB" secondAttribute="trailing" constant="20" id="gty-YF-ZpY"/>
+                                        <constraint firstItem="DAu-33-zSV" firstAttribute="centerY" secondItem="L2P-L1-DD7" secondAttribute="centerY" id="kLV-nH-Iv8"/>
+                                        <constraint firstItem="DAu-33-zSV" firstAttribute="leading" secondItem="Q7p-Sk-dQW" secondAttribute="trailing" constant="20" id="nZU-bo-ZAe"/>
+                                        <constraint firstItem="Q7p-Sk-dQW" firstAttribute="leading" secondItem="aeK-Bu-cDp" secondAttribute="trailing" constant="20" id="wVz-Kv-aKI"/>
                                     </constraints>
                                 </view>
                             </subviews>
