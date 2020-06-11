@@ -80,6 +80,7 @@ extension JSONWriterTextView: UITextViewDelegate {
             var prefix: String = !isLine && !isJSON ? "," : ""
             let newText: String = (currentText as NSString).replacingCharacters(in: range, with: prefix + text + spacing + sufix)
             textView.text = newText
+            self.textViewDidChange(textView)
             if let _oldRange = oldRange,
                 let position = textView.position(from: _oldRange.start, offset: spacing.count + prefix.count + (isJSON ? 2 : (isMiddleJSON ? (sufix.count - 2) : sufix.count) - 2)) {
                 textView.selectedTextRange = textView.textRange(from: position, to: position)
