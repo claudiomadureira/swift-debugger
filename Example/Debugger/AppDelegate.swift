@@ -9,10 +9,10 @@
 import UIKit
 import Debugger
 
-//let kEnvironments = ["DEBUG", "RELEASE"]
-let kEnvironments = [String]()
-//let kLocalizations = ["en_US", "pt_BR", "es_MX"]
-let kLocalizations = [String]()
+let kEnvironments = ["DEBUG", "RELEASE"]
+//let kEnvironments = [String]()
+let kLocalizations = ["en_US", "pt_BR", "es_MX"]
+//let kLocalizations = [String]()
 
 extension Debug {
     
@@ -22,8 +22,8 @@ extension Debug {
         Debug.shared.indexSelectedEnvironment = kEnvironments.firstIndex(where: { $0 == delegate.currentEnvironment }) ?? 0
         Debug.shared.localizations = kLocalizations
         Debug.shared.indexSelectedLocalization = kLocalizations.firstIndex(where: { $0 == delegate.currentLocalization }) ?? 0
-//        Debug.shared.isVisibleIdentifier = true
-        Debug.shared.localSettings = [
+        Debug.shared.isVisibleIdentifier = true
+        Debug.shared.localSettings = Debug.shared.localSettings ?? [
             "dateFormat": "yyyy-MM-dd",
             "isLoginFacebookEnabled": true,
         ]
@@ -40,7 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Debug.shared = Debug(isLocalStorageEnabled: false)
+        Debug.shared = Debug(isLocalStorageEnabled: true)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.attachDebugger()
         guard #available(iOS 13.0, *) else {
             self.launchApp()
             return true
@@ -49,13 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func launchApp() {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.window?.makeKeyAndVisible()
-        self.window?.attachDebugger()
         Debug.setUp()
         Debug.shared.events.on { event in
-            Debug.shared.dismissSideMenu(animated: true, completion: {
+            Debug.shared.dismissSideMenu(animated: true) {
                 switch event {
                 case .didChangeEnvironment(let environment):
                     self.currentEnvironment = environment
@@ -67,9 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .didChangeIdentifierVisibility(let hidden):
                     print("Labels identifier " + (hidden ? "hidden" : "showing"))
                 case .didChangeLocalSettings(let settings):
+                    self.launchApp()
                     print("Settings:\n" + Debug.stringfy(settings))
                 }
-            })
+            }
         }
     }
 

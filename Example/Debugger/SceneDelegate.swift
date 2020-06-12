@@ -19,14 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
+        self.window = UIWindow(windowScene: scene)
+        self.window?.attachDebugger()
         self.launchApp(scene: scene)
     }
     
     private func launchApp(scene: UIWindowScene) {
-        self.window = UIWindow(windowScene: scene)
         self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         self.window?.makeKeyAndVisible()
-        self.window?.attachDebugger()
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
         Debug.setUp()
         Debug.shared.events.on { event in
@@ -42,6 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 case .didChangeIdentifierVisibility(let hidden):
                     print("Labels identifier " + (hidden ? "hidden" : "showing"))
                 case .didChangeLocalSettings(let settings):
+                    self.launchApp(scene: scene)
                     print("Settings:\n" + Debug.stringfy(settings))
                 }
             })

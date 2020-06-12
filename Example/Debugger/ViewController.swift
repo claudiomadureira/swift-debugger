@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let colors: [UIColor] = [.white, .red, .green, .yellow, .purple, .orange, .blue, .brown, .cyan, .gray]
+        let index: Int = Int.random(in: 0..<colors.count)
+        self.view.backgroundColor = colors[index]
+        
         let json: [String: Any] = [
             "email": "claudiomsilvaf@gmail.com",
             "password": "12345",
