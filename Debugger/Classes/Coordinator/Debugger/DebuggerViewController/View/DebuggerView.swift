@@ -50,8 +50,6 @@ class DebuggerView: UIView, NibLoadable {
     
     private var items: [DebuggerItemViewModel] = []
     
-    static var shared: DebuggerView?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUpHiddablePointer()

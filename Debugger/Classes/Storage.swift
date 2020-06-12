@@ -18,7 +18,7 @@ enum Storage {
     
     // MARK: Local public
     
-    static func saveSettings(_ json: [String: Any]?) {
+    static func saveSettings(_ json: DebugJSON?) {
         if let json = json {
             let data: Data? = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             self.storage.set(data, forKey: self.storageKeySettings)
@@ -27,9 +27,9 @@ enum Storage {
         }
     }
     
-    static func getSettings() -> [String: Any]? {
+    static func getSettings() -> DebugJSON? {
         if let data = self.storage.data(forKey: self.storageKeySettings) {
-            return try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return try? JSONSerialization.jsonObject(with: data) as? DebugJSON
         }
         return nil
     }

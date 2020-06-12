@@ -46,7 +46,8 @@ public class Debug {
                 Debug.runIfNeeded {
                     Storage.saveSettings(self.localSettings)
                 }
-            }   
+            }
+            self.events.emit(.didChangeLocalSettings(self.localSettings))
         }
     }
     
@@ -133,15 +134,8 @@ public class Debug {
     }
     
     public func dismissSideMenu(animated flag: Bool, completion: (() -> Void)?) {
-        let view: DebuggerView? = DebuggerView.shared
-        if flag {
-            view?.animateSideMenu(toHide: true, completion: { [weak view] in
-                view?.removeFromSuperview()
-                completion?()
-            })
-        } else {
-            view?.removeFromSuperview()
-        }
+        let coordinator: DebuggerCoordinator? = DebuggerCoordinator.shared
+        coordinator?.finish(animated: flag, completion: completion)
     }
     
     func clearLogs() {
@@ -167,12 +161,6 @@ public class Debug {
         }
     }
     
-    static func runIfNeeded(_ handler: @escaping () -> Void) {
-        #if DEBUG
-        handler()
-        #endif
-    }
-    
     public static func stringfy(_ any: Any?) -> String {
         if let data = any as? Data {
             if let anyObject = try? JSONSerialization.jsonObject(with: data) {
@@ -185,7 +173,7 @@ public class Debug {
         if let collection = any as? Array<AnyObject> {
             guard let jsonData = try? JSONSerialization.data(withJSONObject: collection, options: [.prettyPrinted]),
                 let jsonString = String(data: jsonData, encoding: .utf8) else {
-                    return "{\n}"
+                    return "[]"
             }
             return jsonString.replacingOccurrences(of: "\\/", with: "/")
         }
@@ -197,6 +185,12 @@ public class Debug {
             return jsonString.replacingOccurrences(of: "\\/", with: "/")
         }
         return "\(any ?? "null")"
+    }
+    
+    static func runIfNeeded(_ handler: @escaping () -> Void) {
+        #if DEBUG
+        handler()
+        #endif
     }
     
     static func factoryViewModel(model: DebuggerModel) -> DebuggerItemViewModel? {

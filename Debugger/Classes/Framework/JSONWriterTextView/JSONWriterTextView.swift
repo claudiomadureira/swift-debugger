@@ -10,7 +10,6 @@ import UIKit
 
 class JSONWriterTextView: UITextView {
     
-    
     private lazy var toolbarView: JSONWriterToolbarView = {
         let view = JSONWriterToolbarView.xib()
         view.setJSON(valid: true)
@@ -50,6 +49,8 @@ class JSONWriterTextView: UITextView {
         return view
     }()
     
+    private var onTextDidChange: ((JSONWriterTextView) -> Void)?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.inputAccessoryView = self.toolbarView
@@ -66,6 +67,7 @@ class JSONWriterTextView: UITextView {
             let newText = ((self.text ?? "") as NSString).replacingCharacters(in: range, with: "")
             if let oldRange = self.selectedTextRange {
                 self.text = newText
+                self.textViewDidChange(self)
                 if let position = self.position(from: oldRange.start, offset: -1) {
                     self.selectedTextRange = self.textRange(from: position, to: position)
                     return true
@@ -77,12 +79,11 @@ class JSONWriterTextView: UITextView {
     
     private func splitTextInLinesOfText() -> ([String], String, String, Int) {
         let lines: [String] = (self.text ?? "").components(separatedBy: "\n")
-        dump(lines)
+        
         // Finding cursor position in lines
         var index: Int = 0
         var count: Int = 0
         for (i, line) in lines.enumerated() {
-            print("Line \(i): \(line.count)")
             let next: Int = count + line.count + 1
             if self.selectedRange.location <= next {
                 index = i
@@ -90,7 +91,6 @@ class JSONWriterTextView: UITextView {
             }
             count = next
         }
-        print(index)
         
         let breakLine: String = lines[index]
         var spacing: String = ""
@@ -104,6 +104,9 @@ class JSONWriterTextView: UITextView {
         return (lines, spacing, breakLine, index)
     }
     
+    func onTextDidChange(handler: @escaping (JSONWriterTextView) -> Void) {
+        self.onTextDidChange = handler
+    }
     
 }
 
@@ -161,9 +164,12 @@ extension JSONWriterTextView: UITextViewDelegate {
             } catch let error {
                 self.toolbarView.setJSON(valid: false)
                 self.toolbarView.setButtonDone(enabled: false)
-                print("\(error)")
             }
+        } else {
+            self.toolbarView.setJSON(valid: false)
+            self.toolbarView.setButtonDone(enabled: false)
         }
+        self.onTextDidChange?(self)
     }
     
 }

@@ -90,6 +90,7 @@ class LeftNavigationViewController: UINavigationController {
                     self.viewDidAppear(true)
                     self.events.emit((self, .viewDidAppear))
                 }
+                completion?()
         })
     }
     

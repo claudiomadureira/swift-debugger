@@ -66,7 +66,31 @@ class DebuggerCoordinator: Coordinator {
     }
     
     func finish() {
-        
+        self.finish(animated: true, completion: nil)
+    }
+    
+    func finish(animated: Bool, completion: (() -> Void)?) {
+        let childCoordinator: LeftCoordinator? = self.logDetailCoordinator ?? self.togglesCoordinator
+        if let childCoordinator = childCoordinator {
+            childCoordinator.dismiss(completion: { [weak self] in
+                self?.logDetailCoordinator = nil
+                self?.togglesCoordinator = nil
+                self?.finish(animated: true, completion: completion)
+            })
+            return
+        }
+        if animated {
+            UIView.animateKeyframes(withDuration: 0.3, delay: 0, options: .calculationModeCubic, animations: {
+                self.debuggerViewController?.setSideMenuAndShadow(hidden: true)
+            }, completion: { [weak self] _ in
+                self?.debuggerViewController?.dismiss(animated: false, completion: nil)
+                DebuggerCoordinator.shared = nil
+                completion?()
+            })
+        } else {
+            self.debuggerViewController?.dismiss(animated: false, completion: nil)
+            DebuggerCoordinator.shared = nil
+        }
     }
     
 }

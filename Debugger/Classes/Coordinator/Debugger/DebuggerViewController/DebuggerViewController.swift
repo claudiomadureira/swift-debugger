@@ -33,7 +33,7 @@ class DebuggerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.customView.setSideMenuAndShadow(hidden: true)
+        self.setSideMenuAndShadow(hidden: true)
         self.customView.alpha = 1
     }
     
@@ -59,6 +59,10 @@ class DebuggerViewController: UIViewController {
         }, completion: { _ in
             completion?()
         })
+    }
+    
+    func setSideMenuAndShadow(hidden: Bool) {
+        self.customView.setSideMenuAndShadow(hidden: hidden)
     }
     
 }

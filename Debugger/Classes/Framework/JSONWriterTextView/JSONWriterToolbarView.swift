@@ -31,10 +31,10 @@ class JSONWriterToolbarView: UIView, NibLoadable {
             self.viewContainer.layer.masksToBounds = true
             self.viewContainer.layer.cornerRadius = 20
         }
-        self.setupTitle(title: "Done", onButton: self.btnDone, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
-        self.setupTitle(title: "\"...\"", onButton: self.btnQuotationMarks, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
-        self.setupTitle(title: "{}", onButton: self.btnJSONEmpty, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
-        self.setupTitle(title: "{...}", onButton: self.btnJSONFilled, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        self.setupTitle(title: "Done", onButton: self.btnDone, withColor: .black)// #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        self.setupTitle(title: "\"...\"", onButton: self.btnQuotationMarks, withColor: .black)// #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        self.setupTitle(title: "{}", onButton: self.btnJSONEmpty, withColor: .black)// #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        self.setupTitle(title: "{...}", onButton: self.btnJSONFilled, withColor: .black)// #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
         let buttons: [Button] = [self.btnDone, self.btnQuotationMarks, self.btnJSONEmpty, self.btnJSONFilled]
         for btn in buttons {
             btn.onChangeState { (_btn, state) in
@@ -58,7 +58,7 @@ class JSONWriterToolbarView: UIView, NibLoadable {
             self.onTouchUpInsideJSONFilledButton?(self)
         }
         self.lblJSON.text = "JSON: "
-        self.lblJSON.textColor = .white
+        self.lblJSON.textColor = .black
     }
     
     func setButtonDone(enabled: Bool) {

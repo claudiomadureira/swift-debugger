@@ -24,13 +24,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="468" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpa-j3-a9i">
-                                            <rect key="frame" x="15" y="19.5" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="15" y="19.5" width="43.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeV-mB-NXB">
-                                            <rect key="frame" x="57" y="19.5" width="42" height="21"/>
+                                            <rect key="frame" x="58.5" y="19.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                                             <state key="normal" title="Button"/>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" red="0.79714065789999999" green="0.81161439420000003" blue="0.83680760860000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="FeV-mB-NXB" firstAttribute="leading" secondItem="Xpa-j3-a9i" secondAttribute="trailing" id="04o-hU-7pV"/>
                                         <constraint firstItem="FeV-mB-NXB" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="1yb-4q-ZWG"/>

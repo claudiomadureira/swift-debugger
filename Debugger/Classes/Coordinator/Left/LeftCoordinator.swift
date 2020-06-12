@@ -32,7 +32,7 @@ class LeftCoordinator: Coordinator {
                    image: UIImage(named: "back-debug", in: Bundle.local, compatibleWith: nil),
                    style: .plain,
                    target: self,
-                   action: #selector(self.dismiss))
+                   action: #selector(self._dismiss))
         let navController = LeftNavigationViewController(rootViewController: viewController)
         navController.events.on { [weak self] (vc, event) in
             switch event {
@@ -57,11 +57,19 @@ class LeftCoordinator: Coordinator {
     }
     
     @objc
-    func dismiss() {
-        self.navigationController?.view.endEditing(false)
+    private func _dismiss() {
         self.events.emit((self, .dismiss))
+        self.dismiss(completion: nil)
+    }
+    
+    func dismiss(completion: (() -> Void)?) {
+        self.navigationController?.view.endEditing(false)
         self.navigationController?.animate(toHide: true, duration: 0.3, completion: { [weak self] in
-            self?.finish()
+            if let completion = completion {
+                completion()
+            } else {
+                self?.finish()
+            }
         })
     }
     
