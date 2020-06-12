@@ -9,7 +9,7 @@ import UIKit
 
 
 class JSONWriterTextView: UITextView {
-
+    
     
     private lazy var toolbarView: JSONWriterToolbarView = {
         let view = JSONWriterToolbarView.xib()
@@ -17,6 +17,35 @@ class JSONWriterTextView: UITextView {
         view.setButtonDone(enabled: true)
         view.onDonePressed { [weak self] (toolBar) in
             self?.resignFirstResponder()
+        }
+        view.onQuotationMarksPressed { [weak self] (toolBar) in
+            guard let self = self else { return }
+            if let oldRange = self.selectedTextRange {
+                self.insertText("\"\"")
+                if let position = self.position(from: oldRange.start, offset: 1) {
+                    self.selectedTextRange = self.textRange(from: position, to: position)
+                }
+            }
+        }
+        view.onJSONEmptyPressed { [weak self] (toolBar) in
+            guard let self = self else { return }
+            if let oldRange = self.selectedTextRange {
+                self.insertText("{}")
+                if let position = self.position(from: oldRange.start, offset: 1) {
+                    self.selectedTextRange = self.textRange(from: position, to: position)
+                }
+            }
+        }
+        view.onJSONFilledPressed { [weak self] (toolBar) in
+            guard let self = self else { return }
+            let (lines, spacing, _, index) = self.splitTextInLinesOfText()
+            if let oldRange = self.selectedTextRange {
+                let isMiddleJSON: Bool = lines.count > (index + 1) && lines[index + 1].contains("\"")
+                self.insertText("{\n\(spacing)  \"\" :\n\(spacing)}\(isMiddleJSON ? "," : "")")
+                if let position = self.position(from: oldRange.start, offset: 5 + spacing.count) {
+                    self.selectedTextRange = self.textRange(from: position, to: position)
+                }
+            }
         }
         return view
     }()
@@ -29,8 +58,53 @@ class JSONWriterTextView: UITextView {
         self.autocapitalizationType = .none
     }
     
+    private func clearIf(charBefore charB: String, charAfter charA: String) -> Bool {
+        let charBefore: String = ((self.text ?? "") as NSString).substring(with: NSRange(location: self.selectedRange.location - 1, length: 1))
+        let charAfter: String = ((self.text ?? "") as NSString).substring(with: NSRange(location: self.selectedRange.location, length: 1))
+        if charBefore == charB && charAfter == charA {
+            let range = NSRange(location: self.selectedRange.location - 1, length: 2)
+            let newText = ((self.text ?? "") as NSString).replacingCharacters(in: range, with: "")
+            if let oldRange = self.selectedTextRange {
+                self.text = newText
+                if let position = self.position(from: oldRange.start, offset: -1) {
+                    self.selectedTextRange = self.textRange(from: position, to: position)
+                    return true
+                }
+            }
+        }
+        return false
+    }
     
-
+    private func splitTextInLinesOfText() -> ([String], String, String, Int) {
+        let lines: [String] = (self.text ?? "").components(separatedBy: "\n")
+        dump(lines)
+        // Finding cursor position in lines
+        var index: Int = 0
+        var count: Int = 0
+        for (i, line) in lines.enumerated() {
+            print("Line \(i): \(line.count)")
+            let next: Int = count + line.count + 1
+            if self.selectedRange.location <= next {
+                index = i
+                break
+            }
+            count = next
+        }
+        print(index)
+        
+        let breakLine: String = lines[index]
+        var spacing: String = ""
+        for char in breakLine {
+            if String(char) == " " {
+                spacing.append(" ")
+            } else {
+                break
+            }
+        }
+        return (lines, spacing, breakLine, index)
+    }
+    
+    
 }
 
 extension JSONWriterTextView: UITextViewDelegate {
@@ -38,37 +112,15 @@ extension JSONWriterTextView: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let isReturnPressed: Bool = text == "\n"
         if isReturnPressed {
-            let lines: [String] = (textView.text ?? "").components(separatedBy: "\n")
-            dump(lines)
-            // Finding cursor position in lines
-            var index: Int = 0
-            var count: Int = 0
-            for (i, line) in lines.enumerated() {
-                print("Line \(i): \(line.count)")
-                let next: Int = count + line.count + 1
-                if range.location <= next {
-                    index = i
-                    break
-                }
-                count = next
-            }
-            print(index)
-            
-            let breakLine: String = lines[index]
-            var spacing: String = ""
-            for char in breakLine {
-                if String(char) == " " {
-                    spacing.append(" ")
-                } else {
-                    break
-                }
-            }
+            var (lines, spacing, breakLine, index): ([String], String, String, Int) = self.splitTextInLinesOfText()
             var sufix: String = "\"\""
             let oldRange = textView.selectedTextRange
-            let isJSON: Bool = breakLine.lastString == "{"
+            let isJSON: Bool = breakLine.lastString == "{" || breakLine.lastString == "}"
+            let isJSONAlreadyClosed: Bool = breakLine.lastString == "}"
             let isMiddleJSON: Bool = lines.count > (index + 1) && lines[index + 1].contains("\"")
             if isJSON {
-                sufix.append("\n" + spacing + "}\(isMiddleJSON ? "," : "")")
+                let closeJSON: String = isJSONAlreadyClosed ? "" : "}"
+                sufix.append(" :\n" + spacing + "\(closeJSON)\(isMiddleJSON ? "," : "")")
                 spacing.append("  ")
             } else if isMiddleJSON {
                 sufix.append(" : ,")
@@ -86,6 +138,15 @@ extension JSONWriterTextView: UITextViewDelegate {
                 textView.selectedTextRange = textView.textRange(from: position, to: position)
             }
             return false
+        }
+        let isClearPressed = text == ""
+        if isClearPressed {
+            if self.clearIf(charBefore: "{", charAfter: "}") {
+                return false
+            }
+            if self.clearIf(charBefore: "\"", charAfter: "\"") {
+                return false
+            }
         }
         return true
     }

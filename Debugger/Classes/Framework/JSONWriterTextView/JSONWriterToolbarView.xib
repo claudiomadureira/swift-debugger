@@ -41,43 +41,31 @@
                                                 <constraint firstAttribute="width" constant="50" id="2Xn-lw-o3U"/>
                                                 <constraint firstAttribute="height" constant="50" id="sWY-Bi-RSf"/>
                                             </constraints>
-                                            <state key="normal" title="Done"/>
-                                            <connections>
-                                                <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="G9h-aJ-DyD"/>
-                                            </connections>
+                                            <state key="normal" title="Button"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAu-33-zSV" customClass="Button" customModule="Debugger" customModuleProvider="target">
-                                            <rect key="frame" x="333" y="5" width="50" height="50"/>
+                                            <rect key="frame" x="343" y="5" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="HQi-HX-Her"/>
                                                 <constraint firstAttribute="width" constant="50" id="yKn-Ql-LGa"/>
                                             </constraints>
-                                            <state key="normal" title="Done"/>
-                                            <connections>
-                                                <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="c0F-ed-yUc"/>
-                                            </connections>
+                                            <state key="normal" title="Button"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-Sk-dQW" customClass="Button" customModule="Debugger" customModuleProvider="target">
-                                            <rect key="frame" x="263" y="5" width="50" height="50"/>
+                                            <rect key="frame" x="283" y="5" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="29w-Qc-EaH"/>
                                                 <constraint firstAttribute="width" constant="50" id="afJ-KB-FcV"/>
                                             </constraints>
-                                            <state key="normal" title="Done"/>
-                                            <connections>
-                                                <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="dLw-TL-gi3"/>
-                                            </connections>
+                                            <state key="normal" title="Button"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-Bu-cDp" customClass="Button" customModule="Debugger" customModuleProvider="target">
-                                            <rect key="frame" x="193" y="5" width="50" height="50"/>
+                                            <rect key="frame" x="223" y="5" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="2dm-m5-JzM"/>
                                                 <constraint firstAttribute="width" constant="50" id="YfQ-KV-NTz"/>
                                             </constraints>
-                                            <state key="normal" title="Done"/>
-                                            <connections>
-                                                <action selector="buttonDonePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="cd3-Y2-ed5"/>
-                                            </connections>
+                                            <state key="normal" title="Button"/>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,14 +75,14 @@
                                         <constraint firstItem="Xpa-j3-a9i" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="5By-Uj-mnE"/>
                                         <constraint firstItem="L2P-L1-DD7" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="FsG-T4-KjW"/>
                                         <constraint firstItem="Q7p-Sk-dQW" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="IEU-th-eu2"/>
-                                        <constraint firstItem="L2P-L1-DD7" firstAttribute="leading" secondItem="DAu-33-zSV" secondAttribute="trailing" constant="20" id="JSS-5f-gSR"/>
+                                        <constraint firstItem="L2P-L1-DD7" firstAttribute="leading" secondItem="DAu-33-zSV" secondAttribute="trailing" constant="10" id="JSS-5f-gSR"/>
                                         <constraint firstAttribute="trailing" secondItem="L2P-L1-DD7" secondAttribute="trailing" constant="15" id="Lh7-BC-bnf"/>
                                         <constraint firstItem="aeK-Bu-cDp" firstAttribute="centerY" secondItem="yaQ-3N-Tz0" secondAttribute="centerY" id="P50-Sn-vqv"/>
                                         <constraint firstItem="Xpa-j3-a9i" firstAttribute="leading" secondItem="yaQ-3N-Tz0" secondAttribute="leading" constant="15" id="VHB-j1-gRE"/>
                                         <constraint firstItem="L2P-L1-DD7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FeV-mB-NXB" secondAttribute="trailing" constant="20" id="gty-YF-ZpY"/>
                                         <constraint firstItem="DAu-33-zSV" firstAttribute="centerY" secondItem="L2P-L1-DD7" secondAttribute="centerY" id="kLV-nH-Iv8"/>
-                                        <constraint firstItem="DAu-33-zSV" firstAttribute="leading" secondItem="Q7p-Sk-dQW" secondAttribute="trailing" constant="20" id="nZU-bo-ZAe"/>
-                                        <constraint firstItem="Q7p-Sk-dQW" firstAttribute="leading" secondItem="aeK-Bu-cDp" secondAttribute="trailing" constant="20" id="wVz-Kv-aKI"/>
+                                        <constraint firstItem="DAu-33-zSV" firstAttribute="leading" secondItem="Q7p-Sk-dQW" secondAttribute="trailing" constant="10" id="nZU-bo-ZAe"/>
+                                        <constraint firstItem="Q7p-Sk-dQW" firstAttribute="leading" secondItem="aeK-Bu-cDp" secondAttribute="trailing" constant="10" id="wVz-Kv-aKI"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -127,6 +115,9 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="btnDone" destination="L2P-L1-DD7" id="ltY-um-DFb"/>
+                <outlet property="btnJSONEmpty" destination="Q7p-Sk-dQW" id="rkl-zU-rf9"/>
+                <outlet property="btnJSONFilled" destination="DAu-33-zSV" id="K24-MY-CDx"/>
+                <outlet property="btnQuotationMarks" destination="aeK-Bu-cDp" id="MNM-lB-JmT"/>
                 <outlet property="lblJSON" destination="Xpa-j3-a9i" id="2IO-lF-prY"/>
                 <outlet property="lblStatus" destination="FeV-mB-NXB" id="Amf-dS-Tgw"/>
                 <outlet property="viewContainer" destination="EVp-mD-t5S" id="44Q-ZF-v1X"/>

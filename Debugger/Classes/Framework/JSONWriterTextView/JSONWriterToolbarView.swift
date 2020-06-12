@@ -16,8 +16,14 @@ class JSONWriterToolbarView: UIView, NibLoadable {
     @IBOutlet private weak var lblJSON: UILabel!
     @IBOutlet private weak var lblStatus: UILabel!
     @IBOutlet private weak var btnDone: Button!
+    @IBOutlet private weak var btnQuotationMarks: Button!
+    @IBOutlet private weak var btnJSONEmpty: Button!
+    @IBOutlet private weak var btnJSONFilled: Button!
     
     private var onTouchUpInsideDoneButton: Event?
+    private var onTouchUpInsideQuotationMarksButton: Event?
+    private var onTouchUpInsideJSONEmptyButton: Event?
+    private var onTouchUpInsideJSONFilledButton: Event?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,16 +31,31 @@ class JSONWriterToolbarView: UIView, NibLoadable {
             self.viewContainer.layer.masksToBounds = true
             self.viewContainer.layer.cornerRadius = 20
         }
-        self.btnDone.setTitle("Done", for: .normal)
-        let titleColor: UIColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        self.btnDone.setTitleColor(titleColor, for: .normal)
-        self.btnDone.setTitleColor(titleColor, for: .highlighted)
-        self.btnDone.onChangeState { (btn, state) in
-            btn.alpha = state.alpha
+        self.setupTitle(title: "Done", onButton: self.btnDone, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        self.setupTitle(title: "\"...\"", onButton: self.btnQuotationMarks, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        self.setupTitle(title: "{}", onButton: self.btnJSONEmpty, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        self.setupTitle(title: "{...}", onButton: self.btnJSONFilled, withColor: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
+        let buttons: [Button] = [self.btnDone, self.btnQuotationMarks, self.btnJSONEmpty, self.btnJSONFilled]
+        for btn in buttons {
+            btn.onChangeState { (_btn, state) in
+                _btn.alpha = state.alpha
+            }
         }
         self.btnDone.onTouchUpInside { [weak self] button in
             guard let self = self else { return }
             self.onTouchUpInsideDoneButton?(self)
+        }
+        self.btnQuotationMarks.onTouchUpInside { [weak self] button in
+            guard let self = self else { return }
+            self.onTouchUpInsideQuotationMarksButton?(self)
+        }
+        self.btnJSONEmpty.onTouchUpInside { [weak self] button in
+            guard let self = self else { return }
+            self.onTouchUpInsideJSONEmptyButton?(self)
+        }
+        self.btnJSONFilled.onTouchUpInside { [weak self] button in
+            guard let self = self else { return }
+            self.onTouchUpInsideJSONFilledButton?(self)
         }
         self.lblJSON.text = "JSON: "
         self.lblJSON.textColor = .white
@@ -51,6 +72,24 @@ class JSONWriterToolbarView: UIView, NibLoadable {
     
     func onDonePressed(handler: @escaping Event) {
         self.onTouchUpInsideDoneButton = handler
+    }
+    
+    func onQuotationMarksPressed(handler: @escaping Event) {
+        self.onTouchUpInsideQuotationMarksButton = handler
+    }
+    
+    func onJSONEmptyPressed(handler: @escaping Event) {
+        self.onTouchUpInsideJSONEmptyButton = handler
+    }
+    
+    func onJSONFilledPressed(handler: @escaping Event) {
+        self.onTouchUpInsideJSONFilledButton = handler
+    }
+    
+    private func setupTitle(title: String, onButton button: Button, withColor color: UIColor) {
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(color, for: .normal)
+        button.setTitleColor(color, for: .highlighted)
     }
     
 }
