@@ -19,7 +19,8 @@
 		238EE198C60B268FD058967DD8BB4FD0 /* LeftCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DA05CFEEE2AC6B2CABD7222FA371D /* LeftCoordinator.swift */; };
 		2467EC7B87571B22C655F51D25EA7AAE /* DebugDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2A3E98B51DA019E4D6A3270E3F9DC8 /* DebugDetailViewModel.swift */; };
 		2510357E2493D70A0021422B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2510357D2493D70A0021422B /* SettingsViewModel.swift */; };
-		251035822493D96A0021422B /* DebugJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251035812493D96A0021422B /* DebugJSON.swift */; };
+		251035822493D96A0021422B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251035812493D96A0021422B /* JSON.swift */; };
+		258E4E3224983B0200FB36CB /* Extension-Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258E4E3124983B0200FB36CB /* Extension-Data.swift */; };
 		25B66094F4CC96B97C01FB238BFB827B /* DebuggerSimpleLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B393FEC4B44ABEF3E788EA5F4F46E81 /* DebuggerSimpleLogViewModel.swift */; };
 		25D111D64C8D6CD2B828785FD1574848 /* DebuggerLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577111E0EC4809BCD721173DC314D810 /* DebuggerLogModel.swift */; };
 		270B627926F12B0FC8498A7686B9A491 /* Pods-Debugger_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86CFF593DD387CBD87B7A9DC1544FB31 /* Pods-Debugger_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -181,7 +182,8 @@
 		21E3D25E137D32C3416F384B099C6A26 /* NibLoadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NibLoadable.swift; path = Arsenal/Classes/source/object/nibloadable/NibLoadable.swift; sourceTree = "<group>"; };
 		2422197D8D6AFABE7AAF02D27286A8B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		2510357D2493D70A0021422B /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		251035812493D96A0021422B /* DebugJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DebugJSON.swift; path = Debugger/Classes/DebugJSON.swift; sourceTree = "<group>"; };
+		251035812493D96A0021422B /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Debugger/Classes/JSON.swift; sourceTree = "<group>"; };
+		258E4E3124983B0200FB36CB /* Extension-Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-Data.swift"; sourceTree = "<group>"; };
 		25ACFEC8C0C6C0209ACB355025ECCCCE /* Pods-Debugger_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Debugger_Example-frameworks.sh"; sourceTree = "<group>"; };
 		25FA8486C60CFC7EB21E69834E68ADA9 /* SettingsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		271DE4364D91D8799EEC2D549974A3CF /* DebuggerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DebuggerViewController.swift; sourceTree = "<group>"; };
@@ -264,7 +266,7 @@
 		A9DB0C43C28CFBE7A3B823914B0E6578 /* Pods-Debugger_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Debugger_Example-dummy.m"; sourceTree = "<group>"; };
 		ACFCBBA60A61D771774DB8BB07423227 /* Coordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		AE1CA4CBAB3FDE158955E7E6C07DC2E0 /* ErrorMessageExtractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorMessageExtractor.swift; path = Debugger/Classes/ErrorMessageExtractor.swift; sourceTree = "<group>"; };
-		AF66831960E9E6300374103AA5304940 /* Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debug.swift; path = Debugger/Classes/Debug.swift; sourceTree = "<group>"; };
+		AF66831960E9E6300374103AA5304940 /* Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		B52900F78B923BAF002704740925BA56 /* JSONWriterTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONWriterTextView.swift; sourceTree = "<group>"; };
 		C2B4F69902E27DBD0777A18EDBED8779 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C4625C6323DB2876C0B2FB1B0DC9BB68 /* Debugger.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Debugger.modulemap; sourceTree = "<group>"; };
@@ -395,6 +397,14 @@
 			path = LogDetail;
 			sourceTree = "<group>";
 		};
+		258E4E3024983AE700FB36CB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				258E4E3124983B0200FB36CB /* Extension-Data.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		266A9D789F12654F4D9D64E316FF5BB2 /* Emoji */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +437,7 @@
 		32A611FA00214D26140D98CF47F16ABF /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				258E4E3024983AE700FB36CB /* Data */,
 				4356F919C4AE03D2C11227E86A9B745C /* Bundle */,
 				FF43FCBD009AAF72C4F32A2E67DAE130 /* Button */,
 				266A9D789F12654F4D9D64E316FF5BB2 /* Emoji */,
@@ -495,13 +506,12 @@
 		57F20F5126385E7C69A74887A9C3FA1F /* Debugger */ = {
 			isa = PBXGroup;
 			children = (
-				AF66831960E9E6300374103AA5304940 /* Debug.swift */,
 				AE1CA4CBAB3FDE158955E7E6C07DC2E0 /* ErrorMessageExtractor.swift */,
 				5941DB894A0EB62C4DD805246A2F60B1 /* Extension-UIWindow.swift */,
 				D2E7B32FD7FA631087D07ECF42E865B2 /* LogModel.swift */,
 				2B264DAE412AB9A64FAB838D6F82DC36 /* Storage.swift */,
 				9E626202CAFACA663DD71BA9BBD2D3B7 /* LogType.swift */,
-				251035812493D96A0021422B /* DebugJSON.swift */,
+				251035812493D96A0021422B /* JSON.swift */,
 				86F31A6EFB5A92BC79520051698FB180 /* Coordinator */,
 				AB1F579BE5E4BBE67F20606046CF1956 /* DecodingError */,
 				32A611FA00214D26140D98CF47F16ABF /* Framework */,
@@ -588,6 +598,7 @@
 		6C98DB6C418FF327EF504885947828F5 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
+				AF66831960E9E6300374103AA5304940 /* Debug.swift */,
 				57F20F5126385E7C69A74887A9C3FA1F /* Debugger */,
 			);
 			name = "Development Pods";
@@ -1175,7 +1186,7 @@
 				C611B89FB2974FE9D0FCB93DB57B9644 /* AlwaysSelectedCollectionViewCell.xib in Sources */,
 				E1543EC2CFECEA5FF0C0B4FFB8C5E1A2 /* Button.swift in Sources */,
 				5A6B70944B6D250A4FE037BF027A7E1F /* Coordinator.swift in Sources */,
-				251035822493D96A0021422B /* DebugJSON.swift in Sources */,
+				251035822493D96A0021422B /* JSON.swift in Sources */,
 				2510357E2493D70A0021422B /* SettingsViewModel.swift in Sources */,
 				DE16B1DD9AABB8DF29644ECAAE6C2A60 /* Debug.swift in Sources */,
 				4550DDE730D423039D5321A454BE78B9 /* DebugDetailContentItemViewModel.swift in Sources */,
@@ -1192,6 +1203,7 @@
 				A9A2402FD21274D065517067B8A2EB0C /* DebuggerCoordinator.swift in Sources */,
 				8B39EAEB76940666391FF1021FA74E51 /* DebuggerDecodingErrorModel.swift in Sources */,
 				49CCD96DF5AFBBCE3F8B492752B84065 /* DebuggerHTTPRequestModel.swift in Sources */,
+				258E4E3224983B0200FB36CB /* Extension-Data.swift in Sources */,
 				67A18737EEF39DFF122D0F87C023113E /* DebuggerHTTPRequestTableViewCell.swift in Sources */,
 				59C1A2C1534A337481D3889BB3C83F9F /* DebuggerHTTPRequestTableViewCell.xib in Sources */,
 				C4F89671E5781B112C1F83E96029AC60 /* DebuggerHTTPRequestViewModel.swift in Sources */,

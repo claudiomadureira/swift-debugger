@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsViewModel: NSObject {
     
-    var settings: DebugJSON?
+    var settings: JSON?
     
     override init() {
         super.init()
@@ -22,9 +22,9 @@ class SettingsViewModel: NSObject {
         Debug.shared.localSettings = settings
     }
     
-    func getSettingsFrom(text: String?) -> DebugJSON? {
+    func getSettingsFrom(text: String?) -> JSON? {
         if let text = text, let data = text.data(using: .utf8) {
-            return try? JSONSerialization.jsonObject(with: data) as? DebugJSON
+            return try? JSONSerialization.jsonObject(with: data) as? JSON
         }
         return nil
     }
@@ -36,7 +36,7 @@ class SettingsViewModel: NSObject {
     func isSettingsInvalid(settingsText: String?) -> Bool {
         if let text = settingsText, let data = text.data(using: .utf8) {
             do {
-                let settings = try JSONSerialization.jsonObject(with: data) as? DebugJSON
+                let settings = try JSONSerialization.jsonObject(with: data) as? JSON
             } catch let error {
                 return true
             }
